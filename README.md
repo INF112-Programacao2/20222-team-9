@@ -10,6 +10,7 @@ Padrão e referência de uso de POO no projeto
 - https://acervolima.com/abstracao-em-c/
 - https://acervolima.com/polimorfismo-em-c/
 - https://acervolima.com/heranca-em-c/
+- [Abstração e Interface POO](https://youtu.be/H7ys8uvw_ik)
 
 
 
