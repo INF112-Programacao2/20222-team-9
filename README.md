@@ -25,10 +25,15 @@ Padrão e referência de uso de POO no projeto
 
 ## CRIAÇÃO DE SERVIDOR
 ### DOWNLOAD XAMPP
+
 [WINDOWS](https://youtu.be/6Ids59fjRhw)
+
 [LINUX](https://youtu.be/SL1pnztnm68)
+
 ### DOWNLOAD MYSQL + WORKBENCH
+
 [WINDOWS](https://youtu.be/zpssr3u1EO8)
+
 [LINUX](https://www.edivaldobrito.com.br/como-instalar-o-instalar-mysql-workbench-no-ubuntu-e-derivados/)
 
 
@@ -41,11 +46,15 @@ Padrão e referência de uso de POO no projeto
 
 ## CONEXÃO DO C++ COM O BANCO
 [UTILIZANDO O QT CREATOR](https://youtu.be/yxy0yvZnX1Y)
+
 [UTILIZANDO O QT CREATOR (EM ENGLISH)](
 https://www.youtube.com/watch?v=DEuiURx3tYY) 
+
 ### PODE AJUDAR
 [TUTORIAL 1](https://youtu.be/_u7TcjIDNzw)
+
 [FORUM](https://forum.qt.io/topic/86164/connection-to-a-mysql-database-with-qt-creator-on-windows)
+
 [UM PROJETINHO DE EXEMPLO](https://github.com/agusk/crud-mysql-cpp/tree/master/src)
 
 
@@ -55,6 +64,7 @@ https://www.youtube.com/watch?v=DEuiURx3tYY)
 [O QUE É O PADRÃO DAO](https://youtu.be/vAspH9Xy_Ag)
 
 [GEEK FORCES - DATA ACESS OBJECT PATTERN](https://www.geeksforgeeks.org/data-access-object-pattern/)
+
 ### MODELO PADRÃO QUE UTILIZAREMOS NO PROJETO
 [EXEMPLO CRUD PRONTO C++](https://desenvolvimentoaberto.org/2014/12/15/dao-data-access-object-pattern-crud-oracle-ibm-db2-mssql-server-mfc-c/)
 Muito importante!!
