@@ -2,15 +2,15 @@
 #include "ui_teste_login.h"
 #include "QMessageBox"
 #include "userteste.h"
-#include "daconexaofactory.h"
-#include "TesteUserDAO.h"
 #include "QSqlQuery"
+#include "TesteUserDAO.h"
 
 Teste_Login::Teste_Login(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Teste_Login)
 {
     ui->setupUi(this);
+
 }
 
 Teste_Login::~Teste_Login()
@@ -30,10 +30,8 @@ void Teste_Login::on_pushButton_clicked()
         long id = 0;
         QString nome = "";
 
-
-        UserTeste user2 = UserTeste(id, nome, cpf, senha);
-        TesteUserDAO dao;
-        if(dao.loginUsuario(cpf,senha)){
+        TesteUserDAO daoUser;
+        if(daoUser.loginUsuario(cpf,senha)){
             QMessageBox::information(this, "Conexão com o Banco", "LOGIN FEITO EM PATRÃO");
         }else{
             QMessageBox::information(this, "Conexão com o Banco", "LOGIN DEU CERTO NÃO NÉ PATRÃO");

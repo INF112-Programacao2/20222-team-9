@@ -16,7 +16,6 @@ private:
 public:
     TesteUserDAO();
     ~TesteUserDAO();
-
     // Metodos DAO
     bool loginUsuario(QString cpf, QString senha);
     QString getErro();

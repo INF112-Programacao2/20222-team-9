@@ -2,51 +2,50 @@
 #include "QSqlQuery"
 #include "qsqlerror.h"
 #include "qsqlrecord.h"
-
+#include "daoconexaofactory.h"
 TesteUserDAO::TesteUserDAO()
 {
-
+    DAOConexaoFactory dao;
+    this->conn = dao.getConexao();
 }
 TesteUserDAO::~TesteUserDAO()
 {
 
 }
 bool TesteUserDAO::loginUsuario(QString cpf, QString senha){
-    QSqlDatabase db =QSqlDatabase::addDatabase("QMYSQL", "planning");
-    db.setHostName("127.0.0.1");
-    db.setUserName("root");
-    db.setPassword("root");
-    db.setDatabaseName("bd_vinil");
 
-      if(db.open()){
-          QSqlQuery query= QSqlQuery(db);
-          QString sq = "SELECT * FROM user_teste WHERE cpf= '"+cpf+"' and senha= '"+senha+"';";
-          query.prepare(sq );
-            if( !query.exec() )
-              qDebug() << query.lastError();
-            else
-            {
-              qDebug( "Selected!" );
+    if(conn.open()){
+      QSqlQuery query= QSqlQuery(conn);
+      QString sq = "SELECT * FROM user_teste WHERE cpf= '"+cpf+"' and senha= '"+senha+"';";
+      query.prepare(sq );
 
-              QSqlRecord rec = query.record();
-              int cols = rec.count();
+      if(query.exec()){
+          qDebug( "Selected!" );
 
-              QString temp;
+          QSqlRecord rec = query.record();
+          int cols = rec.count();
+
+          QString temp;
+          for( int c=0; c<cols; c++ )
+            temp += rec.fieldName(c) + ((c<cols-1)?"\t":"");
+          qDebug() << temp;
+
+          if(!query.next()){
+              return 0;
+          }else{
+              temp = "";
               for( int c=0; c<cols; c++ )
-                temp += rec.fieldName(c) + ((c<cols-1)?"\t":"");
+                temp += query.value(c).toString() + ((c<cols-1)?"\t":"");
               qDebug() << temp;
+              return 1;
+          }
 
-              while( query.next() )
-              {
-                temp = "";
-                for( int c=0; c<cols; c++ )
-                  temp += query.value(c).toString() + ((c<cols-1)?"\t":"");
-                qDebug() << temp;
-              }
-            }
-           return 1;
-          //QMessageBox::information(this, "Connection","DEU BOM");
       }else{
+          qDebug() << query.lastError();
           return 0;
       }
+    }else{
+      qDebug( "Conexão com o banco falhou!" );
+      return 0;
+    }
 }
