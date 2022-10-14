@@ -47,6 +47,12 @@ Padrão e referência de uso de POO no projeto
 ## CONEXÃO DO C++ COM O BANCO
 [UTILIZANDO O QT CREATOR](https://youtu.be/yxy0yvZnX1Y)
 
+CASO DER **ERRO** ADICIONAR  [LINK DE DOWNLOAD](https://github.com/thecodemonkey86/qt_mysql_driver/files/9683372/qsqlmysql.dll_Qt_SQL_driver_6.4.0_MinGW_11.2.0_64-bit.zip)
+EM 
+**C:\Qt\6.4.0\mingw_64\plugins\sqldrivers**
+
+[LINK DE DOWNLOAD](https://github.com/thecodemonkey86/qt_mysql_driver/files/9683372/qsqlmysql.dll_Qt_SQL_driver_6.4.0_MinGW_11.2.0_64-bit.zip)
+
 [UTILIZANDO O QT CREATOR (EM ENGLISH)](
 https://www.youtube.com/watch?v=DEuiURx3tYY) 
 
