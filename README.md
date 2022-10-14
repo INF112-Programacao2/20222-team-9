@@ -66,7 +66,7 @@ https://www.youtube.com/watch?v=DEuiURx3tYY)
 
 [UM PROJETINHO DE EXEMPLO](https://github.com/agusk/crud-mysql-cpp/tree/master/src)
 
-### PRIMEIRO CODIGO BANCO DE DADOS (TA TOSCO)
+### PRIMEIRO CODIGO BANCO DE DADOS
 create database bd_vinil;
 use bd_vinil;
 
@@ -79,11 +79,13 @@ primary key(id));
 
 insert into bd_vinil.user_teste(nome, cpf, senha) 
 values ("GILBERTO", "13176351674", "mercio");
-INSERT INTO user_teste (nome, cpf, senha) values ('ROBERTO', '13176351674', 'MERCIO');
+
+INSERT INTO user_teste (nome, cpf, senha) values ('ROBERTO', '99966699969', 'mercio');
+INSERT INTO user_teste (nome, cpf, senha) values ('CICEROOOO', '15589763489', 'mercio');
+INSERT INTO user_teste (nome, cpf, senha) values ('GUI', '11111111111', 'mercio');
+INSERT INTO user_teste (nome, cpf, senha) values ('GUI ERVALIA', '55566677799', 'mercio');
 
 select * from user_teste;
-
-SELECT * FROM user_teste WHERE cpf= "13176351674" and senha= "mercio";
 
 
 ## CRUD C++
