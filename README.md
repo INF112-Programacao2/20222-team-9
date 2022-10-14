@@ -56,6 +56,9 @@ EM
 [UTILIZANDO O QT CREATOR (EM ENGLISH)](
 https://www.youtube.com/watch?v=DEuiURx3tYY) 
 
+### METODOS DE ACESSO AO BANCO DE DADOS
+[Connect to MySql with QSqlDatabase](http://www.java2s.com/Code/Cpp/Qt/ConnecttoMySqlwithQSqlDatabaseanddoselectupdateinsertanddelete.htm)
+
 ### PODE AJUDAR
 [TUTORIAL 1](https://youtu.be/_u7TcjIDNzw)
 
