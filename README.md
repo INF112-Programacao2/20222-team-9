@@ -66,27 +66,8 @@ https://www.youtube.com/watch?v=DEuiURx3tYY)
 
 [UM PROJETINHO DE EXEMPLO](https://github.com/agusk/crud-mysql-cpp/tree/master/src)
 
-### PRIMEIRO CODIGO BANCO DE DADOS
-create database bd_vinil;
-use bd_vinil;
-
-create table user_teste (
-id int auto_increment,
-nome varchar(250),
-cpf varchar(15),
-senha varchar(150),
-primary key(id));
-
-insert into bd_vinil.user_teste(nome, cpf, senha) 
-values ("GILBERTO", "13176351674", "mercio");
-
-INSERT INTO user_teste (nome, cpf, senha) values ('ROBERTO', '99966699969', 'mercio');
-INSERT INTO user_teste (nome, cpf, senha) values ('CICEROOOO', '15589763489', 'mercio');
-INSERT INTO user_teste (nome, cpf, senha) values ('GUI', '11111111111', 'mercio');
-INSERT INTO user_teste (nome, cpf, senha) values ('GUI ERVALIA', '55566677799', 'mercio');
-
-select * from user_teste;
-
+### CÓDIGO DO BANCO DE DADOS
+https://drive.google.com/file/d/1OIcJ2ZEWdhGUrd3d4WPefXVL2FozCpWp/view?usp=share_link
 
 ## CRUD C++
 
