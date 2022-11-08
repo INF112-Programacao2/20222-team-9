@@ -11,6 +11,7 @@ CONFIG += c++17
 
 SOURCES += \
     daoconexaofactory.cpp \
+    inserirusuario.cpp \
     main.cpp \
     mainwindow.cpp \
     teste_login.cpp \
@@ -20,6 +21,7 @@ SOURCES += \
 
 HEADERS += \
     daoconexaofactory.h \
+    inserirusuario.h \
     mainwindow.h \
     teste_login.h \
     testeuserdao.h \
@@ -28,6 +30,7 @@ HEADERS += \
     login_teste.h
 
 FORMS += \
+    inserirusuario.ui \
     mainwindow.ui \
     teste_login.ui
 

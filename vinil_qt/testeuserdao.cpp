@@ -49,3 +49,26 @@ bool TesteUserDAO::loginUsuario(QString cpf, QString senha){
       return 0;
     }
 }
+bool TesteUserDAO::inserirUsuario(QString nome,QString cpf, QString senha){
+
+    if(conn.open()){
+      QSqlQuery query= QSqlQuery(conn);
+      QString sq = "insert into bd_vinil.user_teste(nome, cpf, senha) values ('"+nome+
+              "', '"+cpf+"', '"+senha+"');";
+      query.prepare(sq );
+
+      if(query.exec()){
+          qDebug( "Inserted!" );
+      }else{
+          qDebug() << query.lastError();
+          return 0;
+      }
+    }else{
+      qDebug( "Conexão com o banco falhou!" );
+      return 0;
+    }
+}
+
+
+
+
