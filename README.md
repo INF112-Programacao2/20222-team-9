@@ -67,7 +67,8 @@ https://www.youtube.com/watch?v=DEuiURx3tYY)
 [UM PROJETINHO DE EXEMPLO](https://github.com/agusk/crud-mysql-cpp/tree/master/src)
 
 ### CÓDIGO DO BANCO DE DADOS
-https://drive.google.com/file/d/1OIcJ2ZEWdhGUrd3d4WPefXVL2FozCpWp/view?usp=share_link
+Principal: https://drive.google.com/file/d/1OIcJ2ZEWdhGUrd3d4WPefXVL2FozCpWp/view?usp=share_link
+Tabela "user_teste": https://drive.google.com/file/d/1OplAMIFrsqS_Xp_virIbXpGEFT3yvsSz/view?usp=share_link
 
 ## CRUD C++
 
