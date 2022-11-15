@@ -10,6 +10,8 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    cliente.cpp \
+    compra.cpp \
     daoconexaofactory.cpp \
     inserirusuario.cpp \
     main.cpp \
@@ -20,6 +22,8 @@ SOURCES += \
     userteste.cpp
 
 HEADERS += \
+    cliente.h \
+    compra.h \
     daoconexaofactory.h \
     inserirusuario.h \
     mainwindow.h \
