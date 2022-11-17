@@ -1,0 +1,38 @@
+daoliente dao;
+
+//criar
+Cliente cliente = Cliente(9, "24072002", "chuva", "chuva@gmail.com", "cigarra");
+
+if (dao.inserirCliente(cliente))
+    QMessageBox::information(this, "Inserção", "CLIENTE INSERIDO NE PATRAO");
+else
+    QMessageBox::information(this, "Inserção", "NAO INSERIU CLIENTE NE PATRAO");
+
+//visualizarDados
+if (dao.visualizarDadosCliente(9))
+    QMessageBox::information(this, "Visualização", "CLIENTE VISUALIZADO NE PATRAO");
+else
+    QMessageBox::information(this, "Visualização", "NAO VISUALIZOU CLIENTE NE PATRAO");
+
+//atualizarDados
+cliente.setCpf("19022005");
+cliente.setNome("chuva_azul");
+cliente.setEmail("chuva_azul@gmail.com");
+cliente.setSenha("canto da cigarra");
+
+if (dao.atualizarDadosCliente(cliente))
+    QMessageBox::information(this, "Atualização", "ATUALIZADO NE PATRAO");
+else
+    QMessageBox::information(this, "Atualização", "NAO ATUALIZOU NE PATRAO");
+
+//visualizarDados
+if (dao.visualizarDadosCliente(9))
+    QMessageBox::information(this, "Visualização", "CLIENTE VISUALIZADO NE PATRAO");
+else
+    QMessageBox::information(this, "Visualização", "NAO VISUALIZOU CLIENTE NE PATRAO");
+
+//excluir
+if (dao.excluirCliente(9))
+    QMessageBox::information(this, "Exclusão", "CLIENTE EXCLUIDO NE PATRAO");
+else
+    QMessageBox::information(this, "Exclusão", "NAO EXCLUIU CLIENTE NE PATRAO");

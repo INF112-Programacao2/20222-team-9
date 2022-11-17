@@ -1,0 +1,87 @@
+/*utilidade pública: 
+ALTER TABLE bd_vinil.nome_da_tabela AUTO_INCREMENT = 1;*/
+
+create table cliente
+(
+    id     int auto_increment
+        primary key,
+    cpf    varchar(11)  null,
+    nome   varchar(300) null,
+    email  varchar(300) null,
+    senha  varchar(300) null,
+    `rank` int          null
+);
+
+create table musica
+(
+    id      int auto_increment
+        primary key,
+    nome    varchar(300) null,
+    duracao double       null
+);
+
+create table lista_musicas
+(
+    id        int auto_increment
+        primary key,
+    id_musica int null,
+    constraint id_musica
+        foreign key (id_musica) references musica (id)
+);
+
+create table disco
+(
+    id               int          not null
+        primary key,
+    id_lista_musicas int          null,
+    nome             varchar(300) null,
+    genero           varchar(300) null,
+    compositor       varchar(300) null,
+    participacoes    varchar(300) null,
+    ano_lancamento   int          null,
+    preco            double       null,
+    constraint disco_lista_musicas_id_fk
+        foreign key (id_lista_musicas) references lista_musicas (id)
+);
+
+create table itens_carrinho
+(
+    id       int auto_increment
+        primary key,
+    id_disco int null,
+    constraint itens_carrinho_disco__fk
+        foreign key (id_disco) references disco (id)
+);
+
+create table carrinho
+(
+    id                int auto_increment
+        primary key,
+    id_itens_carrinho int null,
+    id_cliente        int null,
+    constraint carrinho_cliente_id_fk
+        foreign key (id_cliente) references cliente (id),
+    constraint carrinho_itens_carrinho_id_fk
+        foreign key (id_itens_carrinho) references itens_carrinho (id)
+);
+
+create table compra
+(
+    id          int auto_increment
+        primary key,
+    id_cliente  int null,
+    id_carrinho int null,
+    constraint compra_carrinho_id_fk
+        foreign key (id_carrinho) references carrinho (id),
+    constraint compra_cliente_id_fk
+        foreign key (id_cliente) references cliente (id)
+);
+
+create table user_teste
+(
+    id    int auto_increment
+        primary key,
+    nome  varchar(250) null,
+    cpf   varchar(15)  null,
+    senha varchar(150) null
+);
