@@ -34,19 +34,19 @@ public:
         Teste_Login->resize(400, 300);
         label = new QLabel(Teste_Login);
         label->setObjectName("label");
-        label->setGeometry(QRect(110, 140, 49, 16));
+        label->setGeometry(QRect(90, 120, 49, 16));
         label_2 = new QLabel(Teste_Login);
         label_2->setObjectName("label_2");
-        label_2->setGeometry(QRect(110, 170, 49, 16));
+        label_2->setGeometry(QRect(90, 150, 49, 16));
         tx_cpf = new QLineEdit(Teste_Login);
         tx_cpf->setObjectName("tx_cpf");
-        tx_cpf->setGeometry(QRect(190, 140, 113, 22));
+        tx_cpf->setGeometry(QRect(170, 120, 113, 22));
         tx_senha = new QLineEdit(Teste_Login);
         tx_senha->setObjectName("tx_senha");
-        tx_senha->setGeometry(QRect(190, 170, 113, 22));
+        tx_senha->setGeometry(QRect(170, 150, 113, 22));
         pushButton = new QPushButton(Teste_Login);
         pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(280, 220, 75, 24));
+        pushButton->setGeometry(QRect(260, 200, 75, 24));
 
         retranslateUi(Teste_Login);
 

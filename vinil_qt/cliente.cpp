@@ -3,7 +3,7 @@
 //inclusão para testes:
 #include <iostream>
 
-Cliente::Cliente(int id, std::string cpf, std::string nome, std::string email, std::string senha) :
+Cliente::Cliente(int id, QString cpf, QString nome, QString email, QString senha) :
     id(id), cpf(cpf), nome(nome), email(email), senha(senha){};
 
 int Cliente::getId()
@@ -16,42 +16,42 @@ void Cliente::setId(int id)
     this->id = id;
 }
 
-std::string Cliente::getCpf()
+QString Cliente::getCpf()
 {
     return this->cpf;
 }
 
-void Cliente::setCpf(std::string cpf)
+void Cliente::setCpf(QString cpf)
 {
     this->cpf = cpf;
 }
 
-std::string Cliente::getNome()
+QString Cliente::getNome()
 {
     return this->nome;
 }
 
-void Cliente::setNome(std::string nome)
+void Cliente::setNome(QString nome)
 {
     this->nome = nome;
 }
 
-std::string Cliente::getEmail()
+QString Cliente::getEmail()
 {
     return this->email;
 }
 
-void Cliente::setEmail(std::string email)
+void Cliente::setEmail(QString email)
 {
     this->email = email;
 }
 
-std::string Cliente::getSenha()
+QString Cliente::getSenha()
 {
     return this->senha;
 }
 
-void Cliente::setSenha(std::string senha)
+void Cliente::setSenha(QString senha)
 {
     this->senha = senha;
 }

@@ -30,7 +30,5 @@ void InserirUsuario::on_pb_inserir_clicked()
         QMessageBox::information(this, "Conexão com o Banco", "INSERIDO NE PATRAO");
     }else{
         QMessageBox::information(this, "Conexão com o Banco", "DEU RUIM");
-    }
-
+    }   
 }
-

@@ -12,6 +12,7 @@ CONFIG += c++17
 SOURCES += \
     cliente.cpp \
     compra.cpp \
+    dao_cliente.cpp \
     daoconexaofactory.cpp \
     inserirusuario.cpp \
     main.cpp \
@@ -24,6 +25,7 @@ SOURCES += \
 HEADERS += \
     cliente.h \
     compra.h \
+    dao_cliente.h \
     daoconexaofactory.h \
     inserirusuario.h \
     mainwindow.h \
