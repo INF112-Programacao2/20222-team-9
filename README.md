@@ -1,4 +1,4 @@
-# Discipulos de Mércio! Time 9
+# Discípulos de Mércio! Time 9, tô certo!
 
 # Documentação
 ## POO
@@ -56,19 +56,15 @@ EM
 [UTILIZANDO O QT CREATOR (EM ENGLISH)](
 https://www.youtube.com/watch?v=DEuiURx3tYY) 
 
-### METODOS DE ACESSO AO BANCO DE DADOS
+### MÉTODOS DE ACESSO AO BANCO DE DADOS
 [Connect to MySql with QSqlDatabase](http://www.java2s.com/Code/Cpp/Qt/ConnecttoMySqlwithQSqlDatabaseanddoselectupdateinsertanddelete.htm)
 
 ### PODE AJUDAR
 [TUTORIAL 1](https://youtu.be/_u7TcjIDNzw)
 
-[FORUM](https://forum.qt.io/topic/86164/connection-to-a-mysql-database-with-qt-creator-on-windows)
+[FÓRUM](https://forum.qt.io/topic/86164/connection-to-a-mysql-database-with-qt-creator-on-windows)
 
 [UM PROJETINHO DE EXEMPLO](https://github.com/agusk/crud-mysql-cpp/tree/master/src)
-
-### CÓDIGO DO BANCO DE DADOS
-Principal: https://drive.google.com/file/d/1OIcJ2ZEWdhGUrd3d4WPefXVL2FozCpWp/view?usp=share_link
-Tabela "user_teste": https://drive.google.com/file/d/1OplAMIFrsqS_Xp_virIbXpGEFT3yvsSz/view?usp=share_link
 
 ## CRUD C++
 
