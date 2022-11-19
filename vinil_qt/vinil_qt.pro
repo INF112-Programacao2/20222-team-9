@@ -13,7 +13,7 @@ SOURCES += \
     cliente.cpp \
     compra.cpp \
     dao_cliente.cpp \
-    daoconexaofactory.cpp \
+    dao_connection_factory.cpp \
     inserirusuario.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -26,7 +26,7 @@ HEADERS += \
     cliente.h \
     compra.h \
     dao_cliente.h \
-    daoconexaofactory.h \
+    dao_connection_factory.h \
     inserirusuario.h \
     mainwindow.h \
     teste_login.h \

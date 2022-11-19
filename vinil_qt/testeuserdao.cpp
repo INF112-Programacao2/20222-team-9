@@ -2,10 +2,10 @@
 #include "QSqlQuery"
 #include "qsqlerror.h"
 #include "qsqlrecord.h"
-#include "daoconexaofactory.h"
+#include "dao_connection_factory.h"
 TesteUserDAO::TesteUserDAO()
 {
-    DAOConexaoFactory dao;
+    DAOConnectionFactory dao;
     this->conn = dao.getConexao();
 }
 TesteUserDAO::~TesteUserDAO()
@@ -67,6 +67,8 @@ bool TesteUserDAO::inserirUsuario(QString nome,QString cpf, QString senha){
       qDebug( "Conexão com o banco falhou!" );
       return 0;
     }
+
+    return 1;
 }
 
 

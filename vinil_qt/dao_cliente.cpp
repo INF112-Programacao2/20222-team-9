@@ -1,4 +1,4 @@
-#include "daoconexaofactory.h"
+#include "dao_connection_factory.h"
 #include "dao_cliente.h"
 
 #include "QSqlQuery"
@@ -7,7 +7,7 @@
 
 DAOCliente::DAOCliente()
 {
-    DAOConexaoFactory dao;
+    DAOConnectionFactory dao;
     this->connection = dao.getConexao();
 }
 
