@@ -8,7 +8,7 @@
 DAOCliente::DAOCliente()
 {
     DAOConnectionFactory dao;
-    this->connection = dao.getConexao();
+    this->connection = dao.getConnection();
 }
 
 DAOCliente::~DAOCliente()

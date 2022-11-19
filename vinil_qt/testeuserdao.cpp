@@ -6,7 +6,7 @@
 TesteUserDAO::TesteUserDAO()
 {
     DAOConnectionFactory dao;
-    this->conn = dao.getConexao();
+    this->conn = dao.getConnection();
 }
 TesteUserDAO::~TesteUserDAO()
 {

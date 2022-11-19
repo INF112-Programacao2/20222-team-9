@@ -13,7 +13,7 @@ public:
     DAOConnectionFactory();
     ~DAOConnectionFactory();
 
-    QSqlDatabase getConexao();
+    QSqlDatabase getConnection();
 };
 
 #endif // DAO_CONNECTION_FACTORY_H

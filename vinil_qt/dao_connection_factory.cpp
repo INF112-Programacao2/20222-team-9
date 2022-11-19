@@ -7,7 +7,7 @@ DAOConnectionFactory::DAOConnectionFactory() {}
 
 DAOConnectionFactory::~DAOConnectionFactory() {}
 
-QSqlDatabase DAOConnectionFactory::getConexao()
+QSqlDatabase DAOConnectionFactory::getConnection()
 {
     QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL", "planning");
 
