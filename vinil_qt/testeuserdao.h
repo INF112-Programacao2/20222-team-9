@@ -1,14 +1,13 @@
 #ifndef TESTEUSERDAO_H
 #define TESTEUSERDAO_H
 
-#include "userteste.h"
-#include "string"
+#include "qsqldatabase.h"
+
 class TesteUserDAO
 {
 public:
 
 private:
-    // Define objetos
     QSqlDatabase conn;
     QString erro;
     char menssagem[255];
@@ -16,9 +15,9 @@ private:
 public:
     TesteUserDAO();
     ~TesteUserDAO();
-    // Metodos DAO
+
     bool loginUsuario(QString cpf, QString senha);
-    bool inserirUsuario(QString cpf, QString nome,QString senha);
+    bool inserirUsuario(QString cpf, QString nome, QString senha);
     QString getErro();
 };
 

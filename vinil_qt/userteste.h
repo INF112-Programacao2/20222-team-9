@@ -1,6 +1,6 @@
 #ifndef USERTESTE_H
 #define USERTESTE_H
-#include "string"
+
 #include <QtSql/QSqlDatabase>
 
 class UserTeste
@@ -13,10 +13,8 @@ private:
     QString senha;
 
 public:
-
     // Construtor
     UserTeste();
-
 
     // Construtor Overload
     UserTeste(long id, const QString &nome, const QString &cpf, const QString &senha);
@@ -24,7 +22,6 @@ public:
     // Metodos Getter e Setter
     void setId(long id);
     long getId();
-
 
     const QString &getNome() const;
     const QString &getCpf() const;

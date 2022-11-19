@@ -1,8 +1,8 @@
 #ifndef DAO_CLIENTE_H
 #define DAO_CLIENTE_H
 
-#include "qsqldatabase.h"
 #include "cliente.h"
+#include "qsqldatabase.h"
 
 class DAOCliente
 {

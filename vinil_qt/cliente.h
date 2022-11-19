@@ -1,9 +1,8 @@
 #ifndef CLIENTE_H
 #define CLIENTE_H
 
+#include "compra.h"
 #include "qsqldatabase.h"
-#include "Compra.h"
-#include <string>
 
 class Cliente
 {

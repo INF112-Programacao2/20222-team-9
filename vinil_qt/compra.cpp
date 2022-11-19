@@ -1,6 +1,3 @@
 #include "compra.h"
 
-Compra::Compra()
-{
-
-}
+Compra::Compra() {}

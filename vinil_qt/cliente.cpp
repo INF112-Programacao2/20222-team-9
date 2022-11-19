@@ -1,8 +1,5 @@
 #include "cliente.h"
 
-//inclusão para testes:
-#include <iostream>
-
 Cliente::Cliente(int id, QString cpf, QString nome, QString email, QString senha) :
     id(id), cpf(cpf), nome(nome), email(email), senha(senha){};
 
@@ -56,9 +53,5 @@ void Cliente::setSenha(QString senha)
     this->senha = senha;
 }
 
-//depende da implementação da classe Compra
-void calculaCompra(Compra compra)
-{
-    //para testes::
-    std::cout << "entrou em calculaCompra(Compra compra)" << std::endl;
-}
+/*depende da implementação da classe Compra
+void calculaCompra(Compra compra) {}*/

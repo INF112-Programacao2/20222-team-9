@@ -11,24 +11,21 @@ DAOCliente::DAOCliente()
     this->connection = dao.getConnection();
 }
 
-DAOCliente::~DAOCliente()
-{
-
-}
+DAOCliente::~DAOCliente() {}
 
 bool DAOCliente::inserirCliente(Cliente cliente)
 {
     if(this->connection.open())
     {
       QSqlQuery query = QSqlQuery(connection);
-      QString sql = "INSERT INTO bd_vinil.cliente(cpf, nome, email, senha) VALUES ('"
+      QString sql = "INSERT INTO bd_vinil.cliente (cpf, nome, email, senha) VALUES ('"
                     + cliente.getCpf() + "', '" + cliente.getNome() + "', '"
                     + cliente.getEmail() + "', '" + cliente.getSenha() + "');";
 
       query.prepare(sql);
 
       if(query.exec())
-          qDebug( "Inserted!" );
+          qDebug("Inserted!");
       else
       {
           qDebug() << query.lastError();
@@ -37,7 +34,7 @@ bool DAOCliente::inserirCliente(Cliente cliente)
     }
     else
     {
-      qDebug( "Connection failed!" );
+      qDebug("Connection failed!");
       return 0;
     }
 
@@ -49,13 +46,13 @@ bool DAOCliente::visualizarDadosCliente(int id)
     if(this->connection.open())
     {
       QSqlQuery query = QSqlQuery(connection);
-      QString sql =  "SELECT * FROM bd_vinil.cliente WHERE id = '" + QString::number(id) + "';";
+      QString sql = "SELECT * FROM bd_vinil.cliente WHERE id = '" + QString::number(id) + "';";
 
       query.prepare(sql);
 
       if(query.exec())
       {
-          qDebug( "Selected!" );
+          qDebug("Selected!");
 
           QSqlRecord rec = query.record();
           int cols = rec.count();
@@ -67,10 +64,8 @@ bool DAOCliente::visualizarDadosCliente(int id)
 
           qDebug() << temp;
 
-          if(!query.next()){
-              qDebug( "tatu" );
+          if(!query.next())
               return 0;
-          }
           else
           {
               temp = "";
@@ -91,7 +86,7 @@ bool DAOCliente::visualizarDadosCliente(int id)
     }
     else
     {
-      qDebug( "Connection failed!" );
+      qDebug("Connection failed!");
       return 0;
     }
 }
@@ -108,7 +103,7 @@ bool DAOCliente::atualizarDadosCliente(Cliente cliente)
       query.prepare(sql);
 
       if(query.exec())
-          qDebug( "Updated!" );
+          qDebug("Updated!");
       else
       {
           qDebug() << query.lastError();
@@ -117,7 +112,7 @@ bool DAOCliente::atualizarDadosCliente(Cliente cliente)
     }
     else
     {
-      qDebug( "Connection failed!" );
+      qDebug("Connection failed!");
       return 0;
     }
 
@@ -134,7 +129,7 @@ bool DAOCliente::excluirCliente(int id)
       query.prepare(sql);
 
       if(query.exec())
-          qDebug( "Deleted!" );
+          qDebug("Deleted!");
       else
       {
           qDebug() << query.lastError();
@@ -143,7 +138,7 @@ bool DAOCliente::excluirCliente(int id)
     }
     else
     {
-      qDebug( "Connection failed!" );
+      qDebug("Connection failed!");
       return 0;
     }
 

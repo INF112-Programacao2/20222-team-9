@@ -3,9 +3,7 @@
 
 #include <QDialog>
 
-namespace Ui {
-class InserirUsuario;
-}
+namespace Ui { class InserirUsuario; }
 
 class InserirUsuario : public QDialog
 {

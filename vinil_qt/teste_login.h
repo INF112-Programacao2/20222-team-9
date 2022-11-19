@@ -3,9 +3,7 @@
 
 #include <QDialog>
 
-namespace Ui {
-class Teste_Login;
-}
+namespace Ui { class Teste_Login; }
 
 class Teste_Login : public QDialog
 {
@@ -16,7 +14,7 @@ public:
     ~Teste_Login();
 
 private slots:
-    void on_pushButton_clicked();
+    void on_pushButton_clicked(); //"Slots named on_foo_bar are error prone" ??
 
 private:
     Ui::Teste_Login *ui;

@@ -1,10 +1,9 @@
 #include "userteste.h"
-#include "string"
 
-UserTeste::UserTeste()
+UserTeste::UserTeste() {}
+
+UserTeste::UserTeste(long id, const QString &nome, const QString &cpf, const QString &senha)
 {
-}
-UserTeste::UserTeste(long id, const QString &nome, const QString &cpf, const QString &senha){
     this->id = id;
     this->nome = nome;
     this->cpf = cpf;
@@ -35,5 +34,3 @@ void UserTeste::setSenha(const QString &newSenha)
 {
     senha = newSenha;
 }
-
-

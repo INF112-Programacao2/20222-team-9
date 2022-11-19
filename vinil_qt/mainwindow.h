@@ -16,11 +16,11 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_clicked();
-
+    void on_pushButton_clicked(); //"Slots named on_foo_bar are error prone" ??
     void on_pushButton_2_clicked();
 
 private:
     Ui::MainWindow *ui;
 };
+
 #endif // MAINWINDOW_H
