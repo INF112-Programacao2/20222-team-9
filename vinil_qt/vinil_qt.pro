@@ -17,6 +17,7 @@ SOURCES += \
     inserirusuario.cpp \
     main.cpp \
     mainwindow.cpp \
+    musica.cpp \
     teste_login.cpp \
     testeuserdao.cpp \
     userteste.cpp
@@ -29,6 +30,7 @@ HEADERS += \
     dao_connection_factory.h \
     inserirusuario.h \
     mainwindow.h \
+    musica.h \
     teste_login.h \
     testeuserdao.h \
     userteste.h
