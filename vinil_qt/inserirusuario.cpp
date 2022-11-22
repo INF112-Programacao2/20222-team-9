@@ -5,7 +5,6 @@
 #include "QMessageBox"
 #include "QSqlDatabase"
 
-
 InserirUsuario::InserirUsuario(QWidget *parent) : QDialog(parent), ui(new Ui::InserirUsuario)
 {
     ui->setupUi(this);

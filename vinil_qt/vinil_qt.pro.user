@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 8.0.1, 2022-11-17T09:40:15. -->
+<!-- Written by QtCreator 8.0.1, 2022-11-22T11:36:08. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -235,7 +235,7 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes">
-     <value type="QString">QT_DEBUG_PLUGINS=1</value>
+     <value type="QString">QT_DEBUG_PLUGINS=0</value>
     </valuelist>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:G:/Meu Drive/Disciplinas/INF112/projeto final/20222-team-9/vinil_qt/vinil_qt.pro</value>
     <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">G:/Meu Drive/Disciplinas/INF112/projeto final/20222-team-9/vinil_qt/vinil_qt.pro</value>

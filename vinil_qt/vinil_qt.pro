@@ -14,6 +14,7 @@ SOURCES += \
     compra.cpp \
     dao_cliente.cpp \
     dao_connection_factory.cpp \
+    dao_musica.cpp \
     disco.cpp \
     inserirusuario.cpp \
     main.cpp \
@@ -29,6 +30,7 @@ HEADERS += \
     compra.h \
     dao_cliente.h \
     dao_connection_factory.h \
+    dao_musica.h \
     disco.h \
     inserirusuario.h \
     mainwindow.h \
