@@ -1,86 +1,80 @@
-/*utilidade pública: 
-ALTER TABLE bd_vinil.nome_da_tabela AUTO_INCREMENT = 1;*/
+/*utilidade pública:
+ALTER TABLE vinil_shop.nome_da_tabela AUTO_INCREMENT = 1;*/
 
-create table cliente
+create database `vinil_shop`;
+
+create table `vinil_shop`.`client`
 (
-    id     int auto_increment
-        primary key,
-    cpf    varchar(11)  null,
-    nome   varchar(300) null,
-    email  varchar(300) null,
-    senha  varchar(300) null,
-    `rank` int          null
+    `id`       int auto_increment not null primary key,
+    `cpf`      varchar(11)  not null,
+    `name`     varchar(128) not null,
+    `email`    varchar(128) not null,
+    `password` varchar(128) not null,
+    `rank`     int          not null
 );
 
-create table musica
+create table `vinil_shop`.`music`
 (
-    id      int auto_increment
-        primary key,
-    nome    varchar(300) null,
-    duracao double       null
+    `id`       int auto_increment not null primary key,
+    `name`     varchar(128) not null,
+    `duration` double       not null
 );
 
-create table lista_musicas
+create table `vinil_shop`.`playlist`
 (
-    id        int auto_increment
-        primary key,
-    id_musica int null,
-    constraint id_musica
-        foreign key (id_musica) references musica (id)
+    `id`       int auto_increment not null primary key,
+    `music_id` int not null,
+    constraint `playlist_music_id_fk`
+        foreign key (`music_id`) references `music` (`id`)
 );
 
-create table disco
+create table `vinil_shop`.`vinil`
 (
-    id               int          not null
-        primary key,
-    id_lista_musicas int          null,
-    nome             varchar(300) null,
-    genero           varchar(300) null,
-    compositor       varchar(300) null,
-    participacoes    varchar(300) null,
-    ano_lancamento   int          null,
-    preco            double       null,
-    constraint disco_lista_musicas_id_fk
-        foreign key (id_lista_musicas) references lista_musicas (id)
+    `id`           int auto_increment not null primary key,
+    `playlist_id`  int          not null,
+    `name`         varchar(128) not null,
+    `genre`        varchar(128) not null,
+    `composer`     varchar(128) not null,
+    `featuring`    varchar(128) not null,
+    `release_year` int          not null,
+    `price`        double       not null,
+    constraint `vinil_playlist_id_fk`
+        foreign key (`playlist_id`) references `playlist` (`id`)
 );
 
-create table itens_carrinho
+create table `vinil_shop`.`cart_items`
 (
-    id       int auto_increment
-        primary key,
-    id_disco int null,
-    constraint itens_carrinho_disco__fk
-        foreign key (id_disco) references disco (id)
+    `id`       int auto_increment not null primary key,
+    `vinil_id` int not null,
+    constraint `cart_items_vinil_id_fk`
+        foreign key (`vinil_id`) references `vinil` (`id`)
 );
 
-create table carrinho
+create table `vinil_shop`.`cart`
 (
-    id                int auto_increment
-        primary key,
-    id_itens_carrinho int null,
-    id_cliente        int null,
-    constraint carrinho_cliente_id_fk
-        foreign key (id_cliente) references cliente (id),
-    constraint carrinho_itens_carrinho_id_fk
-        foreign key (id_itens_carrinho) references itens_carrinho (id)
+    `id`            int auto_increment not null primary key,
+    `client_id`     int not null,
+    `cart_items_id` int not null,
+    constraint `cart_client_id_fk`
+        foreign key (`client_id`) references `client` (`id`),
+    constraint `cart_cart_items_id_fk`
+        foreign key (`cart_items_id`) references `cart_items` (`id`)
 );
 
-create table compra
+create table `vinil_shop`.`purchase`
 (
-    id          int auto_increment
-        primary key,
-    id_cliente  int null,
-    id_carrinho int null,
-    constraint compra_carrinho_id_fk
-        foreign key (id_carrinho) references carrinho (id),
-    constraint compra_cliente_id_fk
-        foreign key (id_cliente) references cliente (id)
+    `id`        int auto_increment not null primary key,
+    `client_id` int not null,
+    `cart_id`   int not null,
+    constraint `purchase_client_id_fk`
+        foreign key (`client_id`) references `client` (`id`),
+    constraint `purchase_cart_id_fk`
+        foreign key (`cart_id`) references `cart` (`id`)
 );
 
-create table user_teste
+create table `vinil_shop`.`user_teste`
 (
-    id    int auto_increment
-        primary key,
+    id    int auto_increment primary key,
     nome  varchar(250) null,
     cpf   varchar(15)  null,
     senha varchar(150) null
