@@ -1,38 +1,38 @@
-daoliente dao;
+#include "dao_music.h"
+
+DAOMusic dao;
 
 //criar
-Cliente cliente = Cliente(9, "24072002", "chuva", "chuva@gmail.com", "cigarra");
+Music music = Music(1, "onde andaras", 451);
 
-if (dao.inserirCliente(cliente))
-    QMessageBox::information(this, "Inserção", "CLIENTE INSERIDO NE PATRAO");
+if (dao.createMusic(music))
+    QMessageBox::information(this, "CREATE", "PARADINHA INSERIDA NE PATRAO");
 else
-    QMessageBox::information(this, "Inserção", "NAO INSERIU CLIENTE NE PATRAO");
+    QMessageBox::information(this, "CREATE", "NAO INSERIU A PARADINHA NE PATRAO");
 
 //visualizarDados
-if (dao.visualizarDadosCliente(9))
-    QMessageBox::information(this, "Visualização", "CLIENTE VISUALIZADO NE PATRAO");
+if (dao.readMusic(1))
+    QMessageBox::information(this, "READ", "PARADINHA LIDA NE PATRAO");
 else
-    QMessageBox::information(this, "Visualização", "NAO VISUALIZOU CLIENTE NE PATRAO");
+    QMessageBox::information(this, "READ", "NAO LEU A PARADINHA NE PATRAO");
 
 //atualizarDados
-cliente.setCpf("19022005");
-cliente.setNome("chuva_azul");
-cliente.setEmail("chuva_azul@gmail.com");
-cliente.setSenha("canto da cigarra");
+music.setName("chuva_azul");
+music.setDuration(1);
 
-if (dao.atualizarDadosCliente(cliente))
-    QMessageBox::information(this, "Atualização", "ATUALIZADO NE PATRAO");
+if (dao.updateMusic(music))
+    QMessageBox::information(this, "UPDATE", "ATUALIZADO A PARADINHA NE PATRAO");
 else
-    QMessageBox::information(this, "Atualização", "NAO ATUALIZOU NE PATRAO");
+    QMessageBox::information(this, "UPDATE", "NAO A PARADINHA NE PATRAO");
 
 //visualizarDados
-if (dao.visualizarDadosCliente(9))
-    QMessageBox::information(this, "Visualização", "CLIENTE VISUALIZADO NE PATRAO");
+if (dao.readMusic(1))
+    QMessageBox::information(this, "READ", "PARADINHA LIDA NE PATRAO");
 else
-    QMessageBox::information(this, "Visualização", "NAO VISUALIZOU CLIENTE NE PATRAO");
+    QMessageBox::information(this, "READ", "NAO LEU A PARADINHA NE PATRAO");
 
 //excluir
-if (dao.excluirCliente(9))
-    QMessageBox::information(this, "Exclusão", "CLIENTE EXCLUIDO NE PATRAO");
+if (dao.deleteMusic(1))
+    QMessageBox::information(this, "DELETE", "PARADINHA DELETADA NE PATRAO");
 else
-    QMessageBox::information(this, "Exclusão", "NAO EXCLUIU CLIENTE NE PATRAO");
+    QMessageBox::information(this, "DELETE", "NAO DELETOU A PARADINHA NE PATRAO");

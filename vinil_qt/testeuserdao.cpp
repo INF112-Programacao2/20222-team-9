@@ -18,7 +18,7 @@ bool TesteUserDAO::loginUsuario(QString cpf, QString senha)
     if(conn.open())
     {
       QSqlQuery query = QSqlQuery(conn);
-      QString sql = "SELECT * FROM bd_vinil.user_teste WHERE cpf = '" + cpf + "' and senha = '" + senha + "';";
+      QString sql = "SELECT * FROM vinyl_shop.user_teste WHERE cpf = '" + cpf + "' and senha = '" + senha + "';";
 
       query.prepare(sql);
 
@@ -68,7 +68,7 @@ bool TesteUserDAO::inserirUsuario(QString nome, QString cpf, QString senha)
     if(conn.open())
     {
       QSqlQuery query = QSqlQuery(conn);
-      QString sql = "INSERT INTO bd_vinil.user_teste (nome, cpf, senha) values ('"
+      QString sql = "INSERT INTO vinyl_shop.user_teste (nome, cpf, senha) values ('"
               + nome + "', '" + cpf + "', '" + senha + "');";
 
       query.prepare(sql);

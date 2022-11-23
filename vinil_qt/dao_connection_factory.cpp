@@ -9,12 +9,12 @@ DAOConnectionFactory::~DAOConnectionFactory() {}
 
 QSqlDatabase DAOConnectionFactory::getConnection()
 {
-    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL", "planning");
+    QSqlDatabase database = QSqlDatabase::addDatabase("QMYSQL", "planning");
 
-    db.setHostName("127.0.0.1");
-    db.setUserName("root");
-    db.setPassword("root");
-    db.setDatabaseName("bd_vinil");
+    database.setHostName("127.0.0.1");
+    database.setUserName("root");
+    database.setPassword("root");
+    database.setDatabaseName("vinyl_shop");
 
-    return db;
+    return database;
 }

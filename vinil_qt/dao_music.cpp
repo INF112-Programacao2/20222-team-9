@@ -1,57 +1,54 @@
-#include "dao_musica.h"
+#include "dao_music.h"
+#include "qdebug.h"
 
-#include "QSqlQuery"
-#include "qsqlrecord.h"
-#include "qsqlerror.h"
-
-DAOMusica::DAOMusica()
+DAOMusic::DAOMusic()
 {
-    this->database_connection = this->connection_factory.getConnection();
+    database_connection = connection_factory.getConnection();
 }
 
-DAOMusica::~DAOMusica() {}
+DAOMusic::~DAOMusic() {}
 
-bool DAOMusica::criarMusica(Musica musica)
+bool DAOMusic::createMusic(Music music)
 {
     if(database_connection.open())
     {
         QSqlQuery query = QSqlQuery(database_connection);
-        QString sql = "INSERT INTO bd_vinil.musica (nome, duracao) VALUES ('"
-                      + musica.getNome() + "', '" + QString::number(musica.getDuracao()) + "');";
+        QString sql = "INSERT INTO `vinyl_shop`.`music` (`name`, `duration`) VALUES ('"
+                      + music.getName() + "', '" + QString::number(music.getDuration()) + "');";
 
         query.prepare(sql);
 
         if(query.exec())
         {
-            qDebug("Inserted in bd_vinil.musica!");
+            qDebug("Inserted in vinyl_shop.music!");
             return 1;
         }
         else
         {
-            qDebug("Execution failed! - INSERT bd_vinil.musica");
+            qDebug("'query.exec()' failed! - INSERT vinyl_shop.music");
             qDebug() << query.lastError();
             return 0;
         }
     }
     else
     {
-        qDebug("Connection failed! - INSERT bd_vinil.musica!");
+        qDebug("Connection failed! - INSERT vinyl_shop.music!");
         return 0;
     }
 }
 
-bool DAOMusica::lerDadosMusica(int id)
+bool DAOMusic::readMusic(int id)
 {
     if(database_connection.open())
     {
         QSqlQuery query = QSqlQuery(database_connection);
-        QString sql = "SELECT * FROM bd_vinil.musica WHERE id = '" + QString::number(id) + "';";
+        QString sql = "SELECT * FROM `vinyl_shop`.`music` WHERE `id` = '" + QString::number(id) + "';";
 
         query.prepare(sql);
 
         if(query.exec())
         {
-            qDebug("Selected from bd_vinil.musica!");
+            qDebug("Selected from vinyl_shop.music!");
 
             QSqlRecord record = query.record();
             int columns = record.count();
@@ -65,7 +62,7 @@ bool DAOMusica::lerDadosMusica(int id)
 
             if(!query.next())
             {
-                qDebug("Execution failed! - SELECT bd_vinil.musica");
+                qDebug("'query.next()' is false! - SELECT vinyl_shop.music");
                 qDebug() << query.lastError();
                 return 0;
             }
@@ -77,72 +74,78 @@ bool DAOMusica::lerDadosMusica(int id)
                     result += query.value(i).toString() + ((i < columns - 1) ? "\\" : "");
 
                 qDebug() << result;
+
+                return 1;
             }
         }
-
-        return 1;
-    }
-    else
-    {
-        qDebug("Connection failed! - SELECT bd_vinil.musica");
-        return 0;
-    }
-}
-
-bool DAOMusica::alterarDadosMusica(Musica musica)
-{
-    if(database_connection.open())
-    {
-        QSqlQuery query = QSqlQuery(database_connection);
-        QString sql = "UPDATE bd_vinil.musica SET nome = '"
-                      + musica.getNome() + "', duracao = '" + QString::number(musica.getDuracao())
-                      + "' WHERE id = '" + QString::number(musica.getId()) + "';";
-
-        query.prepare(sql);
-
-        if(query.exec())
-        {
-            qDebug("Updated in bd_vinil.musica!");
-            return 1;
-        }
         else
         {
-            qDebug("Execution failed! - UPDATE bd_vinil.musica");
+            qDebug("'query.exec()' failed! - SELECT vinyl_shop.music");
             qDebug() << query.lastError();
             return 0;
         }
     }
     else
     {
-        qDebug("Conneciton failed! - UPDATE bd_vinil.musica");
+        qDebug("Connection failed! - SELECT vinyl_shop.music");
         return 0;
     }
 }
 
-bool DAOMusica::deletarMusica(int id)
+bool DAOMusic::updateMusic(Music music)
 {
     if(database_connection.open())
     {
         QSqlQuery query = QSqlQuery(database_connection);
-        QString sql =  "DELETE FROM bd_vinil.musica WHERE id = '" + QString::number(id) + "';";
+        QString sql = "UPDATE `vinyl_shop`.`music` SET `name` = '"
+                      + music.getName() + "', `duration` = '" + QString::number(music.getDuration())
+                      + "' WHERE `id` = '" + QString::number(music.getId()) + "';";
 
         query.prepare(sql);
 
         if(query.exec())
         {
-            qDebug("Deleted from bd_vinil.musica!");
+            qDebug("Updated in vinyl_shop.music!");
             return 1;
         }
         else
         {
-            qDebug("Execution failed! - DELETE bd_vinil.musica");
+            qDebug("'query.exec()' - UPDATE vinyl_shop.music");
             qDebug() << query.lastError();
             return 0;
         }
     }
     else
     {
-        qDebug("Conneciton failed! - DELETE bd_vinil.musica");
+        qDebug("Conneciton failed! - UPDATE vinyl_shop.music");
+        return 0;
+    }
+}
+
+bool DAOMusic::deleteMusic(int id)
+{
+    if(database_connection.open())
+    {
+        QSqlQuery query = QSqlQuery(database_connection);
+        QString sql =  "DELETE FROM `vinyl_shop`.`music` WHERE `id` = '" + QString::number(id) + "';";
+
+        query.prepare(sql);
+
+        if(query.exec())
+        {
+            qDebug("Deleted from vinyl_shop.music!");
+            return 1;
+        }
+        else
+        {
+            qDebug("'query.exec()' failed! - DELETE vinyl_shop.music");
+            qDebug() << query.lastError();
+            return 0;
+        }
+    }
+    else
+    {
+        qDebug("Conneciton failed! - DELETE vinyl_shop.music");
         return 0;
     }
 }
