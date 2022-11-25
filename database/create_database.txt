@@ -20,27 +20,26 @@ create table `vinyl_shop`.`music`
     `duration` double       not null
 );
 
-create table `vinyl_shop`.`playlist`
-(
-    `id`       int auto_increment not null primary key,
-    `music_id` int not null,
-    constraint `playlist_music_id_fk`
-        foreign key (`music_id`) references `music` (`id`)
-);
-
 create table `vinyl_shop`.`vinyl`
 (
     `id`           int auto_increment not null primary key,
-    `playlist_id`  int          not null,
     `name`         varchar(128) not null,
     `genre`        varchar(128) not null,
     `composer`     varchar(128) not null,
     `featuring`    varchar(128) not null,
     `release_year` int          not null,
     `rarity`       int          not null,
-    `price`        double       not null,  
-    constraint `vinyl_playlist_id_fk`
-        foreign key (`playlist_id`) references `playlist` (`id`)
+    `price`        double       not null
+);
+
+create table `vinyl_shop`.`playlist`
+(
+    `music_id` int not null,
+    `vinyl_id` int not null,
+    constraint `playlist_music_id_fk`
+        foreign key (`music_id`) references `music` (`id`),
+    constraint `playlist_vinyl_id_fk`
+        foreign key (`vinyl_id`) references `vinyl` (`id`)
 );
 
 create table `vinyl_shop`.`cart_items`
