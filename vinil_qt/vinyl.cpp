@@ -1,7 +1,7 @@
 #include "vinyl.h"
 
-Vinyl::Vinyl(int id, std::vector<Music> playlist, QString name, QString genre, QString composer, QString featuring, int releaseYear, int rarity, double price) :
-    id(id), playlist(playlist), name(name), genre(genre), composer(composer), featuring(featuring), releaseYear(releaseYear), rarity(rarity), price(price){};
+Vinyl::Vinyl(int id, QString name, std::vector<Music> playlist, QString genre, QString composer, QString featuring, int releaseYear, int rarity, double price) :
+    id(id), name(name), playlist(playlist), genre(genre), composer(composer), featuring(featuring), releaseYear(releaseYear), rarity(rarity), price(price){};
 
 int Vinyl::getId()
 {
@@ -13,16 +13,6 @@ void Vinyl::setId(int id)
     this->id = id;
 }
 
-std::vector<Music> Vinyl::getPlaylist()
-{
-    return this->playlist;
-}
-
-void Vinyl::setPlaylist(std::vector<Music> playlist)
-{
-    this->playlist = playlist;
-}
-
 QString Vinyl::getName()
 {
     return this->name;
@@ -31,6 +21,16 @@ QString Vinyl::getName()
 void Vinyl::setName(QString name)
 {
     this->name = name;
+}
+
+std::vector<Music> Vinyl::getPlaylist()
+{
+    return this->playlist;
+}
+
+void Vinyl::setPlaylist(std::vector<Music> playlist)
+{
+    this->playlist = playlist;
 }
 
 QString Vinyl::getGenre()

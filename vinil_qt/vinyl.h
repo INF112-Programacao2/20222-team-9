@@ -9,8 +9,8 @@ class Vinyl
 {
 private:
     int id;
-    std::vector<Music> playlist;
     QString name;
+    std::vector<Music> playlist;
     QString genre;
     QString composer;
     QString featuring;
@@ -19,14 +19,14 @@ private:
     double price;
 
 public:
-    Vinyl(int id, std::vector<Music> playlist, QString name, QString genre, QString composer, QString featuring, int releaseYear, int rarity, double price);
+    Vinyl(int id, QString name, std::vector<Music> playlist, QString genre, QString composer, QString featuring, int releaseYear, int rarity, double price);
 
     int getId();
     void setId(int id);
-    std::vector<Music> getPlaylist();
-    void setPlaylist(std::vector<Music> playlist);
     QString getName();
     void setName(QString name);
+    std::vector<Music> getPlaylist();
+    void setPlaylist(std::vector<Music> playlist);
     QString getGenre();
     void setGenre(QString genre);
     QString getComposer();

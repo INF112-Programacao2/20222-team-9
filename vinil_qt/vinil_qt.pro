@@ -13,6 +13,7 @@ SOURCES += \
     client.cpp \
     dao_client.cpp \
     dao_music.cpp \
+    dao_vinyl.cpp \
     data_source.cpp \
     inserirusuario.cpp \
     main.cpp \
@@ -29,6 +30,7 @@ HEADERS += \
     client.h \
     dao_client.h \
     dao_music.h \
+    dao_vinyl.h \
     data_source.h \
     inserirusuario.h \
     mainwindow.h \
