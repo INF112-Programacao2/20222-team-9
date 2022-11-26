@@ -12,9 +12,10 @@ bool DAOClient::createClient(Client client)
     if(database_connection.open())
     {
       QSqlQuery query = QSqlQuery(database_connection);
-      QString sql = "INSERT INTO `vinyl_shop`.`client` (`cpf`, `name`, `email`, `password`, `rank`) VALUES ('"
+      QString sql = "INSERT INTO `vinyl_shop`.`client` (`cpf`, `name`, `email`, `password`, `vip`, `rank`) VALUES ('"
                     + client.getCpf() + "', '" + client.getName() + "', '"
-                    + client.getEmail() + "', '" + client.getPassword() + "', '-1');";
+                    + client.getEmail() + "', '" + client.getPassword() + "', '"
+                    + QString::number(client.getVip()) + "', '-1');";
 
       query.prepare(sql);
 
@@ -99,7 +100,8 @@ bool DAOClient::updateClient(Client client)
       QSqlQuery query = QSqlQuery(database_connection);
       QString sql = "UPDATE `vinyl_shop`.`client` SET cpf = '"
                     + client.getCpf() + "', `name` = '" + client.getName() + "', `email` = '"
-                    + client.getEmail() + "', `password` = '" + client.getPassword() + "' WHERE `id` = '" + QString::number(client.getId()) + "';";
+                    + client.getEmail() + "', `password` = '" + client.getPassword() + "', `vip` = '"
+                    + QString::number(client.getVip()) + "' WHERE `id` = '" + QString::number(client.getId()) + "';";
 
       query.prepare(sql);
 

@@ -9,9 +9,10 @@ class Client
 private:
     int id;
     QString cpf, name, email, password;
+    int vip;
 
 public:
-    Client(int id, QString cpf, QString name, QString email, QString password);
+    Client(int id, QString cpf, QString name, QString email, QString password, int vip);
 
     int getId();
     void setId(int id);
@@ -23,8 +24,10 @@ public:
     void setEmail(QString email);
     QString getPassword();
     void setPassword(QString password);
+    int getVip();
+    void setVip(int vip);
 
-    //virtual void calculatePurchase(Purchase purchase);
+    //virtual void calculateClientPurchase(Purchase purchase);
 };
 
 #endif // CLIENT_H

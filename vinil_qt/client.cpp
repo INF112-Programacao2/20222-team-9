@@ -1,7 +1,7 @@
 #include "client.h"
 
-Client::Client(int id, QString cpf, QString name, QString email, QString password) :
-    id(id), cpf(cpf), name(name), email(email), password(password){};
+Client::Client(int id, QString cpf, QString name, QString email, QString password, int vip) :
+    id(id), cpf(cpf), name(name), email(email), password(password), vip(vip){};
 
 int Client::getId()
 {
@@ -53,5 +53,15 @@ void Client::setPassword(QString password)
     this->password = password;
 }
 
+int Client::getVip()
+{
+    return this->vip;
+}
+
+void Client::setVip(int vip)
+{
+    this->vip = vip;
+}
+
 /*depende da implementação da classe Compra
-void calculatePurchase(Purchase purchase) {}*/
+void calculateClientPurchase(Purchase purchase) {}*/
