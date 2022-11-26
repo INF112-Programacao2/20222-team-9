@@ -1,5 +1,5 @@
-#ifndef DAO_MUSIC_H
-#define DAO_MUSIC_H
+#ifndef DAOMUSIC_H
+#define DAOMUSIC_H
 
 #include "data_source.h"
 #include "music.h"
@@ -20,4 +20,4 @@ public:
     bool deleteMusic(int id);
 };
 
-#endif // DAO_MUSIC_H
+#endif // DAOMUSIC_H

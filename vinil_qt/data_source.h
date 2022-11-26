@@ -1,5 +1,5 @@
-#ifndef DATA_SOURCE_H
-#define DATA_SOURCE_H
+#ifndef DATASOURCE_H
+#define DATASOURCE_H
 
 #include <QtSql/QSqlDatabase>
 
@@ -20,4 +20,4 @@ public:
     QSqlDatabase getConnection();
 };
 
-#endif // DATA_SOURCE_H
+#endif // DATASOURCE_H

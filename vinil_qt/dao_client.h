@@ -1,5 +1,5 @@
-#ifndef DAO_CLIENT_H
-#define DAO_CLIENT_H
+#ifndef DAOCLIENT_H
+#define DAOCLIENT_H
 
 #include "data_source.h"
 #include "client.h"
@@ -20,4 +20,4 @@ public:
     bool deleteClient(int id);
 };
 
-#endif // DAO_CLIENT_H
+#endif // DAOCLIENT_H
