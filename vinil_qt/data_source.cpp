@@ -1,13 +1,10 @@
-#include "dao_connection_factory.h"
+#include "data_source.h"
 
-#include "QSqlDatabase"
-#include "QMessageBox"
+DataSource::DataSource() {}
 
-DAOConnectionFactory::DAOConnectionFactory() {}
+DataSource::~DataSource() {}
 
-DAOConnectionFactory::~DAOConnectionFactory() {}
-
-QSqlDatabase DAOConnectionFactory::getConnection()
+QSqlDatabase DataSource::getConnection()
 {
     QSqlDatabase database = QSqlDatabase::addDatabase("QMYSQL", "planning");
 

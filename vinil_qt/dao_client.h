@@ -1,14 +1,14 @@
 #ifndef DAO_CLIENT_H
 #define DAO_CLIENT_H
 
-#include "dao_connection_factory.h"
+#include "data_source.h"
 #include "client.h"
 
 class DAOClient
 {
 private:
+    DataSource data_source;
     QSqlDatabase database_connection;
-    DAOConnectionFactory connection_factory;
 
 public:
     DAOClient();

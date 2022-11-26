@@ -1,9 +1,8 @@
 #include "dao_music.h"
-#include "qdebug.h"
 
 DAOMusic::DAOMusic()
 {
-    database_connection = connection_factory.getConnection();
+    database_connection = data_source.getConnection();
 }
 
 DAOMusic::~DAOMusic() {}

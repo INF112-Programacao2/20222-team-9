@@ -12,8 +12,8 @@ CONFIG += c++17
 SOURCES += \
     client.cpp \
     dao_client.cpp \
-    dao_connection_factory.cpp \
     dao_music.cpp \
+    data_source.cpp \
     inserirusuario.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -28,8 +28,8 @@ SOURCES += \
 HEADERS += \
     client.h \
     dao_client.h \
-    dao_connection_factory.h \
     dao_music.h \
+    data_source.h \
     inserirusuario.h \
     mainwindow.h \
     music.h \

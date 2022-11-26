@@ -1,14 +1,15 @@
-#ifndef DAOMUSIC_H
-#define DAOMUSIC_H
+#ifndef DAO_MUSIC_H
+#define DAO_MUSIC_H
 
-#include "dao_connection_factory.h"
+#include "data_source.h"
 #include "music.h"
 
 class DAOMusic
 {
 private:
-    DAOConnectionFactory connection_factory;
+    DataSource data_source;
     QSqlDatabase database_connection;
+
 public:
     DAOMusic();
     ~DAOMusic();
@@ -19,4 +20,4 @@ public:
     bool deleteMusic(int id);
 };
 
-#endif // DAOMUSIC_H
+#endif // DAO_MUSIC_H

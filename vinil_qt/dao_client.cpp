@@ -1,12 +1,8 @@
 #include "dao_client.h"
 
-#include "QSqlQuery"
-#include "qsqlrecord.h"
-#include "qsqlerror.h"
-
 DAOClient::DAOClient()
 {
-    database_connection = connection_factory.getConnection();
+    database_connection = data_source.getConnection();
 }
 
 DAOClient::~DAOClient() {}

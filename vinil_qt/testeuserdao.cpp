@@ -1,4 +1,4 @@
-#include "dao_connection_factory.h"
+#include "data_source.h"
 #include "testeuserdao.h"
 
 #include "QSqlQuery"
@@ -7,7 +7,7 @@
 
 TesteUserDAO::TesteUserDAO()
 {
-    DAOConnectionFactory dao;
+    DataSource dao;
     this->conn = dao.getConnection();
 }
 
