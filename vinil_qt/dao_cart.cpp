@@ -82,9 +82,9 @@ bool DAOCart::updateCart(Cart cart)
     if(database_connection.open())
     {
       QSqlQuery query = QSqlQuery(database_connection);
-      QString sql = "UPDATE `vinyl_shop`.`cart` SET `id` = '" + QString::number(cart.getId()) + "', `vinylList` = '"
-                    + cart.getVinylList() + "', `client` = '" + QString::number(cart.getClient()) + "' WHERE `id` = '"
-                    + QString::number(cart.getId()) + "';";
+      QString sql = "UPDATE `vinyl_shop`.`cart` SET `id` = '" + cart.getId() + "', `vinylList` = '"
+                    + cart.getVinylList() + "', `client` = '" + cart.getClient() + "' WHERE `id` = '"
+                    + cart.getId() + "';";
 
       query.prepare(sql);
 
