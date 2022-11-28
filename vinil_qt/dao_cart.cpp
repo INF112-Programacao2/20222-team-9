@@ -13,9 +13,9 @@ bool DAOCart::createCart(Cart cart)
     if(database_connection.open())
     {
       QSqlQuery query = QSqlQuery(database_connection);
-      QString sql = "INSERT INTO `vinyl_shop`.`cart` (`client_id`, `date`, `total_price`) VALUES ('"
-                    + QString::number(cart.getClient().getId()) + "', '" + cart.getDate() + "', '"
-                    + QString::number(cart.getTotalPrice()) + "');";
+      QString sql = "INSERT INTO `vinyl_shop`.`cart` (`id`, `vinylList`, `client`) VALUES ('"
+                    + QString::number(cart.getId()) + "', '" + cart.getVinylList() + "', '"
+                    + QString::number(cart.getClient()) + "');";
 
       query.prepare(sql);
 
@@ -82,9 +82,9 @@ bool DAOCart::updateCart(Cart cart)
     if(database_connection.open())
     {
       QSqlQuery query = QSqlQuery(database_connection);
-      QString sql = "UPDATE `vinyl_shop`.`cart` SET `client_id` = '" + QString::number(cart.getClient().getId())
-                    + "', `date` = '" + cart.getDate() + "', `total_price` = '" + QString::number(cart.getTotalPrice())
-                    + "' WHERE `id` = '" + QString::number(cart.getId()) + "';";
+      QString sql = "UPDATE `vinyl_shop`.`cart` SET `id` = '" + QString::number(cart.getId()) + "', `vinylList` = '"
+                    + cart.getVinylList() + "', `client` = '" + QString::number(cart.getClient()) + "' WHERE `id` = '"
+                    + QString::number(cart.getId()) + "';";
 
       query.prepare(sql);
 

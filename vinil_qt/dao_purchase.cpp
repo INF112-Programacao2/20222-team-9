@@ -12,9 +12,9 @@ bool DAOPurchase::createPurchase(Purchase purchase)
     if(database_connection.open())
     {
       QSqlQuery query = QSqlQuery(database_connection);
-      QString sql = "INSERT INTO `vinyl_shop`.`purchase` (`client_id`, `date`, `total_price`) VALUES ('"
-                    + QString::number(purchase.getClient().getId()) + "', '" + purchase.getDate() + "', '"
-                    + QString::number(purchase.getTotalPrice()) + "');";
+      QString sql = "INSERT INTO `vinyl_shop`.`purchase` (`id`, `client`, `cart`, `total`) VALUES ('"
+                    + purchase.getId() + "', '" + purchase.getClient() + "', '"
+                    + purchase.getCart() + "', '" + purchase.getTotal() + "');";
 
       query.prepare(sql);
 
@@ -60,16 +60,6 @@ bool DAOPurchase::readPurchase(int id)
 
           qDebug() << result;
 
-          while(query.next())
-          {
-              result = "";
-
-              for(int i = 0; i < columns; i++)
-                result += query.value(i).toString() + ((i < columns - 1)? "\\" : "");
-
-              qDebug() << result;
-          }
-
           return 1;
       }
       else
@@ -91,9 +81,8 @@ bool DAOPurchase::updatePurchase(Purchase purchase)
     if(database_connection.open())
     {
       QSqlQuery query = QSqlQuery(database_connection);
-      QString sql = "UPDATE `vinyl_shop`.`purchase` SET `client_id` = '" + QString::number(purchase.getClient().getId())
-                    + "', `date` = '" + purchase.getDate() + "', `total_price` = '" + QString::number(purchase.getTotalPrice())
-                    + "' WHERE `id` = '" + QString::number(purchase.getId()) + "';";
+      QString sql = "UPDATE `vinyl_shop`.`purchase` SET `client` = '" + purchase.getClient() + "', `cart` = '"
+                    + purchase.getCart() + "', `total` = '" + purchase.getTotal() + "' WHERE `id` = '" + purchase.getId() + "';";
 
       query.prepare(sql);
 
