@@ -3,13 +3,10 @@
 
 #include "client.h"
 #include "cart.h"
-#include "qsqldatabase.h"
 
 class Purchase
 {
-
 private:
-
     int id;
     Client client;
     Cart cart;

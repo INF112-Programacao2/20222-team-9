@@ -1,16 +1,11 @@
 #include "purchase.h"
 
-Purchase::Purchase(int id, Client client, Cart cart, double total)
-{
-    this->id = id;
-    this->client = client;
-    this->cart = cart;
-    this->total = total;
-}
+Purchase::Purchase(int id, Client client, Cart cart, double total) :
+    id(id), client(client), cart(cart), total(total){};
 
 int Purchase::getId()
 {
-    return id;
+    return this->id;
 }
 
 void Purchase::setId(int id)
@@ -20,7 +15,7 @@ void Purchase::setId(int id)
 
 Client Purchase::getClient()
 {
-    return client;
+    return this->client;
 }
 
 void Purchase::setClient(Client client)
@@ -30,7 +25,7 @@ void Purchase::setClient(Client client)
 
 Cart Purchase::getCart()
 {
-    return cart;
+    return this->cart;
 }
 
 void Purchase::setCart(Cart cart)
@@ -40,7 +35,7 @@ void Purchase::setCart(Cart cart)
 
 double Purchase::getTotal()
 {
-    return total;
+    return this->total;
 }
 
 void Purchase::setTotal(double total)
