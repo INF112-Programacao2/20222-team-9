@@ -1,28 +1,24 @@
 #ifndef CART_H
 #define CART_H
 
-#include "qsqldatabase.h"
 #include "client.h"
-#include <vector>
+#include "vinyl.h"
 
 class Cart
 {
     private:
-
-        int id;
-        vector <Vinyl> vinylList;
+        int cart_id;
+        std::vector<Vinyl> vinylList;
         Client client;
 
     public:
+        Cart(int cart_id, std::vector<Vinyl> vinylList, Client client);
 
-        Cart(int id, vector <Vinyl> vinylList, Client client);
-
-        int getId();
-        void setId(int id);
-        vector <Vinyl> getVinylList();
-        void setVinylList(vector <Vinyl> vinylList);
+        int getCartId();
+        void setCartId(int cart_id);
+        std::vector<Vinyl> getVinylList();
+        void setVinylList(std::vector<Vinyl> vinylList);
         Client getClient();
         void setClient(Client client);
-        
 };
 #endif // CART_H
