@@ -12,9 +12,9 @@ bool DAOPurchase::createPurchase(Purchase purchase)
     if(database_connection.open())
     {
       QSqlQuery query = QSqlQuery(database_connection);
-      QString sql = "INSERT INTO `vinyl_shop`.`purchase` (`id`, `client`, `cart`, `total`) VALUES ('"
-                    + purchase.getId() + "', '" + purchase.getClient() + "', '"
-                    + purchase.getCart() + "', '" + purchase.getTotal() + "');";
+      QString sql = "INSERT INTO `vinyl_shop`.`purchase` (`id`, `client_id`, `cart_id`, `total`) VALUES ('"
+                    + QString::number(purchase.getId()) + "', '" + QString::number(purchase.getClient().getId()) + "', '"
+                    + QString::number(purchase.getCart().getId()) + "', '" + QString::number(purchase.getTotal()) + "');";
 
       query.prepare(sql);
 
@@ -60,7 +60,23 @@ bool DAOPurchase::readPurchase(int id)
 
           qDebug() << result;
 
-          return 1;
+          if(!query.next())
+          {
+              qDebug("'query.next()' is false! - SELECT vinyl_shop.purchase");
+              qDebug() << query.lastError();
+              return 0;
+          }
+          else
+          {
+              result = "";
+
+              for (int i = 0; i < columns; i++)
+                  result += query.value(i).toString() + ((i < columns - 1) ? "\\" : "");
+
+              qDebug() << result;
+
+              return 1;
+          }
       }
       else
       {
@@ -72,35 +88,6 @@ bool DAOPurchase::readPurchase(int id)
     else
     {
       qDebug("Connection failed! - SELECT vinyl_shop.purchase");
-      return 0;
-    }
-}
-
-bool DAOPurchase::updatePurchase(Purchase purchase)
-{
-    if(database_connection.open())
-    {
-      QSqlQuery query = QSqlQuery(database_connection);
-      QString sql = "UPDATE `vinyl_shop`.`purchase` SET `client` = '" + purchase.getClient() + "', `cart` = '"
-                    + purchase.getCart() + "', `total` = '" + purchase.getTotal() + "' WHERE `id` = '" + purchase.getId() + "';";
-
-      query.prepare(sql);
-
-      if(query.exec())
-      {
-          qDebug("Updated vinyl_shop.purchase!");
-          return 1;
-      }
-      else
-      {
-          qDebug("'query.exec()' failed! - UPDATE vinyl_shop.purchase");
-          qDebug() << query.lastError();
-          return 0;
-      }
-    }
-    else
-    {
-      qDebug("Connection failed! - UPDATE vinyl_shop.purchase");
       return 0;
     }
 }

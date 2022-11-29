@@ -16,7 +16,6 @@ class DAOPurchase
 
         bool createPurchase(Purchase purchase);
         bool readPurchase(int id);
-        bool updatePurchase(Purchase purchase);
         bool deletePurchase(int id);
 };
 
