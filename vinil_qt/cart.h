@@ -7,15 +7,15 @@
 class Cart
 {
     private:
-        int cart_id;
+        int id;
         std::vector<Vinyl> vinylList;
         Client client;
 
     public:
-        Cart(int cart_id, std::vector<Vinyl> vinylList, Client client);
+        Cart(int id, std::vector<Vinyl> vinylList, Client client);
 
-        int getCartId();
-        void setCartId(int cart_id);
+        int getId();
+        void setId(int id);
         std::vector<Vinyl> getVinylList();
         void setVinylList(std::vector<Vinyl> vinylList);
         Client getClient();

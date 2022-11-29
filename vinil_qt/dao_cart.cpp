@@ -2,7 +2,6 @@
 
 DAOCart::DAOCart()
 {
-    data_source = DataSource();
     database_connection = data_source.getConnection();
 }
 
@@ -13,9 +12,8 @@ bool DAOCart::createCart(Cart cart)
     if(database_connection.open())
     {
       QSqlQuery query = QSqlQuery(database_connection);
-      QString sql = "INSERT INTO `vinyl_shop`.`cart` (`id`, `vinylList`, `client`) VALUES ('"
-                    + QString::number(cart.getId()) + "', '" + cart.getVinylList() + "', '"
-                    + QString::number(cart.getClient()) + "');";
+      QString sql = "INSERT INTO `vinyl_shop`.`cart` (`id`, `client_id`) VALUES ('"
+                    + QString::number(cart.getId()) + "', '" + QString::number(cart.getClient().getId()) + "');";
 
       query.prepare(sql);
 
@@ -61,7 +59,23 @@ bool DAOCart::readCart(int id)
 
           qDebug() << result;
 
-          return 1;
+          if(!query.next())
+          {
+              qDebug("'query.next()' is false! - SELECT vinyl_shop.cart");
+              qDebug() << query.lastError();
+              return 0;
+          }
+          else
+          {
+              result = "";
+
+              for (int i = 0; i < columns; i++)
+                  result += query.value(i).toString() + ((i < columns - 1) ? "\\" : "");
+
+              qDebug() << result;
+
+              return 1;
+          }
       }
       else
       {
@@ -77,35 +91,6 @@ bool DAOCart::readCart(int id)
     }
 }
 
-bool DAOCart::updateCart(Cart cart)
-{
-    if(database_connection.open())
-    {
-      QSqlQuery query = QSqlQuery(database_connection);
-      QString sql = "UPDATE `vinyl_shop`.`cart` SET `id` = '" + cart.getId() + "', `vinylList` = '"
-                    + cart.getVinylList() + "', `client` = '" + cart.getClient() + "' WHERE `id` = '"
-                    + cart.getId() + "';";
-
-      query.prepare(sql);
-
-      if(query.exec())
-      {
-          qDebug("Updated vinyl_shop.cart!");
-          return 1;
-      }
-      else
-      {
-          qDebug("'query.exec()' failed! - UPDATE vinyl_shop.cart");
-          qDebug() << query.lastError();
-          return 0;
-      }
-    }
-    else
-    {
-      qDebug("Connection failed! - UPDATE vinyl_shop.cart");
-      return 0;
-    }
-}
 
 bool DAOCart::deleteCart(int id)
 {

@@ -16,9 +16,7 @@ public:
 
     bool createCart(Cart cart);
     bool readCart(int id);
-    bool updateCart(Cart cart);
     bool deleteCart(int id);
 };
-
 
 #endif // DAOCLIENT_H

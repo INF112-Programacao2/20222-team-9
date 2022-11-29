@@ -1,16 +1,16 @@
 #include "cart.h"
 
-Cart::Cart(int cart_id, std::vector<Vinyl> vinylList, Client client) :
-    cart_id(cart_id), vinylList(vinylList), client(client){};
+Cart::Cart(int id, std::vector<Vinyl> vinylList, Client client) :
+    id(id), vinylList(vinylList), client(client){};
 
-int Cart::getCartId()
+int Cart::getId()
 {
-    return this->cart_id;
+    return this->id;
 }
 
-void Cart::setCartId(int cart_id)
+void Cart::setId(int id)
 {
-    this->cart_id = cart_id;
+    this->id = id;
 }
 
 std::vector<Vinyl> Cart::getVinylList()
