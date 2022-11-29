@@ -1,17 +1,21 @@
-#include "dao_music.h"
+#include "dao_purchase.h"
 
-DAOMusic dao;
+DAOPurchase dao;
+
+Client client(1, "123", "Guilb", "guilb@", "ggg", 1);
+std::vector<Vinyl> vinylList;
+Cart cart(1, vinylList, client);
 
 //criar
-Music music = Music(1, "onde andaras", 451);
+Purchase purchase = Purchase(1, client, cart, 254.5);
 
-if (dao.createMusic(music))
+if (dao.createPurchase(purchase))
     QMessageBox::information(this, "CREATE", "PARADINHA INSERIDA NE PATRAO");
 else
     QMessageBox::information(this, "CREATE", "NAO INSERIU A PARADINHA NE PATRAO");
 
 //visualizarDados
-if (dao.readMusic(1))
+if (dao.readPurchase(1))
     QMessageBox::information(this, "READ", "PARADINHA LIDA NE PATRAO");
 else
     QMessageBox::information(this, "READ", "NAO LEU A PARADINHA NE PATRAO");
@@ -29,10 +33,10 @@ else
 if (dao.readMusic(1))
     QMessageBox::information(this, "READ", "PARADINHA LIDA NE PATRAO");
 else
-    QMessageBox::information(this, "READ", "NAO LEU A PARADINHA NE PATRAO");
+    QMessageBox::information(this, "READ", "NAO LEU A PARADINHA NE PAT
 
 //excluir
-if (dao.deleteMusic(1))
+if (dao.deletePurchase(1))
     QMessageBox::information(this, "DELETE", "PARADINHA DELETADA NE PATRAO");
 else
     QMessageBox::information(this, "DELETE", "NAO DELETOU A PARADINHA NE PATRAO");
