@@ -1,7 +1,9 @@
 #include "purchase.h"
 
-Purchase::Purchase(int id, Client client, Cart cart, double total) :
-    id(id), client(client), cart(cart), total(total){};
+Purchase::Purchase() {}
+
+Purchase::Purchase(int id, Cart cart, double discount) :
+    id(id), cart(cart), discount(discount){};
 
 int Purchase::getId()
 {
@@ -11,16 +13,6 @@ int Purchase::getId()
 void Purchase::setId(int id)
 {
     this->id = id;
-}
-
-Client Purchase::getClient()
-{
-    return this->client;
-}
-
-void Purchase::setClient(Client client)
-{
-    this->client = client;
 }
 
 Cart Purchase::getCart()
@@ -33,12 +25,19 @@ void Purchase::setCart(Cart cart)
     this->cart = cart;
 }
 
-double Purchase::getTotal()
+double Purchase::getDiscount()
 {
-    return this->total;
+    return this->discount;
 }
 
-void Purchase::setTotal(double total)
+void Purchase::setDiscount(double discount)
 {
-    this->total = total;
+    this->discount = discount;
+}
+
+void Purchase::calculetaDiscount() {}
+
+void Purchase::apllyDiscount()
+{
+    Purchase::getCart().setTotal(Purchase::getCart().getTotal() - Purchase::getDiscount());
 }

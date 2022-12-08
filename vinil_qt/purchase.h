@@ -1,28 +1,28 @@
 #ifndef PURCHASE_H
 #define PURCHASE_H
 
-#include "client.h"
 #include "cart.h"
 
 class Purchase
 {
 private:
     int id;
-    Client client;
     Cart cart;
-    double total;
+    double discount;
 
 public:
-    Purchase(int id, Client client, Cart cart, double total);
+    Purchase();
+    Purchase(int id, Cart cart, double discount);
 
     int getId();
     void setId(int id);
-    Client getClient();
-    void setClient(Client client);
     Cart getCart();
     void setCart(Cart cart);
-    double getTotal();
-    void setTotal(double total);
+    double getDiscount();
+    void setDiscount(double discount);
+
+    virtual void calculetaDiscount();
+    void apllyDiscount();
 };
 
 #endif // PURCHASE_H
