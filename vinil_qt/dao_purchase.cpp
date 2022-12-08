@@ -13,8 +13,8 @@ bool DAOPurchase::createPurchase(Purchase purchase)
     {
       QSqlQuery query = QSqlQuery(database_connection);
       QString sql = "INSERT INTO `vinyl_shop`.`purchase` (`id`, `client_id`, `cart_id`, `total`) VALUES ('"
-                    + QString::number(purchase.getId()) + "', '" + QString::number(purchase.getClient().getId()) + "', '"
-                    + QString::number(purchase.getCart().getId()) + "', '" + QString::number(purchase.getTotal()) + "');";
+                    + QString::number(purchase.getId()) + "', '" + QString::number(purchase.getCart().getClient().getId()) + "', '"
+                    + QString::number(purchase.getCart().getId()) + "', '" + QString::number(purchase.getCart().getTotal()) + "');";
 
       query.prepare(sql);
 
@@ -37,8 +37,12 @@ bool DAOPurchase::createPurchase(Purchase purchase)
     }
 }
 
-bool DAOPurchase::readPurchase(int id)
+Purchase DAOPurchase::readPurchase(int id)
 {
+    DAOCart dao_cart;
+    Cart cart;
+    Purchase purchase;
+
     if(database_connection.open())
     {
       QSqlQuery query = QSqlQuery(database_connection);
@@ -60,36 +64,37 @@ bool DAOPurchase::readPurchase(int id)
 
           qDebug() << result;
 
+          std::vector<QString> res;
+
           if(!query.next())
           {
               qDebug("'query.next()' is false! - SELECT vinyl_shop.purchase");
               qDebug() << query.lastError();
-              return 0;
           }
           else
           {
-              result = "";
-
               for (int i = 0; i < columns; i++)
-                  result += query.value(i).toString() + ((i < columns - 1) ? "\\" : "");
+                  res.push_back(query.value(i).toString());
 
-              qDebug() << result;
+              int id = res[0].toInt();
+              cart = dao_cart.readCart(res[1].toInt());
+              double discount = res[2].toDouble();
 
-              return 1;
-          }
+              purchase = Purchase(id, cart, discount);
+            }
       }
       else
       {
           qDebug("'query.exec()' failed! - SELECT vinyl_shop.purchase");
           qDebug() << query.lastError();
-          return 0;
       }
     }
     else
     {
       qDebug("Connection failed! - SELECT vinyl_shop.purchase");
-      return 0;
     }
+
+    return purchase;
 }
 
 bool DAOPurchase::deletePurchase(int id)

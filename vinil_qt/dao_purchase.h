@@ -2,6 +2,7 @@
 #define DAOPURCHASE_H
 
 #include "data_source.h"
+#include "dao_cart.h"
 #include "purchase.h"
 
 class DAOPurchase
@@ -15,7 +16,7 @@ class DAOPurchase
         ~DAOPurchase();
 
         bool createPurchase(Purchase purchase);
-        bool readPurchase(int id);
+        Purchase readPurchase(int id);
         bool deletePurchase(int id);
 };
 
