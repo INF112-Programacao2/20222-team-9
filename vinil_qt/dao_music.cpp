@@ -3,6 +3,9 @@
 DAOMusic::DAOMusic(QSqlDatabase database_connection)
 {
     this->database_connection = database_connection;
+    if(!database_connection.isOpen()){
+        database_connection.open();
+    }
 }
 
 DAOMusic::~DAOMusic() {}

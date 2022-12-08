@@ -3,6 +3,9 @@
 DAOVinyl::DAOVinyl(QSqlDatabase database_connection)
 {
     this->database_connection = database_connection;
+    if(!database_connection.isOpen()){
+        database_connection.open();
+    }
 }
 
 DAOVinyl::~DAOVinyl() {}
@@ -115,7 +118,7 @@ std::vector<Vinyl> DAOVinyl::readVinylsForSale()
     std::vector<Music> playlist;
     Vinyl vinyl;
     std::vector<Vinyl> vinyl_list;
-    if(database_connection.open())
+    if(database_connection.isOpen())
     {
       QSqlQuery query = QSqlQuery(database_connection);
       QString sql = "SELECT * FROM `vinyl_shop`.`vinyl` WHERE `status` = '1';";
