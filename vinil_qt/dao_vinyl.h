@@ -2,6 +2,7 @@
 #define DAOVINYL_H
 
 #include "data_source.h"
+#include "dao_music.h"
 #include "vinyl.h"
 
 class DAOVinyl
@@ -15,7 +16,10 @@ public:
     ~DAOVinyl();
 
     bool createVinyl(Vinyl vinyl);
-    bool readVinyl(int id);
+    Vinyl readVinyl(int id);
+    std::vector<Vinyl> readVinylsForSale();
+    std::vector<Vinyl> readVinylCollection(int client_id);
+    std::vector<Vinyl> readCartItems(int cart_id);
     bool updateVinyl(Vinyl vinyl);
     bool deleteVinyl(int id);
 };

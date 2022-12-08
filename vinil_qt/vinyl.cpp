@@ -1,7 +1,9 @@
 #include "vinyl.h"
 
-Vinyl::Vinyl(int id, QString name, std::vector<Music> playlist, QString genre, QString composer, QString featuring, int releaseYear, int rarity, double price) :
-    id(id), name(name), playlist(playlist), genre(genre), composer(composer), featuring(featuring), releaseYear(releaseYear), rarity(rarity), price(price){};
+Vinyl::Vinyl() {}
+
+Vinyl::Vinyl(int id, QString name, std::vector<Music> playlist, QString genre, QString composer, QString featuring, int releaseYear, int rarity, double price, QString image_url, bool status) :
+    id(id), name(name), playlist(playlist), genre(genre), composer(composer), featuring(featuring), releaseYear(releaseYear), rarity(rarity), price(price), image_url(image_url), status(status){};
 
 int Vinyl::getId()
 {
@@ -91,4 +93,24 @@ double Vinyl::getPrice()
 void Vinyl::setPrice(double price)
 {
     this->price = price;
+}
+
+QString Vinyl::getImageUrl()
+{
+    return this->image_url;
+}
+
+void Vinyl::setImageUrl(QString image_url)
+{
+    this->image_url = image_url;
+}
+
+bool Vinyl::getStatus()
+{
+    return this->status;
+}
+
+void Vinyl::setStatus(bool status)
+{
+    this->status = status;
 }

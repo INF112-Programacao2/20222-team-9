@@ -17,9 +17,12 @@ private:
     int releaseYear;
     int rarity;
     double price;
+    QString image_url;
+    bool status;
 
 public:
-    Vinyl(int id, QString name, std::vector<Music> playlist, QString genre, QString composer, QString featuring, int releaseYear, int rarity, double price);
+    Vinyl();
+    Vinyl(int id, QString name, std::vector<Music> playlist, QString genre, QString composer, QString featuring, int releaseYear, int rarity, double price, QString image_url, bool status);
 
     int getId();
     void setId(int id);
@@ -39,6 +42,10 @@ public:
     void setRarity(int rarity);
     double getPrice();
     void setPrice(double price);
+    QString getImageUrl();
+    void setImageUrl(QString image_url);
+    bool getStatus();
+    void setStatus(bool status);
 };
 
 #endif // VINYL_H
