@@ -1,4 +1,4 @@
-QT       += core gui sql
+QT       += core gui sql network
 QTPLUGIN += QSQLMYSQL
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -12,53 +12,64 @@ CONFIG += c++17
 SOURCES += \
     cart.cpp \
     client.cpp \
-    common_client.cpp \
     dao_cart.cpp \
     dao_client.cpp \
     dao_music.cpp \
     dao_purchase.cpp \
     dao_vinyl.cpp \
     data_source.cpp \
-    inserirusuario.cpp \
     main.cpp \
     mainwindow.cpp \
     music.cpp \
     purchase.cpp \
+    screen_cart.cpp \
+    screen_completed_purchase.cpp \
+    screen_disc.cpp \
+    screen_home.cpp \
+    screen_new_account.cpp \
+    screen_profile.cpp \
     teste_login.cpp \
     testeuserdao.cpp \
     userteste.cpp \
-    vinyl.cpp \
-    vip_client.cpp \
-    vip_purchase.cpp
+    vinyl.cpp
     userteste.cpp
 
 HEADERS += \
     cart.h \
     client.h \
-    common_client.h \
     dao_cart.h \
     dao_client.h \
     dao_music.h \
     dao_purchase.h \
     dao_vinyl.h \
     data_source.h \
-    inserirusuario.h \
     mainwindow.h \
     music.h \
     purchase.h \
+    screen_cart.h \
+    screen_completed_purchase.h \
+    screen_disc.h \
+    screen_home.h \
+    screen_new_account.h \
+    screen_profile.h \
     teste_login.h \
     testeuserdao.h \
     userteste.h \
-    vinyl.h \
-    vip_client.h \
-    vip_purchase.h
+    vinyl.h
     userteste.h
     login_teste.h
 
 FORMS += \
-    inserirusuario.ui \
     mainwindow.ui \
+    screen_cart.ui \
+    screen_completed_purchase.ui \
+    screen_disc.ui \
+    screen_home.ui \
+    screen_new_account.ui \
+    screen_profile.ui \
     teste_login.ui
+ RESOURCES += \
+    res.qrc
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

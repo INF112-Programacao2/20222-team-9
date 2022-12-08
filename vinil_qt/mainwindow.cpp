@@ -1,9 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
-#include "teste_login.h"
-#include "inserirusuario.h"
-
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
@@ -16,12 +13,20 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    Teste_Login l;
-    l.exec();
+    //Teste_Login l;
+    //l.setModal(true);
+    //l.exec();
+    hide();
+    l = new Teste_Login(this);
+    l->show();
+}
+void MainWindow::on_btnNovaConta_clicked()
+{
+    //screen_new_account l;
+    //l.exec();
+    hide();
+    m = new screen_new_account(this);
+    m->show();
 }
 
-void MainWindow::on_pushButton_2_clicked()
-{
-    InserirUsuario i;
-    i.exec();
-}
+

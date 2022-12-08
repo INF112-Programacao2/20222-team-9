@@ -35,10 +35,15 @@ void Teste_Login::on_pushButton_clicked()
     if(daoUser.loginUsuario(cpf,senha))
     {
         QMessageBox::information(this, "Conexão com o Banco", "LOGIN FEITO EM PATRÃO");
+        hide();
+        l = new screen_home(this);
+        l->show();
+        hide();
     }
     else
     {
         QMessageBox::information(this, "Conexão com o Banco", "LOGIN DEU CERTO NÃO NÉ PATRÃO");
+
     }
 }
 

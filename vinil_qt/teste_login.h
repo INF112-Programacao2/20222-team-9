@@ -1,6 +1,8 @@
 #ifndef TESTE_LOGIN_H
 #define TESTE_LOGIN_H
 
+#include "screen_home.h"
+
 #include <QDialog>
 
 namespace Ui { class Teste_Login; }
@@ -18,6 +20,7 @@ private slots:
 
 private:
     Ui::Teste_Login *ui;
+    screen_home *l;
 };
 
 #endif // TESTE_LOGIN_H
