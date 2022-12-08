@@ -15,7 +15,7 @@ public:
     ~DAOClient();
 
     bool createClient(Client client);
-    bool readClient(int id);
+    Client readClient(int id);
     bool updateClient(Client client);
     bool deleteClient(int id);
 };

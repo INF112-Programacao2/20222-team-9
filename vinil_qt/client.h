@@ -2,17 +2,17 @@
 #define CLIENT_H
 
 #include "qsqldatabase.h"
-//#include "purchase.h"
 
 class Client
 {
 private:
     int id;
     QString cpf, name, email, password;
-    int vip;
+    int vip, rank;
 
 public:
-    Client(int id, QString cpf, QString name, QString email, QString password, int vip);
+    Client();
+    Client(int id, QString cpf, QString name, QString email, QString password, int vip, int rank);
 
     int getId();
     void setId(int id);
@@ -26,8 +26,10 @@ public:
     void setPassword(QString password);
     int getVip();
     void setVip(int vip);
+    int getRank();
+    void setRank(int rank);
 
-    //virtual void calculateClientPurchase(Purchase purchase);
+    virtual void calculateRank();
 };
 
 #endif // CLIENT_H

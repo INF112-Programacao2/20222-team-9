@@ -38,8 +38,10 @@ bool DAOClient::createClient(Client client)
     }
 }
 
-bool DAOClient::readClient(int id)
+Client DAOClient::readClient(int id)
 {
+    Client client;
+
     if(database_connection.open())
     {
       QSqlQuery query = QSqlQuery(database_connection);
@@ -61,36 +63,41 @@ bool DAOClient::readClient(int id)
 
           qDebug() << result;
 
+          std::vector<QString> res;
+
           if(!query.next())
           {
               qDebug("'query.next()' is false - SELECT vinyl_shop.client");
               qDebug() << query.lastError();
-              return 0;
           }
           else
           {
-              result = "";
-
               for(int i = 0; i < columns; i++)
-                result += query.value(i).toString() + ((i < columns - 1)? "\\" : "");
+                res.push_back(query.value(i).toString());
 
-              qDebug() << result;
+              int id = res[0].toInt();
+              QString cpf = res[1];
+              QString name = res[2];
+              QString email = res[3];
+              QString password = res[4];
+              int vip = res[5].toInt();
+              int rank = res[6].toInt();
 
-              return 1;
+              client = Client(id, cpf, name, email, password, vip, rank);
           }
       }
       else
       {
           qDebug("'query.exec()' failed! - SELECT vinyl_shop.client");
           qDebug() << query.lastError();
-          return 0;
       }
     }
     else
     {
       qDebug("Connection failed! - SELECT vinyl_shop.client");
-      return 0;
     }
+
+    return client;
 }
 
 bool DAOClient::updateClient(Client client)
