@@ -1,5 +1,7 @@
 #include "music.h"
 
+Music::Music() {}
+
 Music::Music(int id, QString name, double duration) :
     id(id), name(name), duration(duration){};
 

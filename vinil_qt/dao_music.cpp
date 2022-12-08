@@ -36,8 +36,10 @@ bool DAOMusic::createMusic(Music music)
     }
 }
 
-bool DAOMusic::readMusic(int id)
+Music DAOMusic::readMusic(int id)
 {
+    Music music;
+
     if(database_connection.open())
     {
         QSqlQuery query = QSqlQuery(database_connection);
@@ -59,36 +61,95 @@ bool DAOMusic::readMusic(int id)
 
             qDebug() << result;
 
+            std::vector<QString> res;
+
             if(!query.next())
             {
                 qDebug("'query.next()' is false! - SELECT vinyl_shop.music");
                 qDebug() << query.lastError();
-                return 0;
             }
             else
             {
-                result = "";
-
                 for (int i = 0; i < columns; i++)
-                    result += query.value(i).toString() + ((i < columns - 1) ? "\\" : "");
+                    res.push_back(query.value(i).toString());
 
-                qDebug() << result;
+                int id = res[0].toInt();
+                QString name = res[1];
+                double duration = res[2].toDouble();
 
-                return 1;
+                music = Music(id, name, duration);
             }
         }
         else
         {
             qDebug("'query.exec()' failed! - SELECT vinyl_shop.music");
             qDebug() << query.lastError();
-            return 0;
         }
     }
     else
     {
         qDebug("Connection failed! - SELECT vinyl_shop.music");
-        return 0;
     }
+
+    return music;
+}
+
+std::vector<Music> DAOMusic::readPlaylist(int vinyl_id)
+{
+    Music music;
+    std::vector<Music> playlist;
+
+    if(database_connection.open())
+    {
+        QSqlQuery query = QSqlQuery(database_connection);
+        QString sql = "SELECT `music`.`id`, `music`.`name`, `music`.`id` FROM `vinyl_shop`.`music` "
+                      "LEFT JOIN `vinyl_shop`.`playlist` p ON `music`.`id` = p.`music_id` "
+                      "LEFT JOIN `vinyl_shop`.`vinyl` v ON v.`id` =  p.`vinyl_id` "
+                      "WHERE v.`id` = '" + QString::number(vinyl_id) + "';";
+
+        query.prepare(sql);
+
+        if(query.exec())
+        {
+            qDebug("Selected from vinyl_shop.music!");
+
+            QSqlRecord record = query.record();
+            int columns = record.count();
+
+            QString result;
+
+            for (int i = 0; i < columns; i++)
+                result += record.fieldName(i) + ((i < columns - 1) ? "\\" : "");
+
+            qDebug() << result;
+
+            std::vector<QString> res;
+
+            while(query.next())
+            {
+                for (int i = 0; i < columns; i++)
+                    res.push_back(query.value(i).toString());
+
+                int id = res[0].toInt();
+                QString name = res[1];
+                double duration = res[2].toDouble();
+
+                music = Music(id, name, duration);
+                playlist.push_back(music);
+            }
+        }
+        else
+        {
+            qDebug("'query.exec()' failed! - SELECT vinyl_shop.music");
+            qDebug() << query.lastError();
+        }
+    }
+    else
+    {
+        qDebug("Connection failed! - SELECT vinyl_shop.music");
+    }
+
+    return playlist;
 }
 
 bool DAOMusic::updateMusic(Music music)

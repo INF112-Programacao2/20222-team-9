@@ -12,6 +12,7 @@ CONFIG += c++17
 SOURCES += \
     cart.cpp \
     client.cpp \
+    common_client.cpp \
     dao_cart.cpp \
     dao_client.cpp \
     dao_music.cpp \
@@ -26,12 +27,15 @@ SOURCES += \
     teste_login.cpp \
     testeuserdao.cpp \
     userteste.cpp \
-    vinyl.cpp
+    vinyl.cpp \
+    vip_client.cpp \
+    vip_purchase.cpp
     userteste.cpp
 
 HEADERS += \
     cart.h \
     client.h \
+    common_client.h \
     dao_cart.h \
     dao_client.h \
     dao_music.h \
@@ -45,7 +49,9 @@ HEADERS += \
     teste_login.h \
     testeuserdao.h \
     userteste.h \
-    vinyl.h
+    vinyl.h \
+    vip_client.h \
+    vip_purchase.h
     userteste.h
     login_teste.h
 

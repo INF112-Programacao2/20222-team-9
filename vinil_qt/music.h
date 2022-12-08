@@ -9,7 +9,9 @@ private:
     int id;
     QString name;
     double duration;
+
 public:
+    Music();
     Music(int id, QString name, double duration);
 
     int getId();

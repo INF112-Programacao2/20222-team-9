@@ -15,7 +15,8 @@ public:
     ~DAOMusic();
 
     bool createMusic(Music music);
-    bool readMusic(int id);
+    Music readMusic(int id);
+    std::vector<Music> readPlaylist(int vinyl_id);
     bool updateMusic(Music music);
     bool deleteMusic(int id);
 };
