@@ -40,7 +40,11 @@ Cart DAOCart::readCart(int id)
 {
     DAOClient dao_client;
     Client client;
-    DAOVinyl dao_vinyl;
+    DataSource dataSource;
+    dataSource.createConnection();
+    QSqlDatabase database_connection = dataSource.getConnection();
+
+    DAOVinyl dao_vinyl(database_connection);
     std::vector<Vinyl> vinylList;
     Cart cart;
 

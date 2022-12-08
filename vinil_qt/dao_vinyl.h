@@ -12,7 +12,7 @@ private:
     QSqlDatabase database_connection;
 
 public:
-    DAOVinyl();
+    DAOVinyl(QSqlDatabase database_connection);
     ~DAOVinyl();
 
     bool createVinyl(Vinyl vinyl);

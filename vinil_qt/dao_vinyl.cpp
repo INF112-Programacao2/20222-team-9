@@ -1,14 +1,16 @@
 #include "dao_vinyl.h"
 
-DAOVinyl::DAOVinyl()
+DAOVinyl::DAOVinyl(QSqlDatabase database_connection)
 {
-    database_connection = data_source.getConnection();
+    this->database_connection = database_connection;
 }
 
 DAOVinyl::~DAOVinyl() {}
 
 bool DAOVinyl::createVinyl(Vinyl vinyl)
 {
+    DataSource dao;
+    QSqlDatabase conn = dao.createConnection();
     if(database_connection.open())
     {
       QSqlQuery query = QSqlQuery(database_connection);
@@ -40,11 +42,11 @@ bool DAOVinyl::createVinyl(Vinyl vinyl)
 
 Vinyl DAOVinyl::readVinyl(int id)
 {
-    DAOMusic dao_music;
+    DAOMusic dao_music(database_connection);
     std::vector<Music> playlist;
     Vinyl vinyl;
 
-    if(database_connection.open())
+    if(database_connection.isOpen())
     {
       QSqlQuery query = QSqlQuery(database_connection);
       QString sql = "SELECT * FROM `vinyl_shop`.`vinyl` WHERE `id` = '" + QString::number(id) + "';";
@@ -109,11 +111,10 @@ Vinyl DAOVinyl::readVinyl(int id)
 
 std::vector<Vinyl> DAOVinyl::readVinylsForSale()
 {
-    DAOMusic dao_music;
+    DAOMusic dao_music(database_connection);
     std::vector<Music> playlist;
     Vinyl vinyl;
     std::vector<Vinyl> vinyl_list;
-
     if(database_connection.open())
     {
       QSqlQuery query = QSqlQuery(database_connection);
@@ -167,7 +168,7 @@ std::vector<Vinyl> DAOVinyl::readVinylsForSale()
     }
     else
     {
-      qDebug("Connection failed! - SELECT vinyl_shop.vinyl");
+      qDebug("170Connection failed! - SELECT vinyl_shop.vinyl");
     }
 
     return vinyl_list;
@@ -175,12 +176,12 @@ std::vector<Vinyl> DAOVinyl::readVinylsForSale()
 
 std::vector<Vinyl> DAOVinyl::readVinylCollection(int client_id)
 {
-    DAOMusic dao_music;
+    DAOMusic dao_music(database_connection);
     std::vector<Music> playlist;
     Vinyl vinyl;
     std::vector<Vinyl> vinyl_list;
 
-    if(database_connection.open())
+    if(database_connection.isOpen())
     {
       QSqlQuery query = QSqlQuery(database_connection);
       QString sql = "SELECT `vinyl`.`id`, `vinyl`.`name`, `vinyl`.`genre`, `vinyl`.`composer`, `vinyl`.`featuring`, "
@@ -245,12 +246,12 @@ std::vector<Vinyl> DAOVinyl::readVinylCollection(int client_id)
 
 std::vector<Vinyl> DAOVinyl::readCartItems(int cart_id)
 {
-    DAOMusic dao_music;
+    DAOMusic dao_music(database_connection);
     std::vector<Music> playlist;
     Vinyl vinyl;
     std::vector<Vinyl> vinyl_list;
 
-    if(database_connection.open())
+    if(database_connection.isOpen())
     {
       QSqlQuery query = QSqlQuery(database_connection);
       QString sql = "SELECT `vinyl`.`id`, `vinyl`.`name`, `vinyl`.`genre`, `vinyl`.`composer`, `vinyl`.`featuring`, "
@@ -315,7 +316,7 @@ std::vector<Vinyl> DAOVinyl::readCartItems(int cart_id)
 
 bool DAOVinyl::updateVinyl(Vinyl vinyl)
 {
-    if(database_connection.open())
+    if(database_connection.isOpen())
     {
       QSqlQuery query = QSqlQuery(database_connection);
       QString sql = "UPDATE `vinyl_shop`.`vinyl` SET name = '"
@@ -347,7 +348,7 @@ bool DAOVinyl::updateVinyl(Vinyl vinyl)
 
 bool DAOVinyl::deleteVinyl(int id)
 {
-    if(database_connection.open())
+    if(database_connection.isOpen())
     {
       QSqlQuery query = QSqlQuery(database_connection);
       QString sql = "DELETE FROM `vinyl_shop`.`vinyl` WHERE `id` = '" + QString::number(id) + "';";

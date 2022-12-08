@@ -9,8 +9,6 @@
 #include <QTableWidgetItem>
 #include <QMessageBox>
 #include <QPixmap>
-#include <QNetworkAccessManager>
-#include <QNetworkReply>
 #include <vector>
 
 
@@ -24,72 +22,12 @@ screen_home::screen_home(QWidget *parent) :
 
     ui->frame->setHidden(true);
 
-    std::vector<Music> musics1;
-    Music m1 = Music(2,"MUSIC 1",5.6);
-    Music m2 = Music(2,"MUSIC 2",6);
-    Music m3 = Music(2,"MUSIC 3",3);
-    Music m4 = Music(2,"MUSIC 4",9.6);
-    Music m5 = Music(2,"MUSIC 5",11.6);
+    DataSource dataSource;
 
-    musics1.push_back(m1);
-    musics1.push_back(m2);
-    musics1.push_back(m2);
-    musics1.push_back(m3);
-    musics1.push_back(m4);
-    musics1.push_back(m5);
+    QSqlDatabase database_connection = dataSource.createConnection();
 
-
-    Vinyl v1 = Vinyl(7,"HOT SPACEX",musics1,"POP","QUEEN","DE NOVO",1981,99,180,"",1);
-
-    std::vector<Music> musics2;
-    m1 = Music(2,"D MUSIC 1",23);
-    m2 = Music(2,"D MUSIC 2",1.4);
-    m3 = Music(2,"D MUSIC 3",5.6);
-    m4 = Music(2,"D MUSIC 4",7.1);
-
-    musics2.push_back(m1);
-    musics2.push_back(m2);
-    musics2.push_back(m2);
-    musics2.push_back(m3);
-    musics2.push_back(m4);
-
-    Vinyl v2 = Vinyl(7,"HOT SPACEX",musics2,"POP","QUEEN","DE NOVO",1981,99,180,"",1);
-
-
-    std::vector<Music> musics3;
-    m1 = Music(2,"TT MUSIC 1",5.4);
-    m2 = Music(2,"TT MUSIC 2",5.8);
-    m3 = Music(2,"TT MUSIC 3",9);
-    m4 = Music(2,"TT MUSIC 4",3.4);
-
-    musics3.push_back(m1);
-    musics3.push_back(m2);
-    musics3.push_back(m2);
-    musics3.push_back(m3);
-    musics3.push_back(m4);
-
-    Vinyl v3 = Vinyl(7,"HOT SPACEX",musics3,"POP","QUEEN","DE NOVO",1981,99,180,"",1);
-
-    std::vector<Music> musics4;
-    m1 = Music(2,"FFF MUSIC 1",5.6);
-    m2 = Music(2,"FFF MUSIC 2",5);
-    m3 = Music(2,"FFF MUSIC 3",7);
-    m4 = Music(2,"FFF MUSIC 4",3.6);
-    m5 = Music(2,"FFF MUSIC 4",1.3);
-
-    musics4.push_back(m1);
-    musics4.push_back(m2);
-    musics4.push_back(m2);
-    musics4.push_back(m3);
-    musics4.push_back(m5);
-
-    Vinyl v4 = Vinyl(7,"HOT SPACEX",musics4,"POP","QUEEN","DE NOVO",1981,99,180,"",1);
-
-
-    vinys.push_back(v1);
-    vinys.push_back(v2);
-    vinys.push_back(v3);
-    vinys.push_back(v4);
+    DAOVinyl daoVinyl(database_connection);
+    vinys = daoVinyl.readVinylsForSale();
 
 
 

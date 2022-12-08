@@ -1,15 +1,15 @@
 #include "dao_music.h"
 
-DAOMusic::DAOMusic()
+DAOMusic::DAOMusic(QSqlDatabase database_connection)
 {
-    database_connection = data_source.getConnection();
+    this->database_connection = database_connection;
 }
 
 DAOMusic::~DAOMusic() {}
 
 bool DAOMusic::createMusic(Music music)
 {
-    if(database_connection.open())
+    if(database_connection.isOpen())
     {
         QSqlQuery query = QSqlQuery(database_connection);
         QString sql = "INSERT INTO `vinyl_shop`.`music` (`name`, `duration`) VALUES ('"
@@ -40,7 +40,7 @@ Music DAOMusic::readMusic(int id)
 {
     Music music;
 
-    if(database_connection.open())
+    if(database_connection.isOpen())
     {
         QSqlQuery query = QSqlQuery(database_connection);
         QString sql = "SELECT * FROM `vinyl_shop`.`music` WHERE `id` = '" + QString::number(id) + "';";
@@ -99,7 +99,7 @@ std::vector<Music> DAOMusic::readPlaylist(int vinyl_id)
     Music music;
     std::vector<Music> playlist;
 
-    if(database_connection.open())
+    if(database_connection.isOpen())
     {
         QSqlQuery query = QSqlQuery(database_connection);
         QString sql = "SELECT `music`.`id`, `music`.`name`, `music`.`id` FROM `vinyl_shop`.`music` "
@@ -154,7 +154,7 @@ std::vector<Music> DAOMusic::readPlaylist(int vinyl_id)
 
 bool DAOMusic::updateMusic(Music music)
 {
-    if(database_connection.open())
+    if(database_connection.isOpen())
     {
         QSqlQuery query = QSqlQuery(database_connection);
         QString sql = "UPDATE `vinyl_shop`.`music` SET `name` = '"
@@ -184,7 +184,7 @@ bool DAOMusic::updateMusic(Music music)
 
 bool DAOMusic::deleteMusic(int id)
 {
-    if(database_connection.open())
+    if(database_connection.isOpen())
     {
         QSqlQuery query = QSqlQuery(database_connection);
         QString sql =  "DELETE FROM `vinyl_shop`.`music` WHERE `id` = '" + QString::number(id) + "';";

@@ -8,7 +8,9 @@
 TesteUserDAO::TesteUserDAO()
 {
     DataSource dao;
-    this->conn = dao.getConnection();
+    //QSqlDatabase conn;
+    this->conn = dao.createConnection();
+    //if(conn.open());
 }
 
 TesteUserDAO::~TesteUserDAO() {}

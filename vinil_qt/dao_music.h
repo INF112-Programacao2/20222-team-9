@@ -11,7 +11,7 @@ private:
     QSqlDatabase database_connection;
 
 public:
-    DAOMusic();
+    DAOMusic(QSqlDatabase database_connection);
     ~DAOMusic();
 
     bool createMusic(Music music);
