@@ -16,6 +16,7 @@ class screen_disc : public QDialog
 public:
     explicit screen_disc(QWidget *parent = nullptr, int idVinyl =0);
     ~screen_disc();
+    std::vector<Music> musics;
 
 private slots:
     void on_pb_perfil_disc_clicked();

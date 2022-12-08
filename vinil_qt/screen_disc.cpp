@@ -1,40 +1,26 @@
 #include "screen_disc.h"
+#include "dao_music.h"
 #include "music.h"
 #include "screen_cart.h"
 #include "screen_home.h"
 #include "ui_screen_disc.h"
 #include "screen_profile.h"
 
-std::vector<Music> musics4;
+
 screen_disc::screen_disc(QWidget *parent, int idVinyl) :
     QDialog(parent),
     ui(new Ui::screen_disc)
 {
     ui->setupUi(this);
+    DataSource dataSource;
 
-    Music m1 = Music(1,"MUSIC 1",5.6);
-    Music m2 = Music(2,"MUSIC 2",6);
-    Music m3 = Music(3,"MUSIC 3",3);
-    Music m4 = Music(4,"MUSIC 4",9.6);
-    Music m5 = Music(5,"MUSIC 5",11.6);
+    QSqlDatabase database_connection = dataSource.getConnection();
+    DAOMusic daoMusic(database_connection);
 
-
-    Vinyl v = getVinyl(idVinyl);
-    ui->lb_cantor_disc->setText(v.getComposer());
-    ui->lb_nome_album_disc->setText(v.getName());
-    ui->lb_compositores_disc->setText(v.getFeaturing());
-    ui->lb_data_disc->setText(QString::number(v.getReleaseYear()));
-    ui->lb_preco_disc->setText("R$ "+QString::number(v.getPrice()));
-
-
-    musics4.push_back(m1);
-    musics4.push_back(m2);
-    musics4.push_back(m2);
-    musics4.push_back(m3);
-    musics4.push_back(m5);
+    musics = daoMusic.readPlaylist(idVinyl);
 
     int contLines = 0;
-    for (Music m : musics4) {
+    for (Music m : musics) {
       ui->tw_musics_disc->insertRow(contLines);
 
       ui->tw_musics_disc->setItem(
@@ -76,7 +62,7 @@ void screen_disc::on_tw_musics_disc_itemSelectionChanged()
 {
     ui->frame->setHidden(false);
     int idSel = ui->tw_musics_disc->item(ui->tw_musics_disc->currentRow(),0)->text().toInt();
-    Music m = getMusic(idSel, musics4);
+    Music m = getMusic(idSel, musics);
     ui->lb_nome_musica_disc->setText(m.getName());
 
 }
@@ -94,7 +80,7 @@ Vinyl screen_disc::getVinyl(int id){
     musics1.push_back(m3);
     musics1.push_back(m4);
     musics1.push_back(m5);
-    Vinyl v1 = Vinyl(7,"HOT SPACEX",musics4,"POP","QUEEN","DE NOVO",1981,99,180,"",1);
+    Vinyl v1 = Vinyl(7,"HOT SPACEX",musics,"POP","QUEEN","DE NOVO",1981,99,180,"",1);
    //Vinyl v1 = Vinyl(4,"GADOXX",musics1,"RAP","FROID","MAJOR",2022,1,90);
    return v1;
 }
