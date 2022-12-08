@@ -1,7 +1,9 @@
 #include "cart.h"
 
-Cart::Cart(int id, std::vector<Vinyl> vinylList, Client client) :
-    id(id), vinylList(vinylList), client(client){};
+Cart::Cart() {}
+
+Cart::Cart(int id, Client client, std::vector<Vinyl> vinylList, double total) :
+    id(id), client(client), vinylList(vinylList), total(total) {};
 
 int Cart::getId()
 {
@@ -11,6 +13,16 @@ int Cart::getId()
 void Cart::setId(int id)
 {
     this->id = id;
+}
+
+Client Cart::getClient()
+{
+    return this->client;
+}
+
+void Cart::setClient(Client client)
+{
+    this->client = client;
 }
 
 std::vector<Vinyl> Cart::getVinylList()
@@ -23,12 +35,12 @@ void Cart::setVinylList(std::vector<Vinyl> vinylList)
     this->vinylList = vinylList;
 }
 
-Client Cart::getClient()
+double Cart::getTotal()
 {
-    return this->client;
+    return this->total;
 }
 
-void Cart::setClient(Client client)
+void Cart::setTotal(double total)
 {
-    this->client = client;
+    this->total = total;
 }

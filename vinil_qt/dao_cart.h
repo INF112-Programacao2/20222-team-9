@@ -2,6 +2,8 @@
 #define DAOCART_H
 
 #include "data_source.h"
+#include "dao_client.h"
+#include "dao_vinyl.h"
 #include "cart.h"
 
 class DAOCart
@@ -15,7 +17,7 @@ public:
     ~DAOCart();
 
     bool createCart(Cart cart);
-    bool readCart(int id);
+    Cart readCart(int id);
     bool deleteCart(int id);
 };
 
