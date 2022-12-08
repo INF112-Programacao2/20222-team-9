@@ -21,7 +21,7 @@ public:
     double getDiscount();
     void setDiscount(double discount);
 
-    virtual void calculetaDiscount();
+    virtual void calculateDiscount();
     void apllyDiscount();
 };
 

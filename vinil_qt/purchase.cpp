@@ -35,7 +35,7 @@ void Purchase::setDiscount(double discount)
     this->discount = discount;
 }
 
-void Purchase::calculetaDiscount() {}
+void Purchase::calculateDiscount() {}
 
 void Purchase::apllyDiscount()
 {

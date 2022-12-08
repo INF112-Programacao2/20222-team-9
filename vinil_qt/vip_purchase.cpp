@@ -3,7 +3,7 @@
 VIPPurchase::VIPPurchase(int id, Cart cart, double discount) :
     Purchase(id, cart, discount){};
 
-void VIPPurchase::calculetaDiscount()
+void VIPPurchase::calculateDiscount()
 {
     double d = Purchase::getCart().getTotal();
     switch (Purchase::getCart().getClient().getRank())
