@@ -31,8 +31,9 @@ SOURCES += \
     screen_profile.cpp \
     testeuserdao.cpp \
     userteste.cpp \
-    vinyl.cpp
-    userteste.cpp
+    vinyl.cpp \
+    common_client.cpp\
+    vip_client.cpp
 
 HEADERS += \
     cart.h \
@@ -55,9 +56,10 @@ HEADERS += \
     screen_profile.h \
     testeuserdao.h \
     userteste.h \
-    vinyl.h
-    userteste.h
-    login_teste.h
+    vinyl.h \
+    common_client.h\
+    vip_client.h
+
 
 FORMS += \
     mainwindow.ui \

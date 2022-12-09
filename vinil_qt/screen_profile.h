@@ -24,7 +24,7 @@ private slots:
     void on_pb_home_profile_clicked();
 
     void on_pb_cart_profile_clicked();
-    Client getClient(int id);
+
 
     void on_btn_Logout_clicked();
 

@@ -7,7 +7,8 @@ VIPClient::VIPClient(int id, QString cpf, QString name, QString email, QString p
 
 void VIPClient::calculateRank()
 {
-    DAOVinyl dao_vinyl;
+    DataSource ds;
+    DAOVinyl dao_vinyl(ds.getConnection());
     std::vector<Vinyl> vinyl_collection = dao_vinyl.readVinylCollection(Client::getId());
 
     int w = 0;
