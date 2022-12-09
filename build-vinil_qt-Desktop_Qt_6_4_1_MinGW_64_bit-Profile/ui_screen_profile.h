@@ -31,7 +31,7 @@ public:
     QLabel *lb_ano_lancamento;
     QLabel *lb_cpf;
     QLabel *lb_rank;
-    QLabel *lb_ano_lancamento_4;
+    QLabel *lb_txt_rank;
     QPushButton *pb_home_profile;
     QPushButton *pb_cart_profile;
     QTableWidget *tableWidget;
@@ -95,11 +95,11 @@ public:
         lb_rank->setGeometry(QRect(80, 170, 121, 31));
         lb_rank->setFont(font1);
         lb_rank->setStyleSheet(QString::fromUtf8("color:rgb(255, 255, 255)"));
-        lb_ano_lancamento_4 = new QLabel(frame);
-        lb_ano_lancamento_4->setObjectName("lb_ano_lancamento_4");
-        lb_ano_lancamento_4->setGeometry(QRect(20, 170, 51, 31));
-        lb_ano_lancamento_4->setFont(font1);
-        lb_ano_lancamento_4->setStyleSheet(QString::fromUtf8("color:rgb(255, 255, 255)"));
+        lb_txt_rank = new QLabel(frame);
+        lb_txt_rank->setObjectName("lb_txt_rank");
+        lb_txt_rank->setGeometry(QRect(20, 170, 51, 31));
+        lb_txt_rank->setFont(font1);
+        lb_txt_rank->setStyleSheet(QString::fromUtf8("color:rgb(255, 255, 255)"));
         pb_home_profile = new QPushButton(screen_profile);
         pb_home_profile->setObjectName("pb_home_profile");
         pb_home_profile->setGeometry(QRect(60, 20, 51, 51));
@@ -185,7 +185,7 @@ public:
         lb_ano_lancamento->setText(QCoreApplication::translate("screen_profile", "CPF:", nullptr));
         lb_cpf->setText(QCoreApplication::translate("screen_profile", "000000000-00", nullptr));
         lb_rank->setText(QCoreApplication::translate("screen_profile", "RANK!", nullptr));
-        lb_ano_lancamento_4->setText(QCoreApplication::translate("screen_profile", "Rank:", nullptr));
+        lb_txt_rank->setText(QCoreApplication::translate("screen_profile", "Rank:", nullptr));
         pb_home_profile->setText(QString());
         pb_cart_profile->setText(QString());
         QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
