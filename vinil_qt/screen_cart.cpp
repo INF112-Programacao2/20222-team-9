@@ -48,7 +48,7 @@ screen_cart::~screen_cart()
 
 void screen_cart::on_pb_home_cart_clicked()
 {
-    screen_home *s = new screen_home(this);
+    screen_home *s = new screen_home(this,idClient);
     s->show();
     hide();
 }
@@ -56,8 +56,7 @@ void screen_cart::on_pb_home_cart_clicked()
 
 void screen_cart::on_pb_profile_cart_clicked()
 {
-    int idUser = 0;
-    screen_profile *s = new screen_profile(this,idUser );
+    screen_profile *s = new screen_profile(this,idClient );
     s->show();
     hide();
 }

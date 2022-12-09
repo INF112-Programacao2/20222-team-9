@@ -259,11 +259,14 @@ std::vector<Vinyl> DAOVinyl::readCartItems(int client_id)
     if(database_connection.isOpen())
     {
       QSqlQuery query = QSqlQuery(database_connection);
-      QString sql = "SELECT `vinyl`.`id`, `vinyl`.`name`, `vinyl`.`genre`, `vinyl`.`composer`, `vinyl`.`featuring`,"
-                    " `vinyl`.`release_year`, `vinyl`.`rarity`, `vinyl`.`price`, `vinyl`.`image_url`,"
-                    " `vinyl`.`status` FROM `vinyl_shop`.`vinyl`"
-                    " LEFT JOIN `vinyl_shop`.`cart_items` ci "
-                    "ON `vinyl`.`id` = ci.`vinyl_id` WHERE ci.`cart_id`= '" + QString::number(client_id) + "';";
+      QString sql = "SELECT `vinyl`.`id`, `vinyl`.`name`, `vinyl`.`genre`, `vinyl`.`composer`, "
+                    "`vinyl`.`featuring`, `vinyl`.`release_year`, `vinyl`.`rarity`,"
+                    " `vinyl`.`price`, `vinyl`.`image_url`,"
+                    "`vinyl`.`status` FROM `vinyl_shop`.`vinyl`"
+                    " LEFT JOIN `vinyl_shop`.`cart_items` ci ON "
+                    "`vinyl`.`id` = ci.`vinyl_id` LEFT JOIN "
+                    "`vinyl_shop`.`cart` c ON c.`id` = ci.cart_id"
+                    " WHERE c.`client_id` = '" + QString::number(client_id) + "';";
 
       query.prepare(sql);
 
