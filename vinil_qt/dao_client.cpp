@@ -18,7 +18,7 @@ bool DAOClient::createClient(Client client)
       QString sql = "INSERT INTO `vinyl_shop`.`client` (`cpf`, `name`, `email`, `password`, `vip`, `rank`) VALUES ('"
                     + client.getCpf() + "', '" + client.getName() + "', '"
                     + client.getEmail() + "', '" + client.getPassword() + "', '"
-                    + QString::number(client.getVip()) + "', '-1');";
+                    + QString::number(client.getVip()) + "', '" + QString::number(client.getRank()) + "');";
 
       query.prepare(sql);
 
@@ -175,7 +175,8 @@ bool DAOClient::updateClient(Client client)
       QString sql = "UPDATE `vinyl_shop`.`client` SET cpf = '"
                     + client.getCpf() + "', `name` = '" + client.getName() + "', `email` = '"
                     + client.getEmail() + "', `password` = '" + client.getPassword() + "', `vip` = '"
-                    + QString::number(client.getVip()) + "' WHERE `id` = '" + QString::number(client.getId()) + "';";
+                    + QString::number(client.getVip()) + "', `rank` = '" + QString::number(client.getRank())
+                    + "' WHERE `id` = '" + QString::number(client.getId()) + "';";
 
       query.prepare(sql);
 
