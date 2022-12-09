@@ -7,11 +7,6 @@
 
 #include <QTableWidget>
 #include <QTableWidgetItem>
-#include <QMessageBox>
-#include <QPixmap>
-#include <vector>
-#include <QNetworkAccessManager>
-#include <QNetworkReply>
 
 
 

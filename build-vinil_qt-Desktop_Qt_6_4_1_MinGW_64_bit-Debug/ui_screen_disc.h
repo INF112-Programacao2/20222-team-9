@@ -29,7 +29,7 @@ public:
     QPushButton *pushButton;
     QLineEdit *lineEdit;
     QFrame *frame;
-    QLabel *label;
+    QLabel *lb_imagem;
     QLabel *lb_nome_musica_disc;
     QPushButton *pushButton_2;
     QPushButton *pb_perfil_disc;
@@ -102,11 +102,11 @@ public:
         frame->setStyleSheet(QString::fromUtf8("background:rgb(175, 131, 115)"));
         frame->setFrameShape(QFrame::StyledPanel);
         frame->setFrameShadow(QFrame::Raised);
-        label = new QLabel(frame);
-        label->setObjectName("label");
-        label->setGeometry(QRect(60, 40, 161, 161));
-        label->setPixmap(QPixmap(QString::fromUtf8(":/new/icons/icons/search.png")));
-        label->setScaledContents(true);
+        lb_imagem = new QLabel(frame);
+        lb_imagem->setObjectName("lb_imagem");
+        lb_imagem->setGeometry(QRect(60, 40, 161, 161));
+        lb_imagem->setPixmap(QPixmap(QString::fromUtf8(":/new/icons/icons/search.png")));
+        lb_imagem->setScaledContents(true);
         lb_nome_musica_disc = new QLabel(frame);
         lb_nome_musica_disc->setObjectName("lb_nome_musica_disc");
         lb_nome_musica_disc->setGeometry(QRect(60, 240, 161, 21));
@@ -215,7 +215,7 @@ public:
         ___qtablewidgetitem2->setText(QCoreApplication::translate("screen_disc", "M\303\232SICA", nullptr));
         pushButton->setText(QString());
         lineEdit->setPlaceholderText(QCoreApplication::translate("screen_disc", "Pesquisar", nullptr));
-        label->setText(QString());
+        lb_imagem->setText(QString());
         lb_nome_musica_disc->setText(QCoreApplication::translate("screen_disc", "NOME M\303\232SICA", nullptr));
         pushButton_2->setText(QCoreApplication::translate("screen_disc", "ADICIONAR AO\n"
 "CARRINHO", nullptr));

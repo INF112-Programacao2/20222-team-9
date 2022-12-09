@@ -4,7 +4,7 @@
 #include "music.h"
 #include "vinyl.h"
 #include <QDialog>
-
+#include "qnetworkreply.h"
 namespace Ui {
 class screen_disc;
 }
@@ -25,10 +25,10 @@ private slots:
 
     void on_tw_musics_disc_itemSelectionChanged();
     Music getMusic(int id, std::vector<Music> musics);
-    Vinyl getVinyl(int id);
     void on_pb_cart_home_clicked();
 
     void on_pb_home_home_clicked();
+    void downloadFinished(QNetworkReply *reply);
 
 private:
     Ui::screen_disc *ui;

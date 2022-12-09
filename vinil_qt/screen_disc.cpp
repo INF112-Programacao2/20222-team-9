@@ -1,11 +1,20 @@
 #include "screen_disc.h"
 #include "dao_music.h"
+#include "dao_vinyl.h"
 #include "music.h"
 #include "screen_cart.h"
 #include "screen_home.h"
 #include "ui_screen_disc.h"
 #include "screen_profile.h"
 
+#include <QPixmap>
+#include <vector>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+
+#include <QtGui>
+#include <QtNetwork>
+#include <QDebug>
 
 screen_disc::screen_disc(QWidget *parent, int idVinyl) :
     QDialog(parent),
@@ -36,6 +45,23 @@ screen_disc::screen_disc(QWidget *parent, int idVinyl) :
 
       ui->tw_musics_disc->setRowHeight(contLines, 20);
     }
+    DataSource d;
+    DAOVinyl daoVinyl(d.getConnection());
+    Vinyl v = daoVinyl.readVinyl(idVinyl);
+
+    QNetworkAccessManager *nam = new QNetworkAccessManager(this);
+    connect(nam, &QNetworkAccessManager::finished, this, &screen_disc::downloadFinished);
+    QString s = "http://localhost/img/"+v.getImageUrl();
+    const QUrl url = QUrl(s);
+    QNetworkRequest request(url);
+    nam->get(request);
+
+
+    ui->lb_cantor_disc->setText(v.getComposer());
+    ui->lb_compositores_disc->setText(v.getFeaturing());
+    ui->lb_data_disc->setText(QString::number(v.getReleaseYear()));
+    ui->lb_preco_disc->setText("R$ "+QString::number(v.getPrice()));
+    ui->lb_nome_album_disc->setText(v.getName());
 }
 
 screen_disc::~screen_disc()
@@ -66,24 +92,7 @@ void screen_disc::on_tw_musics_disc_itemSelectionChanged()
     ui->lb_nome_musica_disc->setText(m.getName());
 
 }
-Vinyl screen_disc::getVinyl(int id){
-    std::vector<Music> musics1;
-    Music m1 = Music(2,"MUSIC 1",5.6);
-    Music m2 = Music(2,"MUSIC 2",6);
-    Music m3 = Music(2,"MUSIC 3",3);
-    Music m4 = Music(2,"MUSIC 4",9.6);
-    Music m5 = Music(2,"MUSIC 5",11.6);
 
-    musics1.push_back(m1);
-    musics1.push_back(m2);
-    musics1.push_back(m2);
-    musics1.push_back(m3);
-    musics1.push_back(m4);
-    musics1.push_back(m5);
-    Vinyl v1 = Vinyl(7,"HOT SPACEX",musics,"POP","QUEEN","DE NOVO",1981,99,180,"",1);
-   //Vinyl v1 = Vinyl(4,"GADOXX",musics1,"RAP","FROID","MAJOR",2022,1,90);
-   return v1;
-}
 Music screen_disc::getMusic(int id, std::vector<Music> musics){
    int i = 0;
    for (Music m : musics) {
@@ -109,5 +118,12 @@ void screen_disc::on_pb_home_home_clicked()
     screen_home *s = new screen_home(this);
     s->show();
     hide();
+}
+
+void screen_disc::downloadFinished(QNetworkReply *reply)
+{
+    QPixmap pm;
+    pm.loadFromData(reply->readAll());
+    ui->lb_imagem->setPixmap(pm);
 }
 

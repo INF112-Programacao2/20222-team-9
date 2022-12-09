@@ -167,7 +167,7 @@ font: 700 12pt &quot;Microsoft YaHei UI&quot;;</string>
    <property name="frameShadow">
     <enum>QFrame::Raised</enum>
    </property>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="lb_imagem">
     <property name="geometry">
      <rect>
       <x>60</x>

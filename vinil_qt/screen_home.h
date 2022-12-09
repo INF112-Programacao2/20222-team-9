@@ -17,11 +17,12 @@ public:
     explicit screen_home(QWidget *parent = nullptr);
     ~screen_home();
     std::vector<Vinyl> vinys;
+    void downloadFinished(QNetworkReply *reply);
 
 private slots:
     void on_tableWidget_itemSelectionChanged();
 
-    void downloadFinished(QNetworkReply *reply);
+
 
     void on_pb_ver_album_clicked();
 
