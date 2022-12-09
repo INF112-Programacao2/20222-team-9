@@ -55,6 +55,8 @@ https://www.youtube.com/watch?v=DEuiURx3tYY)
 ### MÉTODOS DE ACESSO AO BANCO DE DADOS
 [Connect to MySql with QSqlDatabase](http://www.java2s.com/Code/Cpp/Qt/ConnecttoMySqlwithQSqlDatabaseanddoselectupdateinsertanddelete.htm)
 
+[Connecting to Databases| Qt SQL](https://doc.qt.io/qt-6/sql-connecting.html)
+
 ### PODE AJUDAR
 [TUTORIAL 1](https://youtu.be/_u7TcjIDNzw)
 
