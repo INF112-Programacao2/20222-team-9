@@ -1,4 +1,5 @@
 #include "screen_login.h"
+#include "dao_client.h"
 #include "ui_teste_login.h"
 #include "TesteUserDAO.h"
 
@@ -30,9 +31,13 @@ void screen_login::on_pushButton_clicked()
     //long id = 0; //não está sendo utilizado
     QString nome = "";
 
-    TesteUserDAO daoUser;
+    //TesteUserDAO daoUser;
+    DataSource ds;
+    ds.createConnection();
+    DAOClient daoClient(ds.getConnection());
 
-    if(daoUser.loginUsuario(cpf,senha))
+
+    if(daoClient.loginClient(cpf, senha).getId() != 0)
     {
         QMessageBox::information(this, "Conexão com o Banco", "LOGIN FEITO EM PATRÃO");
         hide();

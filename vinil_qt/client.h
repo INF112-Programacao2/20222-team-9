@@ -6,7 +6,7 @@
 class Client
 {
 private:
-    int id;
+    int id = 0;
     QString cpf, name, email, password;
     int vip, rank;
 

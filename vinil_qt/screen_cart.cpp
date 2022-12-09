@@ -1,5 +1,7 @@
 #include "screen_cart.h"
 #include "cart.h"
+#include "dao_vinyl.h"
+#include "data_source.h"
 #include "screen_home.h"
 #include "screen_profile.h"
 #include "ui_screen_cart.h"
@@ -12,33 +14,18 @@ screen_cart::screen_cart(QWidget *parent, int idVinyl, int idClient) :
     ui->setupUi(this);
     this->idClient = idClient;
 
-    Client client = Client(78,"13176351674",
-                               "Gilberto", "gilberto@gmail.com",
-                               "mercio", 2,2);
-    //Cart(int id, Client client, std::vector<Vinyl> vinylList, double total);
-    Cart cart = Cart(0,client,vinys,0);
+    if(idVinyl!=0){
+        DataSource dataSource;
 
-    std::vector<Music> musics1;
-    Vinyl v1 = Vinyl(4,"GADOXX",musics1,"RAP","FROID","MAJOR",2022,1,90,"",1);
 
-    std::vector<Music> musics2;
-    Vinyl v2 = Vinyl(5,"RACIONALXX",musics2,"MPB","TIM MAIA","SEI TBM NÃO",1975,6,138,"",1);
-
-    std::vector<Music> musics3;
-    Vinyl v3 = Vinyl(6,"TARDEZINHAX",musics3,"PAGODIN","THIAGUIN","SEI NÃO",2017,7,120,"",1);
-
-    std::vector<Music> musics4;
-    Vinyl v4 = Vinyl(7,"HOT SPACEX",musics4,"POP","QUEEN","DE NOVO",1981,99,180,"",1);
-
-    vinys.push_back(v1);
-    vinys.push_back(v2);
-    vinys.push_back(v3);
-    vinys.push_back(v4);
-
+        DAOVinyl daoVinyl(dataSource.getConnection());
+        vinys.push_back(daoVinyl.readVinyl(idVinyl));
+    }
+    //Cart cart = Cart(0,client,vinys,0);
 
     ui->lb_preco_total->setText("R$ "+QString::number(getDiscount()));
 
-
+    //ui->tableWidget->clear();
     int contLines = 0;
     for(Vinyl v : vinys){
         ui->tableWidget->insertRow(contLines);

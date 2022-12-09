@@ -1,8 +1,11 @@
 #include "dao_client.h"
 
-DAOClient::DAOClient()
+DAOClient::DAOClient(QSqlDatabase database_connection)
 {
-    database_connection = data_source.getConnection();
+    this->database_connection = database_connection;
+    if(!database_connection.isOpen()){
+        database_connection.open();
+    }
 }
 
 DAOClient::~DAOClient() {}
@@ -46,6 +49,68 @@ Client DAOClient::readClient(int id)
     {
       QSqlQuery query = QSqlQuery(database_connection);
       QString sql = "SELECT * FROM `vinyl_shop`.`client` WHERE `id` = '" + QString::number(id) + "';";
+
+      query.prepare(sql);
+
+      if(query.exec())
+      {
+          qDebug("Selected from vinyl_shop.client!");
+
+          QSqlRecord record = query.record();
+          int columns = record.count();
+
+          QString result;
+
+          for(int i = 0; i < columns; i++)
+            result += record.fieldName(i) + ((i < columns - 1)? "\\" : "");
+
+          qDebug() << result;
+
+          std::vector<QString> res;
+
+          if(!query.next())
+          {
+              qDebug("'query.next()' is false - SELECT vinyl_shop.client");
+              qDebug() << query.lastError();
+          }
+          else
+          {
+              for(int i = 0; i < columns; i++)
+                res.push_back(query.value(i).toString());
+
+              int id = res[0].toInt();
+              QString cpf = res[1];
+              QString name = res[2];
+              QString email = res[3];
+              QString password = res[4];
+              int vip = res[5].toInt();
+              int rank = res[6].toInt();
+
+              client = Client(id, cpf, name, email, password, vip, rank);
+          }
+      }
+      else
+      {
+          qDebug("'query.exec()' failed! - SELECT vinyl_shop.client");
+          qDebug() << query.lastError();
+      }
+    }
+    else
+    {
+      qDebug("Connection failed! - SELECT vinyl_shop.client");
+    }
+
+    return client;
+}
+Client DAOClient::loginClient(QString cpf, QString senha)
+{
+    Client client;
+
+    if(database_connection.open())
+    {
+      QSqlQuery query = QSqlQuery(database_connection);
+      QString sql = "SELECT * FROM vinyl_shop.user_teste"
+                    " WHERE cpf = '" + cpf + "' and senha = '" + senha + "';";
 
       query.prepare(sql);
 
@@ -158,3 +223,4 @@ bool DAOClient::deleteClient(int id)
       return 0;
     }
 }
+

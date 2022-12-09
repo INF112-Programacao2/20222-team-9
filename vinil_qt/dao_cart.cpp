@@ -38,7 +38,8 @@ bool DAOCart::createCart(Cart cart)
 
 Cart DAOCart::readCart(int id)
 {
-    DAOClient dao_client;
+    DataSource ds;
+    DAOClient dao_client(ds.getConnection());
     Client client;
     DataSource dataSource;
     dataSource.createConnection();

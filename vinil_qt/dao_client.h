@@ -11,13 +11,14 @@ private:
     QSqlDatabase database_connection;
 
 public:
-    DAOClient();
+    DAOClient(QSqlDatabase database_connection);
     ~DAOClient();
 
     bool createClient(Client client);
     Client readClient(int id);
     bool updateClient(Client client);
     bool deleteClient(int id);
+    Client loginClient(QString cpf, QString senha);
 };
 
 #endif // DAOCLIENT_H

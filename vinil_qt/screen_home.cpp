@@ -22,7 +22,7 @@ screen_home::screen_home(QWidget *parent, int idClient ) :
 
     DataSource dataSource;
 
-    QSqlDatabase database_connection = dataSource.createConnection();
+    QSqlDatabase database_connection = dataSource.getConnection();
 
     DAOVinyl daoVinyl(database_connection);
     vinys = daoVinyl.readVinylsForSale();
