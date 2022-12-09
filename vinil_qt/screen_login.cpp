@@ -35,13 +35,13 @@ void screen_login::on_pb_login_clicked()
         ds.createConnection();
         DAOClient daoClient(ds.getConnection());
 
-
-        if (daoClient.loginClient(cpf,senha).getId() != 0) {
+        int idClient = daoClient.loginClient(cpf,senha).getId();
+        if ( idClient != 0) {
           QMessageBox::information(this, "Conexão com o Banco",
                                    "LOGIN FEITO EM PATRÃO");
           hide();
 
-          screen_home *s = new screen_home(this);
+          screen_home *s = new screen_home(this,idClient);
           s->show();
           hide();
         } else {
