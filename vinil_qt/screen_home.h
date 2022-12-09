@@ -14,7 +14,7 @@ class screen_home : public QDialog
     Q_OBJECT
 
 public:
-    explicit screen_home(QWidget *parent = nullptr);
+    screen_home(QWidget *parent = nullptr, int idClient = 0);
     ~screen_home();
     std::vector<Vinyl> vinys;
     void downloadFinished(QNetworkReply *reply);
@@ -35,6 +35,7 @@ private:
 
     //void TableWidgetDisplay();
     Vinyl getVinyl(int id);
+    int idClient;
 };
 
 #endif // SCREEN_HOME_H

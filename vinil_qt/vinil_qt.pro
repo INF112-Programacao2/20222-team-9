@@ -26,9 +26,9 @@ SOURCES += \
     screen_completed_purchase.cpp \
     screen_disc.cpp \
     screen_home.cpp \
+    screen_login.cpp \
     screen_new_account.cpp \
     screen_profile.cpp \
-    teste_login.cpp \
     testeuserdao.cpp \
     userteste.cpp \
     vinyl.cpp
@@ -50,9 +50,9 @@ HEADERS += \
     screen_completed_purchase.h \
     screen_disc.h \
     screen_home.h \
+    screen_login.h \
     screen_new_account.h \
     screen_profile.h \
-    teste_login.h \
     testeuserdao.h \
     userteste.h \
     vinyl.h
@@ -65,9 +65,9 @@ FORMS += \
     screen_completed_purchase.ui \
     screen_disc.ui \
     screen_home.ui \
+    screen_login.ui \
     screen_new_account.ui \
-    screen_profile.ui \
-    teste_login.ui
+    screen_profile.ui
  RESOURCES += \
     res.qrc
 

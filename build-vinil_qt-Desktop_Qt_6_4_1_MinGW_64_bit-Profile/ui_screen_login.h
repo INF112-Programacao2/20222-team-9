@@ -1,13 +1,13 @@
 /********************************************************************************
-** Form generated from reading UI file 'teste_login.ui'
+** Form generated from reading UI file 'screen_login.ui'
 **
 ** Created by: Qt User Interface Compiler version 6.4.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
-#ifndef UI_TESTE_LOGIN_H
-#define UI_TESTE_LOGIN_H
+#ifndef UI_SCREEN_LOGIN_H
+#define UI_SCREEN_LOGIN_H
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
@@ -100,4 +100,4 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
-#endif // UI_TESTE_LOGIN_H
+#endif // UI_SCREEN_LOGIN_H

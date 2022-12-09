@@ -16,11 +16,15 @@
 #include <QtNetwork>
 #include <QDebug>
 
-screen_disc::screen_disc(QWidget *parent, int idVinyl) :
+screen_disc::screen_disc(QWidget *parent, int idVinyl, int idClient) :
     QDialog(parent),
     ui(new Ui::screen_disc)
 {
     ui->setupUi(this);
+
+    this->idVinyl = idVinyl;
+    this->idClient = idClient;
+
     DataSource dataSource;
 
     QSqlDatabase database_connection = dataSource.getConnection();
@@ -107,7 +111,7 @@ Music screen_disc::getMusic(int id, std::vector<Music> musics){
 
 void screen_disc::on_pb_cart_home_clicked()
 {
-    screen_cart *s = new screen_cart(this);
+    screen_cart *s = new screen_cart(this, 0, idClient);
     s->show();
     hide();
 }
@@ -115,7 +119,7 @@ void screen_disc::on_pb_cart_home_clicked()
 
 void screen_disc::on_pb_home_home_clicked()
 {
-    screen_home *s = new screen_home(this);
+    screen_home *s = new screen_home(this,idClient);
     s->show();
     hide();
 }
@@ -125,5 +129,13 @@ void screen_disc::downloadFinished(QNetworkReply *reply)
     QPixmap pm;
     pm.loadFromData(reply->readAll());
     ui->lb_imagem->setPixmap(pm);
+}
+
+
+void screen_disc::on_pb_adicionarCarrinho_clicked()
+{
+    screen_cart *s = new screen_cart(this, idVinyl ,idClient );
+    s->show();
+    hide();
 }
 

@@ -4,7 +4,7 @@
 #include "client.h"
 #include "vinyl.h"
 #include <QDialog>
-#include "teste_login.h"
+#include "screen_login.h"
 
 namespace Ui {
 class screen_profile;
@@ -15,9 +15,10 @@ class screen_profile : public QDialog
     Q_OBJECT
 
 public:
-    explicit screen_profile(QWidget *parent = nullptr, int idUser = 0);
+    explicit screen_profile(QWidget *parent = nullptr, int idClient = 0);
     ~screen_profile();
     std::vector<Vinyl> vinys;
+    int idClient;
 
 private slots:
     void on_pb_home_profile_clicked();

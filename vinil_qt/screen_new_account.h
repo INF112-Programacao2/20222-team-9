@@ -1,7 +1,7 @@
 #ifndef SCREEN_NEW_ACCOUNT_H
 #define SCREEN_NEW_ACCOUNT_H
 
-#include "teste_login.h"
+#include "screen_login.h"
 
 #include <QDialog>
 
@@ -21,7 +21,7 @@ private slots:
 
 private:
     Ui::screen_new_account *ui;
-    Teste_Login *l;
+    screen_login *l;
 };
 
 #endif // SCREEN_NEW_ACCOUNT_H

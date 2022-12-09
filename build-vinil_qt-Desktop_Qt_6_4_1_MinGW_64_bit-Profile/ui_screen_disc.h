@@ -31,7 +31,7 @@ public:
     QFrame *frame;
     QLabel *lb_imagem;
     QLabel *lb_nome_musica_disc;
-    QPushButton *pushButton_2;
+    QPushButton *pb_adicionarCarrinho;
     QPushButton *pb_perfil_disc;
     QPushButton *pb_home_home;
     QPushButton *pb_cart_home;
@@ -116,16 +116,16 @@ public:
         font.setBold(true);
         lb_nome_musica_disc->setFont(font);
         lb_nome_musica_disc->setStyleSheet(QString::fromUtf8("color:rgb(255, 255, 255)"));
-        pushButton_2 = new QPushButton(screen_disc);
-        pushButton_2->setObjectName("pushButton_2");
-        pushButton_2->setGeometry(QRect(850, 640, 131, 51));
+        pb_adicionarCarrinho = new QPushButton(screen_disc);
+        pb_adicionarCarrinho->setObjectName("pb_adicionarCarrinho");
+        pb_adicionarCarrinho->setGeometry(QRect(850, 640, 131, 51));
         QFont font1;
         font1.setFamilies({QString::fromUtf8("Microsoft YaHei UI")});
         font1.setPointSize(11);
         font1.setBold(true);
-        pushButton_2->setFont(font1);
-        pushButton_2->setCursor(QCursor(Qt::PointingHandCursor));
-        pushButton_2->setStyleSheet(QString::fromUtf8("background-color: rgb(254, 104, 50);\n"
+        pb_adicionarCarrinho->setFont(font1);
+        pb_adicionarCarrinho->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_adicionarCarrinho->setStyleSheet(QString::fromUtf8("background-color: rgb(254, 104, 50);\n"
 "border-style: outset;\n"
 "color:rgb(255, 255, 255)\n"
 ""));
@@ -216,8 +216,8 @@ public:
         pushButton->setText(QString());
         lineEdit->setPlaceholderText(QCoreApplication::translate("screen_disc", "Pesquisar", nullptr));
         lb_imagem->setText(QString());
-        lb_nome_musica_disc->setText(QCoreApplication::translate("screen_disc", "NOME M\303\232SICA", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("screen_disc", "ADICIONAR AO\n"
+        lb_nome_musica_disc->setText(QCoreApplication::translate("screen_disc", " M\303\232SICA", nullptr));
+        pb_adicionarCarrinho->setText(QCoreApplication::translate("screen_disc", "ADICIONAR AO\n"
 "CARRINHO", nullptr));
         pb_perfil_disc->setText(QString());
         pb_home_home->setText(QString());

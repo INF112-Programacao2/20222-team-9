@@ -14,9 +14,11 @@ class screen_disc : public QDialog
     Q_OBJECT
 
 public:
-    explicit screen_disc(QWidget *parent = nullptr, int idVinyl =0);
+    screen_disc(QWidget *parent = nullptr, int idVinyl =0, int idClient = 0);
     ~screen_disc();
     std::vector<Music> musics;
+    int idVinyl;
+    int idClient;
 
 private slots:
     void on_pb_perfil_disc_clicked();
@@ -29,6 +31,8 @@ private slots:
 
     void on_pb_home_home_clicked();
     void downloadFinished(QNetworkReply *reply);
+
+    void on_pb_adicionarCarrinho_clicked();
 
 private:
     Ui::screen_disc *ui;

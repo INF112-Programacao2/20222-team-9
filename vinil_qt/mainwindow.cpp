@@ -17,7 +17,7 @@ void MainWindow::on_pushButton_clicked()
     //l.setModal(true);
     //l.exec();
     hide();
-    l = new Teste_Login(this);
+    l = new screen_login(this);
     l->show();
 }
 void MainWindow::on_btnNovaConta_clicked()

@@ -206,11 +206,11 @@ font: 700 12pt &quot;Microsoft YaHei UI&quot;;</string>
      <string notr="true">color:rgb(255, 255, 255)</string>
     </property>
     <property name="text">
-     <string>NOME MÚSICA</string>
+     <string> MÚSICA</string>
     </property>
    </widget>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="pb_adicionarCarrinho">
    <property name="geometry">
     <rect>
      <x>850</x>

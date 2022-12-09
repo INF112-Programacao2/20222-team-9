@@ -10,11 +10,13 @@
 
 
 
-screen_home::screen_home(QWidget *parent) :
+screen_home::screen_home(QWidget *parent, int idClient ) :
     QDialog(parent),
     ui(new Ui::screen_home)
 {
     ui->setupUi(this);
+
+    this->idClient = idClient;
 
     ui->frame->setHidden(true);
 
@@ -36,9 +38,6 @@ screen_home::screen_home(QWidget *parent) :
         ui->tableWidget->setItem(contLines, 3, new QTableWidgetItem(QString::number(v.getReleaseYear())));
         ui->tableWidget->setRowHeight(contLines, 20);
     }
-
-
-
 }
 screen_home::~screen_home()
 {
@@ -102,7 +101,7 @@ void screen_home::downloadFinished(QNetworkReply *reply)
 void screen_home::on_pb_ver_album_clicked()
 {
     int idSel = ui->tableWidget->item(ui->tableWidget->currentRow(),0)->text().toInt();
-    screen_disc *s = new screen_disc(this,idSel );
+    screen_disc *s = new screen_disc(this,idSel, idClient );
     s->show();
     hide();
 }
@@ -110,8 +109,7 @@ void screen_home::on_pb_ver_album_clicked()
 
 void screen_home::on_pb_profile_home_clicked()
 {
-    int idUser = 0;
-    screen_profile *s = new screen_profile(this,idUser );
+    screen_profile *s = new screen_profile(this,idClient );
     s->show();
     hide();
 }
@@ -119,7 +117,7 @@ void screen_home::on_pb_profile_home_clicked()
 
 void screen_home::on_pb_cart_home_clicked()
 {
-    screen_cart *s = new screen_cart(this);
+    screen_cart *s = new screen_cart(this, 0, idClient);
     s->show();
     hide();
 }

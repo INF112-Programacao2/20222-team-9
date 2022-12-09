@@ -4,13 +4,14 @@
 #include "screen_home.h"
 #include "ui_screen_profile.h"
 #include "vinyl.h"
-#include "teste_login.h"
+#include "screen_login.h"
 
-screen_profile::screen_profile(QWidget *parent, int idUser) :
+screen_profile::screen_profile(QWidget *parent, int idClient) :
     QDialog(parent),
     ui(new Ui::screen_profile)
 {
     ui->setupUi(this);
+    this->idClient = idClient;
 
     std::vector<Music> musics1;
     Music m1 = Music(2,"MUSIC 1",5.6);
@@ -133,7 +134,7 @@ Client screen_profile::getClient(int id){
 
 void screen_profile::on_btn_Logout_clicked()
 {
-    Teste_Login *s = new Teste_Login(this);
+    screen_login *s = new screen_login(this);
     s->show();
     hide();
 }

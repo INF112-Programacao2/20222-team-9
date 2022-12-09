@@ -47,7 +47,7 @@ void screen_new_account::on_pb_inserir_clicked()
 void screen_new_account::on_pb_inserir_2_clicked()
 {
     hide();
-    l = new Teste_Login(this);
+    l = new screen_login(this);
     l->show();
 }
 

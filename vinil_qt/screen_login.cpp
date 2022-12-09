@@ -1,22 +1,22 @@
-#include "teste_login.h"
+#include "screen_login.h"
 #include "ui_teste_login.h"
 #include "TesteUserDAO.h"
 
 #include "QMessageBox"
 #include "QSqlQuery"
 
-Teste_Login::Teste_Login(QWidget *parent) : QDialog(parent), ui(new Ui::Teste_Login)
+screen_login::screen_login(QWidget *parent) : QDialog(parent), ui(new Ui::screen_login)
 {
     ui->setupUi(this);
 
 }
 
-Teste_Login::~Teste_Login()
+screen_login::~screen_login()
 {
     delete ui;
 }
 
-void Teste_Login::on_pushButton_clicked()
+void screen_login::on_pushButton_clicked()
 {
     ui->tx_cpf->text();
     QMessageBox::information(this, "DADOS CARREGADOS",
@@ -25,7 +25,7 @@ void Teste_Login::on_pushButton_clicked()
                                  "SENHA "+ui->tx_senha->text());
 
     QString cpf = ui->tx_cpf->text();
-    QString senha = ui->tx_senha->text();;
+    QString senha = ui->tx_senha->text();
 
     //long id = 0; //não está sendo utilizado
     QString nome = "";

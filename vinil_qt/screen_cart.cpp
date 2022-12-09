@@ -4,12 +4,19 @@
 #include "screen_profile.h"
 #include "ui_screen_cart.h"
 
-std::vector<Vinyl> vinys;
-screen_cart::screen_cart(QWidget *parent, int idVinyl) :
+
+screen_cart::screen_cart(QWidget *parent, int idVinyl, int idClient) :
     QDialog(parent),
     ui(new Ui::screen_cart)
 {
     ui->setupUi(this);
+    this->idClient = idClient;
+
+    Client client = Client(78,"13176351674",
+                               "Gilberto", "gilberto@gmail.com",
+                               "mercio", 2,2);
+    //Cart(int id, Client client, std::vector<Vinyl> vinylList, double total);
+    Cart cart = Cart(0,client,vinys,0);
 
     std::vector<Music> musics1;
     Vinyl v1 = Vinyl(4,"GADOXX",musics1,"RAP","FROID","MAJOR",2022,1,90,"",1);
@@ -28,10 +35,6 @@ screen_cart::screen_cart(QWidget *parent, int idVinyl) :
     vinys.push_back(v3);
     vinys.push_back(v4);
 
-    Client client = Client(78,"13176351674",
-                               "Gilberto", "gilberto@gmail.com",
-                               "mercio", 2,2);
-    Cart cart = Cart(969,client,vinys,6);
 
     ui->lb_preco_total->setText("R$ "+QString::number(getDiscount()));
 
