@@ -7,7 +7,7 @@
 
 #include <QTableWidget>
 #include <QTableWidgetItem>
-
+#include <QMessageBox>
 
 
 screen_home::screen_home(QWidget *parent, int idClient ) :
@@ -109,7 +109,7 @@ void screen_home::on_pb_ver_album_clicked()
 
 void screen_home::on_pb_profile_home_clicked()
 {
-    screen_profile *s = new screen_profile(this,idClient );
+    screen_profile *s = new screen_profile(this, idClient);
     s->show();
     hide();
 }

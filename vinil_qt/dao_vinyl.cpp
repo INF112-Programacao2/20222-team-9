@@ -232,6 +232,7 @@ std::vector<Vinyl> DAOVinyl::readVinylCollection(int client_id)
 
               vinyl = Vinyl(id, name, playlist, genre, composer, featuring, releaseYear, rarity, price, image_url, status);
               vinyl_list.push_back(vinyl);
+              res.clear();
           }
       }
       else
