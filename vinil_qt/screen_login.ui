@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Teste_Login</class>
- <widget class="QDialog" name="Teste_Login">
+ <class>screen_login</class>
+ <widget class="QDialog" name="screen_login">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -62,7 +62,7 @@ border-style: outset;</string>
     <enum>QLineEdit::Password</enum>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="pb_login">
    <property name="geometry">
     <rect>
      <x>590</x>

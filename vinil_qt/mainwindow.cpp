@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#include "screen_login.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -13,12 +14,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    //Teste_Login l;
-    //l.setModal(true);
-    //l.exec();
+    screen_login *s = new screen_login();
+    s->show();
     hide();
-    l = new screen_login(this);
-    l->show();
 }
 void MainWindow::on_btnNovaConta_clicked()
 {

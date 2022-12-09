@@ -4,7 +4,6 @@
 #include "screen_home.h"
 #include "ui_screen_profile.h"
 #include "vinyl.h"
-#include "screen_login.h"
 
 screen_profile::screen_profile(QWidget *parent, int idClient) :
     QDialog(parent),
@@ -109,9 +108,9 @@ screen_profile::~screen_profile()
 
 void screen_profile::on_pb_home_profile_clicked()
 {
-    screen_home *s = new screen_home(this);
-    s->show();
-    hide();
+//    screen_home *s = new screen_home(this);
+//    s->show();
+//    hide();
 }
 
 
@@ -134,8 +133,8 @@ Client screen_profile::getClient(int id){
 
 void screen_profile::on_btn_Logout_clicked()
 {
-    screen_login *s = new screen_login(this);
-    s->show();
-    hide();
+//    screen_login *s = new screen_login(this);
+//    s->show();
+//    hide();
 }
 

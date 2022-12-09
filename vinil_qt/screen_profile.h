@@ -4,7 +4,7 @@
 #include "client.h"
 #include "vinyl.h"
 #include <QDialog>
-#include "screen_login.h"
+
 
 namespace Ui {
 class screen_profile;

@@ -1,7 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "screen_login.h"
 #include "screen_new_account.h"
 
 #include <QMainWindow>
@@ -25,7 +24,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    screen_login *l;
+    //screen_login *l;
     screen_new_account *m;
 };
 

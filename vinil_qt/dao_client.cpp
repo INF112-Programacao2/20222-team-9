@@ -109,9 +109,9 @@ Client DAOClient::loginClient(QString cpf, QString senha)
     if(database_connection.open())
     {
       QSqlQuery query = QSqlQuery(database_connection);
-      QString sql = "SELECT * FROM vinyl_shop.user_teste"
-                    " WHERE cpf = '" + cpf + "' and senha = '" + senha + "';";
 
+      QString sql = "SELECT * FROM `vinyl_shop`.`client` WHERE `cpf` = "
+              +cpf +" and `password` = "+senha+";";
       query.prepare(sql);
 
       if(query.exec())
@@ -165,6 +165,8 @@ Client DAOClient::loginClient(QString cpf, QString senha)
     return client;
 }
 
+
+
 bool DAOClient::updateClient(Client client)
 {
     if(database_connection.open())
@@ -195,7 +197,6 @@ bool DAOClient::updateClient(Client client)
       return 0;
     }
 }
-
 bool DAOClient::deleteClient(int id)
 {
     if(database_connection.open())
