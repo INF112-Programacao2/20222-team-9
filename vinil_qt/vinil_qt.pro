@@ -33,7 +33,8 @@ SOURCES += \
     userteste.cpp \
     vinyl.cpp \
     common_client.cpp\
-    vip_client.cpp
+    vip_client.cpp\
+    vip_purchase.cpp
 
 HEADERS += \
     cart.h \
@@ -58,7 +59,8 @@ HEADERS += \
     userteste.h \
     vinyl.h \
     common_client.h\
-    vip_client.h
+    vip_client.h\
+    vip_purchase.h
 
 
 FORMS += \

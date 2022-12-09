@@ -22,6 +22,7 @@ release/userteste.o
 release/vinyl.o
 release/common_client.o
 release/vip_client.o
+release/vip_purchase.o
 release/qrc_res.o
 release/moc_mainwindow.o
 release/moc_screen_cart.o

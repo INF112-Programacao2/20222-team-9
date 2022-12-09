@@ -1,12 +1,15 @@
 #include "screen_cart.h"
 #include "cart.h"
+#include "dao_cart.h"
+#include "dao_client.h"
+#include "dao_purchase.h"
 #include "dao_vinyl.h"
 #include "data_source.h"
 #include "screen_home.h"
 #include "screen_profile.h"
 #include "ui_screen_cart.h"
-
-
+#include "QMessageBox.h"
+#include "vip_purchase.h"
 screen_cart::screen_cart(QWidget *parent, int idClient) :
     QDialog(parent),
     ui(new Ui::screen_cart)
@@ -20,9 +23,29 @@ screen_cart::screen_cart(QWidget *parent, int idClient) :
     vinys = daoVinyl.readCartItems(idClient);
 
 
+    DAOClient daoClient(dataSource.getConnection());
+    Client client = daoClient.readClient(idClient);
+
+    DAOCart daoCart(dataSource.getConnection());
+    this->cart = daoCart.readCart(idClient);
+    cart.setTotal(getValorTotal());
+
+    QString s = QString::number(cart.getTotal());
+    QMessageBox::information(nullptr, "Conexão com o Banco",
+                            s );
+    if(client.getVip()){
+        (vipP) = new VIPPurchase(cart);
+        (*vipP).calculateDiscount();
+        ui->lb_desconto->setText(QString::number((*vipP).getDiscount()));
+        cart.setTotal(cart.getTotal()-(*vipP).getDiscount());
+    }else{
+        ui->lb_desconto->setText("");
+        ui->lb_txt_desconto->setText("");
+    }
+
     //Cart cart = Cart(0,client,vinys,0);
 
-    ui->lb_preco_total->setText("R$ "+QString::number(getDiscount()));
+    ui->lb_preco_total->setText("R$ "+QString::number(getValorTotal()));
 
     //ui->tableWidget->clear();
     int contLines = 0;
@@ -85,11 +108,23 @@ Vinyl screen_cart::getVinyl(int id){
     Vinyl v = Vinyl();
     return (v);
 }
-double screen_cart::getDiscount(){
+double screen_cart::getValorTotal(){
     double price=0;
     for (Vinyl v : vinys) {
         price += v.getPrice();
     }
     return price;
+}
+
+
+void screen_cart::on_pb_finalizar_clicked()
+{
+    DataSource ds;
+    DAOPurchase daoPurchase(ds.getConnection());
+
+    Purchase p(cart);
+    daoPurchase.createPurchase(p);
+
+
 }
 

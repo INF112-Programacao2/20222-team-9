@@ -2,9 +2,10 @@
 
 Purchase::Purchase() {}
 
+Purchase::Purchase(Cart cart) :
+    cart(cart){};
 Purchase::Purchase(int id, Cart cart, double discount) :
     id(id), cart(cart), discount(discount){};
-
 int Purchase::getId()
 {
     return this->id;

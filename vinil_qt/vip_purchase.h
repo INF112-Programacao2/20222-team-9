@@ -6,7 +6,7 @@
 class VIPPurchase : public Purchase
 {
 public:
-    VIPPurchase(int id, Cart cart, double discount);
+    VIPPurchase(Cart cart);
     void calculateDiscount() override;
 };
 

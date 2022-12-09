@@ -12,8 +12,8 @@ private:
 
 public:
     Purchase();
+    Purchase(Cart cart);
     Purchase(int id, Cart cart, double discount);
-
     int getId();
     void setId(int id);
     Cart getCart();

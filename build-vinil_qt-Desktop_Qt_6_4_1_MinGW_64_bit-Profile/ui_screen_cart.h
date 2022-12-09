@@ -27,17 +27,17 @@ public:
     QTableWidget *tableWidget;
     QPushButton *pushButton;
     QFrame *frame;
-    QLabel *label;
+    QLabel *lb_imagem;
     QLabel *lb_nome_album_cart;
     QLabel *lb_nome_cantor_cart;
     QLabel *lb_ano_lancamento_cart;
     QLabel *lb_price_cart;
     QLabel *label_8;
-    QPushButton *pushButton_2;
+    QPushButton *pb_finalizar;
     QPushButton *pb_home_cart;
     QPushButton *pb_profile_cart;
-    QLabel *label_9;
-    QLabel *label_10;
+    QLabel *lb_txt_desconto;
+    QLabel *lb_desconto;
     QLabel *label_11;
     QLabel *lb_preco_total;
 
@@ -98,11 +98,11 @@ public:
         frame->setStyleSheet(QString::fromUtf8("background:rgb(175, 131, 115)"));
         frame->setFrameShape(QFrame::StyledPanel);
         frame->setFrameShadow(QFrame::Raised);
-        label = new QLabel(frame);
-        label->setObjectName("label");
-        label->setGeometry(QRect(70, 20, 131, 131));
-        label->setPixmap(QPixmap(QString::fromUtf8(":/new/icons/icons/cart.png")));
-        label->setScaledContents(true);
+        lb_imagem = new QLabel(frame);
+        lb_imagem->setObjectName("lb_imagem");
+        lb_imagem->setGeometry(QRect(70, 20, 131, 131));
+        lb_imagem->setPixmap(QPixmap(QString::fromUtf8(":/new/icons/icons/cart.png")));
+        lb_imagem->setScaledContents(true);
         lb_nome_album_cart = new QLabel(frame);
         lb_nome_album_cart->setObjectName("lb_nome_album_cart");
         lb_nome_album_cart->setGeometry(QRect(60, 170, 161, 21));
@@ -140,16 +140,16 @@ public:
         font2.setBold(true);
         label_8->setFont(font2);
         label_8->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
-        pushButton_2 = new QPushButton(screen_cart);
-        pushButton_2->setObjectName("pushButton_2");
-        pushButton_2->setGeometry(QRect(820, 620, 161, 51));
+        pb_finalizar = new QPushButton(screen_cart);
+        pb_finalizar->setObjectName("pb_finalizar");
+        pb_finalizar->setGeometry(QRect(820, 620, 161, 51));
         QFont font3;
         font3.setFamilies({QString::fromUtf8("Microsoft YaHei UI")});
         font3.setPointSize(11);
         font3.setBold(true);
-        pushButton_2->setFont(font3);
-        pushButton_2->setCursor(QCursor(Qt::PointingHandCursor));
-        pushButton_2->setStyleSheet(QString::fromUtf8("background-color: rgb(254, 104, 50);\n"
+        pb_finalizar->setFont(font3);
+        pb_finalizar->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_finalizar->setStyleSheet(QString::fromUtf8("background-color: rgb(254, 104, 50);\n"
 "border-style: outset;\n"
 "color:rgb(255, 255, 255)\n"
 ""));
@@ -177,16 +177,16 @@ public:
         icon2.addFile(QString::fromUtf8(":/new/icons/icons/user.png"), QSize(), QIcon::Normal, QIcon::Off);
         pb_profile_cart->setIcon(icon2);
         pb_profile_cart->setIconSize(QSize(51, 51));
-        label_9 = new QLabel(screen_cart);
-        label_9->setObjectName("label_9");
-        label_9->setGeometry(QRect(390, 600, 161, 30));
-        label_9->setFont(font2);
-        label_9->setStyleSheet(QString::fromUtf8("color: rgb(90, 42, 24)"));
-        label_10 = new QLabel(screen_cart);
-        label_10->setObjectName("label_10");
-        label_10->setGeometry(QRect(460, 630, 81, 30));
-        label_10->setFont(font2);
-        label_10->setStyleSheet(QString::fromUtf8("color: rgb(255, 0, 0)"));
+        lb_txt_desconto = new QLabel(screen_cart);
+        lb_txt_desconto->setObjectName("lb_txt_desconto");
+        lb_txt_desconto->setGeometry(QRect(390, 600, 161, 30));
+        lb_txt_desconto->setFont(font2);
+        lb_txt_desconto->setStyleSheet(QString::fromUtf8("color: rgb(90, 42, 24)"));
+        lb_desconto = new QLabel(screen_cart);
+        lb_desconto->setObjectName("lb_desconto");
+        lb_desconto->setGeometry(QRect(460, 630, 81, 30));
+        lb_desconto->setFont(font2);
+        lb_desconto->setStyleSheet(QString::fromUtf8("color: rgb(255, 0, 0)"));
         label_11 = new QLabel(screen_cart);
         label_11->setObjectName("label_11");
         label_11->setGeometry(QRect(600, 590, 141, 61));
@@ -219,17 +219,17 @@ public:
         QTableWidgetItem *___qtablewidgetitem3 = tableWidget->horizontalHeaderItem(3);
         ___qtablewidgetitem3->setText(QCoreApplication::translate("screen_cart", "PRE\303\207O", nullptr));
         pushButton->setText(QString());
-        label->setText(QString());
+        lb_imagem->setText(QString());
         lb_nome_album_cart->setText(QCoreApplication::translate("screen_cart", "NOME ALBUM", nullptr));
         lb_nome_cantor_cart->setText(QCoreApplication::translate("screen_cart", "NOME CANTOR", nullptr));
         lb_ano_lancamento_cart->setText(QCoreApplication::translate("screen_cart", "1500", nullptr));
         lb_price_cart->setText(QCoreApplication::translate("screen_cart", "$$$$$", nullptr));
         label_8->setText(QCoreApplication::translate("screen_cart", "ITENS CARRINHO", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("screen_cart", "FINALIZAR COMPRA", nullptr));
+        pb_finalizar->setText(QCoreApplication::translate("screen_cart", "FINALIZAR COMPRA", nullptr));
         pb_home_cart->setText(QString());
         pb_profile_cart->setText(QString());
-        label_9->setText(QCoreApplication::translate("screen_cart", "DESCONTO DE VIP", nullptr));
-        label_10->setText(QCoreApplication::translate("screen_cart", "R$ XX,XX", nullptr));
+        lb_txt_desconto->setText(QCoreApplication::translate("screen_cart", "DESCONTO DE VIP", nullptr));
+        lb_desconto->setText(QCoreApplication::translate("screen_cart", "R$ XX,XX", nullptr));
         label_11->setText(QCoreApplication::translate("screen_cart", "VALOR TOTAL\n"
 " DO PEDIDO", nullptr));
         lb_preco_total->setText(QCoreApplication::translate("screen_cart", "R$ XX,XX", nullptr));

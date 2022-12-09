@@ -26,7 +26,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 namespace {
 struct qt_meta_stringdata_screen_cart_t {
-    uint offsetsAndSizes[18];
+    uint offsetsAndSizes[20];
     char stringdata0[12];
     char stringdata1[24];
     char stringdata2[1];
@@ -35,7 +35,8 @@ struct qt_meta_stringdata_screen_cart_t {
     char stringdata5[9];
     char stringdata6[6];
     char stringdata7[8];
-    char stringdata8[12];
+    char stringdata8[14];
+    char stringdata9[24];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_screen_cart_t::offsetsAndSizes) + ofs), len 
@@ -49,7 +50,8 @@ Q_CONSTINIT static const qt_meta_stringdata_screen_cart_t qt_meta_stringdata_scr
         QT_MOC_LITERAL(100, 8),  // "getVinyl"
         QT_MOC_LITERAL(109, 5),  // "Vinyl"
         QT_MOC_LITERAL(115, 7),  // "idVinyl"
-        QT_MOC_LITERAL(123, 11)   // "getDiscount"
+        QT_MOC_LITERAL(123, 13),  // "getValorTotal"
+        QT_MOC_LITERAL(137, 23)   // "on_pb_finalizar_clicked"
     },
     "screen_cart",
     "on_pb_home_cart_clicked",
@@ -59,7 +61,8 @@ Q_CONSTINIT static const qt_meta_stringdata_screen_cart_t qt_meta_stringdata_scr
     "getVinyl",
     "Vinyl",
     "idVinyl",
-    "getDiscount"
+    "getValorTotal",
+    "on_pb_finalizar_clicked"
 };
 #undef QT_MOC_LITERAL
 } // unnamed namespace
@@ -70,7 +73,7 @@ Q_CONSTINIT static const uint qt_meta_data_screen_cart[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-       5,   14, // methods
+       6,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -78,11 +81,12 @@ Q_CONSTINIT static const uint qt_meta_data_screen_cart[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   44,    2, 0x08,    1 /* Private */,
-       3,    0,   45,    2, 0x08,    2 /* Private */,
-       4,    0,   46,    2, 0x08,    3 /* Private */,
-       5,    1,   47,    2, 0x08,    4 /* Private */,
-       8,    0,   50,    2, 0x08,    6 /* Private */,
+       1,    0,   50,    2, 0x08,    1 /* Private */,
+       3,    0,   51,    2, 0x08,    2 /* Private */,
+       4,    0,   52,    2, 0x08,    3 /* Private */,
+       5,    1,   53,    2, 0x08,    4 /* Private */,
+       8,    0,   56,    2, 0x08,    6 /* Private */,
+       9,    0,   57,    2, 0x08,    7 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -90,6 +94,7 @@ Q_CONSTINIT static const uint qt_meta_data_screen_cart[] = {
     QMetaType::Void,
     0x80000000 | 6, QMetaType::Int,    7,
     QMetaType::Double,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -112,8 +117,10 @@ Q_CONSTINIT const QMetaObject screen_cart::staticMetaObject = { {
         // method 'getVinyl'
         QtPrivate::TypeAndForceComplete<Vinyl, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
-        // method 'getDiscount'
-        QtPrivate::TypeAndForceComplete<double, std::false_type>
+        // method 'getValorTotal'
+        QtPrivate::TypeAndForceComplete<double, std::false_type>,
+        // method 'on_pb_finalizar_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
 } };
@@ -129,8 +136,9 @@ void screen_cart::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 2: _t->on_tableWidget_itemSelectionChanged(); break;
         case 3: { Vinyl _r = _t->getVinyl((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])));
             if (_a[0]) *reinterpret_cast< Vinyl*>(_a[0]) = std::move(_r); }  break;
-        case 4: { double _r = _t->getDiscount();
+        case 4: { double _r = _t->getValorTotal();
             if (_a[0]) *reinterpret_cast< double*>(_a[0]) = std::move(_r); }  break;
+        case 5: _t->on_pb_finalizar_clicked(); break;
         default: ;
         }
     }
@@ -155,13 +163,13 @@ int screen_cart::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 5)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 6;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 5)
+        if (_id < 6)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 5;
+        _id -= 6;
     }
     return _id;
 }

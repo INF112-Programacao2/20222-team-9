@@ -152,7 +152,7 @@ color:rgb(255, 255, 255)</string>
    <property name="frameShadow">
     <enum>QFrame::Raised</enum>
    </property>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="lb_imagem">
     <property name="geometry">
      <rect>
       <x>70</x>
@@ -287,7 +287,7 @@ color:rgb(255, 255, 255)</string>
     <string>ITENS CARRINHO</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="pb_finalizar">
    <property name="geometry">
     <rect>
      <x>820</x>
@@ -380,7 +380,7 @@ color:rgb(255, 255, 255)
     </size>
    </property>
   </widget>
-  <widget class="QLabel" name="label_9">
+  <widget class="QLabel" name="lb_txt_desconto">
    <property name="geometry">
     <rect>
      <x>390</x>
@@ -403,7 +403,7 @@ color:rgb(255, 255, 255)
     <string>DESCONTO DE VIP</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_10">
+  <widget class="QLabel" name="lb_desconto">
    <property name="geometry">
     <rect>
      <x>460</x>

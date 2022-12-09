@@ -22,6 +22,7 @@ debug/userteste.o
 debug/vinyl.o
 debug/common_client.o
 debug/vip_client.o
+debug/vip_purchase.o
 debug/qrc_res.o
 debug/moc_mainwindow.o
 debug/moc_screen_cart.o

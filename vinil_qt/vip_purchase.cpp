@@ -1,11 +1,14 @@
 #include "vip_purchase.h"
-
-VIPPurchase::VIPPurchase(int id, Cart cart, double discount) :
-    Purchase(id, cart, discount){};
+#include "QMessageBox.h"
+VIPPurchase::VIPPurchase(Cart cart) :
+    Purchase(cart){};
 
 void VIPPurchase::calculateDiscount()
 {
     double d = Purchase::getCart().getTotal();
+    QString s = QString::number(d);
+    QMessageBox::information(nullptr, "Conexão com o Banco",
+                            s );
     switch (Purchase::getCart().getClient().getRank())
     {
         case 0:
