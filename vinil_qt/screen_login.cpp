@@ -1,4 +1,5 @@
 #include "screen_login.h"
+#include "dao_cart.h"
 #include "dao_client.h"
 #include "data_source.h"
 #include "screen_home.h"
@@ -35,13 +36,14 @@ void screen_login::on_pb_login_clicked()
         ds.createConnection();
         DAOClient daoClient(ds.getConnection());
 
-        int idClient = daoClient.loginClient(cpf,senha).getId();
-        if ( idClient != 0) {
+        Client client = daoClient.loginClient(cpf,senha);
+        if ( client.getId() != 0) {
           QMessageBox::information(this, "Conexão com o Banco",
                                    "LOGIN FEITO EM PATRÃO");
-          hide();
 
-          screen_home *s = new screen_home(this,idClient);
+          DAOCart daoCart(ds.getConnection());
+          daoCart.createCart(client);
+          screen_home *s = new screen_home(this,client.getId());
           s->show();
           hide();
         } else {

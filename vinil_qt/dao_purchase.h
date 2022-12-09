@@ -12,7 +12,7 @@ class DAOPurchase
         QSqlDatabase database_connection;
 
     public:
-        DAOPurchase();
+        DAOPurchase(QSqlDatabase database_connection);
         ~DAOPurchase();
 
         bool createPurchase(Purchase purchase);

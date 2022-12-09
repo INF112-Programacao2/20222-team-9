@@ -45,7 +45,7 @@ Client DAOClient::readClient(int id)
 {
     Client client;
 
-    if(database_connection.open())
+    if(database_connection.isOpen())
     {
       QSqlQuery query = QSqlQuery(database_connection);
       QString sql = "SELECT * FROM `vinyl_shop`.`client` WHERE `id` = '" + QString::number(id) + "';";
@@ -106,7 +106,7 @@ Client DAOClient::loginClient(QString cpf, QString senha)
 {
     Client client;
 
-    if(database_connection.open())
+    if(database_connection.isOpen())
     {
       QSqlQuery query = QSqlQuery(database_connection);
 
@@ -169,7 +169,7 @@ Client DAOClient::loginClient(QString cpf, QString senha)
 
 bool DAOClient::updateClient(Client client)
 {
-    if(database_connection.open())
+    if(database_connection.isOpen())
     {
       QSqlQuery query = QSqlQuery(database_connection);
       QString sql = "UPDATE `vinyl_shop`.`client` SET cpf = '"
@@ -199,7 +199,7 @@ bool DAOClient::updateClient(Client client)
 }
 bool DAOClient::deleteClient(int id)
 {
-    if(database_connection.open())
+    if(database_connection.isOpen())
     {
       QSqlQuery query = QSqlQuery(database_connection);
       QString sql = "DELETE FROM `vinyl_shop`.`client` WHERE `id` = '" + QString::number(id) + "';";

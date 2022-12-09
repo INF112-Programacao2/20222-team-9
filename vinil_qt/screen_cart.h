@@ -14,7 +14,7 @@ class screen_cart : public QDialog
     Q_OBJECT
 
 public:
-    screen_cart(QWidget *parent = nullptr, int idVinyl=0, int idClient=0);
+    screen_cart(QWidget *parent = nullptr, int idClient=0);
     ~screen_cart();
     std::vector<Vinyl> vinys;
     Cart cart;

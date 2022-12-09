@@ -78,7 +78,7 @@ void screen_profile::on_pb_home_profile_clicked()
 
 void screen_profile::on_pb_cart_profile_clicked()
 {
-    screen_cart *s = new screen_cart(this);
+    screen_cart *s = new screen_cart(this,idClient);
     s->show();
     hide();
 

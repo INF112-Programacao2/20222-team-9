@@ -1,15 +1,18 @@
 #include "dao_purchase.h"
 
-DAOPurchase::DAOPurchase()
+DAOPurchase::DAOPurchase(QSqlDatabase database_connection)
 {
-    database_connection = data_source.getConnection();
+    this->database_connection = database_connection;
+    if(!database_connection.isOpen()){
+        database_connection.open();
+    }
 }
 
 DAOPurchase::~DAOPurchase() {}
 
 bool DAOPurchase::createPurchase(Purchase purchase)
 {
-    if(database_connection.open())
+    if(database_connection.isOpen())
     {
       QSqlQuery query = QSqlQuery(database_connection);
       QString sql = "INSERT INTO `vinyl_shop`.`purchase` (`id`, `client_id`, `cart_id`, `total`) VALUES ('"
@@ -39,11 +42,12 @@ bool DAOPurchase::createPurchase(Purchase purchase)
 
 Purchase DAOPurchase::readPurchase(int id)
 {
-    DAOCart dao_cart;
+    DataSource ds;
+    DAOCart dao_cart(ds.getConnection());
     Cart cart;
     Purchase purchase;
 
-    if(database_connection.open())
+    if(database_connection.isOpen())
     {
       QSqlQuery query = QSqlQuery(database_connection);
       QString sql = "SELECT * FROM `vinyl_shop`.`purchase` WHERE `id` = '" + QString::number(id) + "';";
@@ -99,7 +103,7 @@ Purchase DAOPurchase::readPurchase(int id)
 
 bool DAOPurchase::deletePurchase(int id)
 {
-    if(database_connection.open())
+    if(database_connection.isOpen())
     {
       QSqlQuery query = QSqlQuery(database_connection);
       QString sql = "DELETE FROM `vinyl_shop`.`purchase` WHERE `id` = '" + QString::number(id) + "';";

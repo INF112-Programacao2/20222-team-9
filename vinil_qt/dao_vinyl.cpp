@@ -249,7 +249,7 @@ std::vector<Vinyl> DAOVinyl::readVinylCollection(int client_id)
     return vinyl_list;
 }
 
-std::vector<Vinyl> DAOVinyl::readCartItems(int cart_id)
+std::vector<Vinyl> DAOVinyl::readCartItems(int client_id)
 {
     DAOMusic dao_music(database_connection);
     std::vector<Music> playlist;
@@ -263,7 +263,7 @@ std::vector<Vinyl> DAOVinyl::readCartItems(int cart_id)
                     "`vinyl`.`release_year`, `vinyl`.`rarity`, `vinyl`.`price`, `vinyl`.`image_url`, `vinyl`.`status` "
                     "FROM `vinyl_shop`.`vinyl` "
                     "LEFT JOIN `vinyl_shop`.`cart_items` ci ON `vinyl`.`id` = ci.`vinyl_id` "
-                    "WHERE ci.`cart_id` = '" + QString::number(cart_id) + "';";
+                    "WHERE ci.`client_id` = '" + QString::number(client_id) + "';";
 
       query.prepare(sql);
 

@@ -1,6 +1,7 @@
 #ifndef SCREEN_DISC_H
 #define SCREEN_DISC_H
 
+#include "data_source.h"
 #include "music.h"
 #include "vinyl.h"
 #include <QDialog>
@@ -19,6 +20,7 @@ public:
     std::vector<Music> musics;
     int idVinyl;
     int idClient;
+    DataSource ds;
 
 private slots:
     void on_pb_perfil_disc_clicked();

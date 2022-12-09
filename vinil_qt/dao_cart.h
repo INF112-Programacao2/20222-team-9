@@ -13,11 +13,12 @@ private:
     QSqlDatabase database_connection;
 
 public:
-    DAOCart();
+    DAOCart(QSqlDatabase database_connection);
     ~DAOCart();
 
-    bool createCart(Cart cart);
-    Cart readCart(int id);
+    Cart createCart(Client c);
+    bool insertCartItens(int idVinyl,int cart_id);
+    Cart readCart(int client_id);
     bool deleteCart(int id);
 };
 

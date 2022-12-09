@@ -1,4 +1,5 @@
 #include "screen_disc.h"
+#include "dao_cart.h"
 #include "dao_music.h"
 #include "dao_vinyl.h"
 #include "music.h"
@@ -11,7 +12,7 @@
 #include <vector>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
-
+#include <QMessageBox>
 #include <QtGui>
 #include <QtNetwork>
 #include <QDebug>
@@ -25,10 +26,9 @@ screen_disc::screen_disc(QWidget *parent, int idVinyl, int idClient) :
     this->idVinyl = idVinyl;
     this->idClient = idClient;
 
-    DataSource dataSource;
 
-    QSqlDatabase database_connection = dataSource.getConnection();
-    DAOMusic daoMusic(database_connection);
+
+    DAOMusic daoMusic(ds.getConnection());
 
     musics = daoMusic.readPlaylist(idVinyl);
 
@@ -49,8 +49,7 @@ screen_disc::screen_disc(QWidget *parent, int idVinyl, int idClient) :
 
       ui->tw_musics_disc->setRowHeight(contLines, 20);
     }
-    DataSource d;
-    DAOVinyl daoVinyl(d.getConnection());
+    DAOVinyl daoVinyl(ds.getConnection());
     Vinyl v = daoVinyl.readVinyl(idVinyl);
 
     QNetworkAccessManager *nam = new QNetworkAccessManager(this);
@@ -111,7 +110,7 @@ Music screen_disc::getMusic(int id, std::vector<Music> musics){
 
 void screen_disc::on_pb_cart_home_clicked()
 {
-    screen_cart *s = new screen_cart(this, 0, idClient);
+    screen_cart *s = new screen_cart(this, idClient);
     s->show();
     hide();
 }
@@ -134,8 +133,14 @@ void screen_disc::downloadFinished(QNetworkReply *reply)
 
 void screen_disc::on_pb_adicionarCarrinho_clicked()
 {
-    screen_cart *s = new screen_cart(this, idVinyl ,idClient );
-    s->show();
-    hide();
+    DAOCart daoCart(ds.getConnection());
+    int idCart = daoCart.readCart(idClient).getId();
+    if (daoCart.insertCartItens(idVinyl, idCart)) {
+     screen_cart *s = new screen_cart(this, idClient);
+     s->show();
+     hide();
+    } else {
+     // tratamento de erro com vcs meus queridos
+    }
 }
 

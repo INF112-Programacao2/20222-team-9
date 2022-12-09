@@ -7,20 +7,19 @@
 #include "ui_screen_cart.h"
 
 
-screen_cart::screen_cart(QWidget *parent, int idVinyl, int idClient) :
+screen_cart::screen_cart(QWidget *parent, int idClient) :
     QDialog(parent),
     ui(new Ui::screen_cart)
 {
     ui->setupUi(this);
     this->idClient = idClient;
 
-    if(idVinyl!=0){
-        DataSource dataSource;
+    DataSource dataSource;
+
+    DAOVinyl daoVinyl(dataSource.getConnection());
+    vinys = daoVinyl.readCartItems(idClient);
 
 
-        DAOVinyl daoVinyl(dataSource.getConnection());
-        vinys.push_back(daoVinyl.readVinyl(idVinyl));
-    }
     //Cart cart = Cart(0,client,vinys,0);
 
     ui->lb_preco_total->setText("R$ "+QString::number(getDiscount()));

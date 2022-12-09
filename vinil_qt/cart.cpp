@@ -1,6 +1,8 @@
 #include "cart.h"
 
-Cart::Cart() {}
+Cart::Cart() {
+    this->id = 0;
+}
 
 Cart::Cart(int id, Client client, std::vector<Vinyl> vinylList, double total) :
     id(id), client(client), vinylList(vinylList), total(total) {};
