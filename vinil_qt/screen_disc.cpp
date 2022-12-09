@@ -135,12 +135,15 @@ void screen_disc::on_pb_adicionarCarrinho_clicked()
 {
     DAOCart daoCart(ds.getConnection());
     int idCart = daoCart.readCart(idClient).getId();
+    QString s = "ID CART "+ QString::number(idCart)+"\n ID VINYL "+QString::number(idVinyl);
+    QMessageBox::information(this, "Conexão com o Banco",s);
+
     if (daoCart.insertCartItens(idVinyl, idCart)) {
      screen_cart *s = new screen_cart(this, idClient);
      s->show();
      hide();
     } else {
-     // tratamento de erro com vcs meus queridos
+//     // tratamento de erro com vcs meus queridos
     }
 }
 
