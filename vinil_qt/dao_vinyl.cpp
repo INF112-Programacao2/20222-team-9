@@ -161,6 +161,7 @@ std::vector<Vinyl> DAOVinyl::readVinylsForSale()
 
               vinyl = Vinyl(id, name, playlist, genre, composer, featuring, releaseYear, rarity, price, image_url, status);
               vinyl_list.push_back(vinyl);
+              res.clear();
           }
       }
       else
@@ -301,6 +302,7 @@ std::vector<Vinyl> DAOVinyl::readCartItems(int cart_id)
 
               vinyl = Vinyl(id, name, playlist, genre, composer, featuring, releaseYear, rarity, price, image_url, status);
               vinyl_list.push_back(vinyl);
+              res.clear();
           }
       }
       else
