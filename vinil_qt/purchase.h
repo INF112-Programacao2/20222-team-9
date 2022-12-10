@@ -2,6 +2,7 @@
 #define PURCHASE_H
 
 #include "cart.h"
+#include "QMessageBox.h"
 
 class Purchase
 {

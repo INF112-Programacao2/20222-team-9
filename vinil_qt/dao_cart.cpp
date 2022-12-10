@@ -3,80 +3,76 @@
 DAOCart::DAOCart(QSqlDatabase database_connection)
 {
     this->database_connection = database_connection;
-    if(!database_connection.isOpen()){
+    if (!database_connection.isOpen())
+    {
         database_connection.open();
     }
 }
 
 DAOCart::~DAOCart() {}
 
-Cart DAOCart::createCart(Client c)
+Cart DAOCart::createCart(Client client)
 {
-    if(database_connection.isOpen())
+    if (database_connection.isOpen())
     {
-      QSqlQuery query = QSqlQuery(database_connection);
-      QString sql = "INSERT INTO vinyl_shop.cart (client_id,total) VALUES ('"
-                    +QString::number(c.getId())+
-                    "' , '0');";
+        QSqlQuery query = QSqlQuery(database_connection);
+        QString sql = "INSERT INTO vinyl_shop.cart (client_id, total) VALUES ('" + QString::number(client.getId()) + "' , '0');";
 
-      query.prepare(sql);
+        query.prepare(sql);
 
-      if(query.exec())
-      {
-          qDebug("Inserted in vinyl_shop.cart!");
-          //Cart(int id, Client client, std::vector<Vinyl> vinylList, double total);
-          std::vector<Vinyl> vinylList;
-          Cart cart(query.lastInsertId().toInt(),c,  vinylList, 0);
-          return cart;
-      }
-      else
-      {
-          qDebug("'query.exec()' failed! - INSERT vinyl_shop.cart");
-          qDebug() << query.lastError();
-          Cart cart;
-          return cart;
-      }
+        if (query.exec())
+        {
+            qDebug("Inserted in vinyl_shop.cart!");
+
+            std::vector<Vinyl> vinylList;
+            Cart cart(query.lastInsertId().toInt(), client, vinylList, 0);
+            return cart;
+        }
+        else
+        {
+            qDebug("'query.exec()' failed! - INSERT vinyl_shop.cart");
+            qDebug() << query.lastError();
+            Cart cart;
+            return cart;
+        }
     }
     else
     {
-      qDebug("Connection failed! - INSERT vinyl_shop.cart");
-      Cart cart;
-      return cart;
+        qDebug("Connection failed! - INSERT vinyl_shop.cart");
+        Cart cart;
+        return cart;
     }
 }
 
 bool DAOCart::insertCartItens(int idVinyl, int cart_id)
 {
-    if(database_connection.isOpen())
+    if (database_connection.isOpen())
     {
-      QSqlQuery query = QSqlQuery(database_connection);
-      QString sql = "INSERT INTO vinyl_shop.cart_items(vinyl_id, cart_id) VALUES ('"+
-                QString::number(idVinyl)+
-                    "','"+
-                QString::number(cart_id)+
-                    "');";
+        QSqlQuery query = QSqlQuery(database_connection);
+        QString sql = "INSERT INTO vinyl_shop.cart_items(vinyl_id, cart_id) VALUES ('" +
+                      QString::number(idVinyl) + "','" + QString::number(cart_id) + "');";
 
-      query.prepare(sql);
+        query.prepare(sql);
 
-      if(query.exec())
-      {
-          qDebug("Inserted in vinyl_shop.cart!");
-          //Cart(int id, Client client, std::vector<Vinyl> vinylList, double total);
-          return 1;
-      }
-      else
-      {
-          qDebug("'query.exec()' failed! - INSERT vinyl_shop.cart");
-          qDebug() << query.lastError();
-          return 0;
-      }
+        if (query.exec())
+        {
+            qDebug("Inserted in vinyl_shop.cart!");
+            return 1;
+        }
+        else
+        {
+            qDebug("'query.exec()' failed! - INSERT vinyl_shop.cart");
+            qDebug() << query.lastError();
+            return 0;
+        }
     }
     else
     {
-      qDebug("Connection failed! - INSERT vinyl_shop.cart");
-      return 0;
+        qDebug("Connection failed! - INSERT vinyl_shop.cart");
+        return 0;
     }
 }
+
 Cart DAOCart::readCart(int client_id)
 {
     DataSource ds;
@@ -86,57 +82,56 @@ Cart DAOCart::readCart(int client_id)
     std::vector<Vinyl> vinylList;
     Cart cart;
 
-    if(database_connection.isOpen())
+    if (database_connection.isOpen())
     {
-      QSqlQuery query = QSqlQuery(database_connection);
-      QString sql = "SELECT * FROM vinyl_shop.cart WHERE client_id = '"+
-              QString::number(client_id)+
-                  "';";
-      query.prepare(sql);
+        QSqlQuery query = QSqlQuery(database_connection);
+        QString sql = "SELECT * FROM vinyl_shop.cart WHERE client_id = '" + QString::number(client_id) + "';";
 
-      if(query.exec())
-      {
-          qDebug("Selected from vinyl_shop.cart!");
+        query.prepare(sql);
 
-          QSqlRecord record = query.record();
-          int columns = record.count();
+        if (query.exec())
+        {
+            qDebug("Selected from vinyl_shop.cart!");
 
-          QString result;
+            QSqlRecord record = query.record();
+            int columns = record.count();
 
-          for(int i = 0; i < columns; i++)
-            result += record.fieldName(i) + ((i < columns - 1)? "\\" : "");
+            QString result;
 
-          qDebug() << result;
-
-          std::vector<QString> res;
-
-          if(!query.next())
-          {
-              qDebug("'query.next()' is false! - SELECT vinyl_shop.cart");
-              qDebug() << query.lastError();
-          }
-          else
-          {
             for (int i = 0; i < columns; i++)
-              res.push_back(query.value(i).toString());
+                result += record.fieldName(i) + ((i < columns - 1) ? "\\" : "");
 
-            int id = res[0].toInt();
-            client = dao_client.readClient(res[1].toInt());
-            vinylList = dao_vinyl.readCartItems(id);
-            double total = res[2].toDouble();
+            qDebug() << result;
 
-            cart = Cart(id, client, vinylList, total);
-          }
-      }
-      else
-      {
-          qDebug("'query.exec()' failed! - SELECT vinyl_shop.cart");
-          qDebug() << query.lastError();
-      }
+            std::vector<QString> res;
+
+            if (!query.next())
+            {
+                qDebug("'query.next()' is false! - SELECT vinyl_shop.cart");
+                qDebug() << query.lastError();
+            }
+            else
+            {
+                for (int i = 0; i < columns; i++)
+                    res.push_back(query.value(i).toString());
+
+                int id = res[0].toInt();
+                client = dao_client.readClient(res[1].toInt());
+                vinylList = dao_vinyl.readCartItems(id);
+                double total = res[2].toDouble();
+
+                cart = Cart(id, client, vinylList, total);
+            }
+        }
+        else
+        {
+            qDebug("'query.exec()' failed! - SELECT vinyl_shop.cart");
+            qDebug() << query.lastError();
+        }
     }
     else
     {
-      qDebug("Connection failed! - SELECT vinyl_shop.cart");
+        qDebug("Connection failed! - SELECT vinyl_shop.cart");
     }
 
     return cart;
@@ -151,87 +146,85 @@ Cart DAOCart::readByCartId(int cart_id)
     std::vector<Vinyl> vinylList;
     Cart cart;
 
-    if(database_connection.isOpen())
+    if (database_connection.isOpen())
     {
-      QSqlQuery query = QSqlQuery(database_connection);
-      QString sql = "SELECT * FROM `vinyl_shop`.`cart` WHERE id = '"+
-              QString::number(cart_id)+
-                  "';";
-      query.prepare(sql);
+        QSqlQuery query = QSqlQuery(database_connection);
+        QString sql = "SELECT * FROM `vinyl_shop`.`cart` WHERE id = '" + QString::number(cart_id) + "';";
 
-      if(query.exec())
-      {
-          qDebug("Selected from vinyl_shop.cart!");
+        query.prepare(sql);
 
-          QSqlRecord record = query.record();
-          int columns = record.count();
+        if (query.exec())
+        {
+            qDebug("Selected from vinyl_shop.cart!");
 
-          QString result;
+            QSqlRecord record = query.record();
+            int columns = record.count();
 
-          for(int i = 0; i < columns; i++)
-            result += record.fieldName(i) + ((i < columns - 1)? "\\" : "");
+            QString result;
 
-          qDebug() << result;
-
-          std::vector<QString> res;
-
-          if(!query.next())
-          {
-              qDebug("'query.next()' is false! - SELECT vinyl_shop.cart");
-              qDebug() << query.lastError();
-          }
-          else
-          {
             for (int i = 0; i < columns; i++)
-              res.push_back(query.value(i).toString());
+                result += record.fieldName(i) + ((i < columns - 1) ? "\\" : "");
 
-            int id = res[0].toInt();
-            client = dao_client.readClient(res[1].toInt());
-            vinylList = dao_vinyl.readCartItems(id);
-            double total = res[2].toDouble();
+            qDebug() << result;
 
-            cart = Cart(id, client, vinylList, total);
-          }
-      }
-      else
-      {
-          qDebug("'query.exec()' failed! - SELECT vinyl_shop.cart");
-          qDebug() << query.lastError();
-      }
+            std::vector<QString> res;
+
+            if (!query.next())
+            {
+                qDebug("'query.next()' is false! - SELECT vinyl_shop.cart");
+                qDebug() << query.lastError();
+            }
+            else
+            {
+                for (int i = 0; i < columns; i++)
+                    res.push_back(query.value(i).toString());
+
+                int id = res[0].toInt();
+                client = dao_client.readClient(res[1].toInt());
+                vinylList = dao_vinyl.readCartItems(id);
+                double total = res[2].toDouble();
+
+                cart = Cart(id, client, vinylList, total);
+            }
+        }
+        else
+        {
+            qDebug("'query.exec()' failed! - SELECT vinyl_shop.cart");
+            qDebug() << query.lastError();
+        }
     }
     else
     {
-      qDebug("Connection failed! - SELECT vinyl_shop.cart");
+        qDebug("Connection failed! - SELECT vinyl_shop.cart");
     }
 
     return cart;
 }
 
-
 bool DAOCart::deleteCart(int client_id)
 {
-    if(database_connection.isOpen())
+    if (database_connection.isOpen())
     {
-      QSqlQuery query = QSqlQuery(database_connection);
-      QString sql = "DELETE FROM 'vinyl_shop'.'cart' WHERE 'client_id' = '" + QString::number(client_id) + "';";
+        QSqlQuery query = QSqlQuery(database_connection);
+        QString sql = "DELETE FROM 'vinyl_shop'.'cart' WHERE 'client_id' = '" + QString::number(client_id) + "';";
 
-      query.prepare(sql);
+        query.prepare(sql);
 
-      if(query.exec())
-      {
-          qDebug("Deleted from vinyl_shop.cart!");
-          return 1;
-      }
-      else
-      {
-          qDebug("'query.exec()' failed! - DELETE vinyl_shop.cart");
-          qDebug() << query.lastError();
-          return 0;
-      }
+        if (query.exec())
+        {
+            qDebug("Deleted from vinyl_shop.cart!");
+            return 1;
+        }
+        else
+        {
+            qDebug("'query.exec()' failed! - DELETE vinyl_shop.cart");
+            qDebug() << query.lastError();
+            return 0;
+        }
     }
     else
     {
-      qDebug("Connection failed! - DELETE vinyl_shop.cart");
-      return 0;
+        qDebug("Connection failed! - DELETE vinyl_shop.cart");
+        return 0;
     }
 }

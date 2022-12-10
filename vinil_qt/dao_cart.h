@@ -16,8 +16,8 @@ public:
     DAOCart(QSqlDatabase database_connection);
     ~DAOCart();
 
-    Cart createCart(Client c);
-    bool insertCartItens(int idVinyl,int cart_id);
+    Cart createCart(Client client);
+    bool insertCartItens(int vinyl_id, int cart_id);
     Cart readCart(int client_id);
     Cart readByCartId(int cart_id);
     bool deleteCart(int client_id);

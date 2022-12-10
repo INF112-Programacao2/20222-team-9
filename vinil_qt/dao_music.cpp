@@ -3,7 +3,8 @@
 DAOMusic::DAOMusic(QSqlDatabase database_connection)
 {
     this->database_connection = database_connection;
-    if(!database_connection.isOpen()){
+    if (!database_connection.isOpen())
+    {
         database_connection.open();
     }
 }
@@ -12,15 +13,15 @@ DAOMusic::~DAOMusic() {}
 
 bool DAOMusic::createMusic(Music music)
 {
-    if(database_connection.isOpen())
+    if (database_connection.isOpen())
     {
         QSqlQuery query = QSqlQuery(database_connection);
-        QString sql = "INSERT INTO `vinyl_shop`.`music` (`name`, `duration`) VALUES ('"
-                      + music.getName() + "', '" + QString::number(music.getDuration()) + "');";
+        QString sql = "INSERT INTO `vinyl_shop`.`music` (`name`, `duration`) VALUES ('" + music.getName() + "', '" +
+                QString::number(music.getDuration()) + "');";
 
         query.prepare(sql);
 
-        if(query.exec())
+        if (query.exec())
         {
             qDebug("Inserted in vinyl_shop.music!");
             return 1;
@@ -43,14 +44,14 @@ Music DAOMusic::readMusic(int id)
 {
     Music music;
 
-    if(database_connection.isOpen())
+    if (database_connection.isOpen())
     {
         QSqlQuery query = QSqlQuery(database_connection);
         QString sql = "SELECT * FROM `vinyl_shop`.`music` WHERE `id` = '" + QString::number(id) + "';";
 
         query.prepare(sql);
 
-        if(query.exec())
+        if (query.exec())
         {
             qDebug("Selected from vinyl_shop.music!");
 
@@ -66,7 +67,7 @@ Music DAOMusic::readMusic(int id)
 
             std::vector<QString> res;
 
-            if(!query.next())
+            if (!query.next())
             {
                 qDebug("'query.next()' is false! - SELECT vinyl_shop.music");
                 qDebug() << query.lastError();
@@ -102,17 +103,18 @@ std::vector<Music> DAOMusic::readPlaylist(int vinyl_id)
     Music music;
     std::vector<Music> playlist;
 
-    if(database_connection.isOpen())
+    if (database_connection.isOpen())
     {
         QSqlQuery query = QSqlQuery(database_connection);
         QString sql = "SELECT `music`.`id`, `music`.`name`, `music`.`id` FROM `vinyl_shop`.`music` "
                       "LEFT JOIN `vinyl_shop`.`playlist` p ON `music`.`id` = p.`music_id` "
                       "LEFT JOIN `vinyl_shop`.`vinyl` v ON v.`id` =  p.`vinyl_id` "
-                      "WHERE v.`id` = '" + QString::number(vinyl_id) + "';";
+                      "WHERE v.`id` = '" +
+                      QString::number(vinyl_id) + "';";
 
         query.prepare(sql);
 
-        if(query.exec())
+        if (query.exec())
         {
             qDebug("Selected from vinyl_shop.music!");
 
@@ -128,7 +130,7 @@ std::vector<Music> DAOMusic::readPlaylist(int vinyl_id)
 
             std::vector<QString> res;
 
-            while(query.next())
+            while (query.next())
             {
                 for (int i = 0; i < columns; i++)
                     res.push_back(query.value(i).toString());
@@ -158,16 +160,15 @@ std::vector<Music> DAOMusic::readPlaylist(int vinyl_id)
 
 bool DAOMusic::updateMusic(Music music)
 {
-    if(database_connection.isOpen())
+    if (database_connection.isOpen())
     {
         QSqlQuery query = QSqlQuery(database_connection);
-        QString sql = "UPDATE `vinyl_shop`.`music` SET `name` = '"
-                      + music.getName() + "', `duration` = '" + QString::number(music.getDuration())
-                      + "' WHERE `id` = '" + QString::number(music.getId()) + "';";
+        QString sql = "UPDATE `vinyl_shop`.`music` SET `name` = '" + music.getName() + "', `duration` = '" +
+                QString::number(music.getDuration()) + "' WHERE `id` = '" + QString::number(music.getId()) + "';";
 
         query.prepare(sql);
 
-        if(query.exec())
+        if (query.exec())
         {
             qDebug("Updated in vinyl_shop.music!");
             return 1;
@@ -188,14 +189,14 @@ bool DAOMusic::updateMusic(Music music)
 
 bool DAOMusic::deleteMusic(int id)
 {
-    if(database_connection.isOpen())
+    if (database_connection.isOpen())
     {
         QSqlQuery query = QSqlQuery(database_connection);
-        QString sql =  "DELETE FROM `vinyl_shop`.`music` WHERE `id` = '" + QString::number(id) + "';";
+        QString sql = "DELETE FROM `vinyl_shop`.`music` WHERE `id` = '" + QString::number(id) + "';";
 
         query.prepare(sql);
 
-        if(query.exec())
+        if (query.exec())
         {
             qDebug("Deleted from vinyl_shop.music!");
             return 1;

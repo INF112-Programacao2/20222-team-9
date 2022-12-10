@@ -1,5 +1,5 @@
 #include "vip_purchase.h"
-#include "QMessageBox.h"
+
 VIPPurchase::VIPPurchase(Cart cart) :
     Purchase(cart){};
 

@@ -16,10 +16,10 @@ public:
 
     bool createClient(Client client);
     Client readClient(int id);
-    Client loginClient(QString cpf, QString senha);
     bool updateClient(Client client);
     bool deleteClient(int id);
 
+    Client loginClient(QString cpf, QString senha);
 };
 
 #endif // DAOCLIENT_H

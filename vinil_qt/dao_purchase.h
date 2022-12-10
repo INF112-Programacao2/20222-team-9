@@ -7,17 +7,17 @@
 
 class DAOPurchase
 {
-    private:
-        DataSource data_source;
-        QSqlDatabase database_connection;
+private:
+    DataSource data_source;
+    QSqlDatabase database_connection;
 
-    public:
-        DAOPurchase(QSqlDatabase database_connection);
-        ~DAOPurchase();
+public:
+    DAOPurchase(QSqlDatabase database_connection);
+    ~DAOPurchase();
 
-        bool createPurchase(Purchase purchase);
-        Purchase readPurchase(int id);
-        bool deletePurchase(int id);
+    bool createPurchase(Purchase purchase);
+    Purchase readPurchase(int id);
+    bool deletePurchase(int id);
 };
 
 #endif // DAOPURCHASE_H

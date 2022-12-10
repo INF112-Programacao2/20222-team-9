@@ -1,6 +1,7 @@
 #include "cart.h"
 
-Cart::Cart() {
+Cart::Cart()
+{
     this->id = 0;
 }
 

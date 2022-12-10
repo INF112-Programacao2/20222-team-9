@@ -16,6 +16,7 @@ private:
 public:
     DataSource();
     ~DataSource();
+
     QSqlDatabase createConnection();
     QSqlDatabase getConnection();
 };
