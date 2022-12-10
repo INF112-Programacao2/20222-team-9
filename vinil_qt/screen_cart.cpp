@@ -8,7 +8,7 @@
 #include "screen_home.h"
 #include "screen_profile.h"
 #include "ui_screen_cart.h"
-#include "QMessageBox.h"
+#include <QMessageBox>
 #include "vip_purchase.h"
 screen_cart::screen_cart(QWidget *parent, int idClient) :
     QDialog(parent),

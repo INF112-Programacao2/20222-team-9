@@ -1,6 +1,9 @@
 #include "dao_vinyl.h"
 #include "connection_exception.h"
 #include <iostream>
+#include <QDebug>
+#include <QVariant>
+
 DAOVinyl::DAOVinyl(QSqlDatabase database_connection)
 {
     this->database_connection = database_connection;

@@ -10,6 +10,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    TesteUserDAO.cpp \
     cart.cpp \
     client.cpp \
     dao_cart.cpp \
@@ -29,7 +30,6 @@ SOURCES += \
     screen_login.cpp \
     screen_new_account.cpp \
     screen_profile.cpp \
-    testeuserdao.cpp \
     userteste.cpp \
     vinyl.cpp \
     common_client.cpp\
@@ -37,6 +37,7 @@ SOURCES += \
     vip_purchase.cpp
 
 HEADERS += \
+    TesteUserDAO.h \
     cart.h \
     client.h \
     dao_cart.h \
@@ -55,7 +56,6 @@ HEADERS += \
     screen_login.h \
     screen_new_account.h \
     screen_profile.h \
-    testeuserdao.h \
     userteste.h \
     vinyl.h \
     common_client.h\

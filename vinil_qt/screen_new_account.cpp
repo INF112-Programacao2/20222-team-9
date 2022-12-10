@@ -2,8 +2,8 @@
 #include "ui_screen_new_account.h"
 #include "TesteUserDAO.h"
 
-#include "QMessageBox"
-#include "QSqlDatabase"
+#include <QMessageBox>
+#include <QSqlDatabase>
 
 //#include "teste_login.h"
 

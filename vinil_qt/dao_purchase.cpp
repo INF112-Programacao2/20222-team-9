@@ -1,4 +1,6 @@
 #include "dao_purchase.h"
+#include <QDebug>
+#include <QVariant>
 
 DAOPurchase::DAOPurchase(QSqlDatabase database_connection)
 {

@@ -1,4 +1,6 @@
 #include "dao_music.h"
+#include <QDebug>
+#include <QVariant>
 
 DAOMusic::DAOMusic(QSqlDatabase database_connection)
 {

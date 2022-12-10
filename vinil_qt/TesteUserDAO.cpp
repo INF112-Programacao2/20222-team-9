@@ -1,7 +1,8 @@
 #include "data_source.h"
-#include "testeuserdao.h"
+#include "TesteUserDAO.h"
 
-#include "QSqlQuery"
+#include <QSqlQuery>
+#include <QDebug>
 #include "qsqlrecord.h"
 #include "qsqlerror.h"
 

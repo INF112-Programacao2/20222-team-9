@@ -3,6 +3,7 @@
 
 #include "data_source.h"
 #include "music.h"
+#include <vector>
 
 class DAOMusic
 {

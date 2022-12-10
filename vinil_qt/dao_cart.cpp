@@ -1,4 +1,5 @@
 #include "dao_cart.h"
+#include <QDebug>
 
 DAOCart::DAOCart(QSqlDatabase database_connection)
 {

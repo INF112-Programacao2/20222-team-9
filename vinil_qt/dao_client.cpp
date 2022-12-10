@@ -1,4 +1,5 @@
 #include "dao_client.h"
+#include <QDebug>
 
 DAOClient::DAOClient(QSqlDatabase database_connection)
 {
