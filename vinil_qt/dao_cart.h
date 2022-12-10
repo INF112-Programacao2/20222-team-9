@@ -19,7 +19,8 @@ public:
     Cart createCart(Client c);
     bool insertCartItens(int idVinyl,int cart_id);
     Cart readCart(int client_id);
-    bool deleteCart(int id);
+    Cart readByCartId(int cart_id);
+    bool deleteCart(int client_id);
 };
 
 #endif // DAOCLIENT_H

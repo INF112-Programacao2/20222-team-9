@@ -17,10 +17,12 @@ bool DAOVinyl::createVinyl(Vinyl vinyl)
     if(database_connection.open())
     {
       QSqlQuery query = QSqlQuery(database_connection);
-      QString sql = "INSERT INTO `vinyl_shop`.`vinyl` (`name`, `genre`, `composer`, `featuring`, `release_year`, `rarity`, `price`) VALUES ('"
+      QString sql = "INSERT INTO `vinyl_shop`.`vinyl` (`name`, `genre`, `composer`, `featuring`, `release_year`, `rarity`, `price`, `image_url`, `status`) VALUES ('"
                     + vinyl.getName() + "', '" + vinyl.getGenre() + "', '"
                     + vinyl.getComposer() + "', '" + vinyl.getFeaturing() + "', '"
-                    + QString::number(vinyl.getReleaseYear()) + "', '" + QString::number(vinyl.getRarity()) + "', '" + QString::number(vinyl.getPrice()) + "');";
+                    + QString::number(vinyl.getReleaseYear()) + "', '" + QString::number(vinyl.getRarity()) + "', '"
+                    + QString::number(vinyl.getPrice()) + "', '" + vinyl.getImageUrl() + "', '"
+                    + QString::number(vinyl.getStatus()) + "');";
 
       query.prepare(sql);
 
@@ -332,7 +334,8 @@ bool DAOVinyl::updateVinyl(Vinyl vinyl)
                     + vinyl.getName() + "', `genre` = '" + vinyl.getGenre() + "', `composer` = '"
                     + vinyl.getComposer() + "', `featuring` = '" + vinyl.getFeaturing() + "', `release_year` = '"
                     + QString::number(vinyl.getReleaseYear()) + "', `rarity` = '" + QString::number(vinyl.getRarity()) + "', `price` = '"
-                    + QString::number(vinyl.getPrice()) + "' WHERE `id` = '" + QString::number(vinyl.getId()) + "';";
+                    + QString::number(vinyl.getPrice()) + "', `image_url` = '" + vinyl.getImageUrl() + "', `status` = '" +
+                    + (vinyl.getStatus() ? "1" : "0") + "' WHERE `id` = '" + QString::number(vinyl.getId()) + "';";
 
       query.prepare(sql);
 
@@ -354,6 +357,45 @@ bool DAOVinyl::updateVinyl(Vinyl vinyl)
       return 0;
     }
 }
+
+bool DAOVinyl::updateVinylStatus(int client_id)
+{
+    if(database_connection.isOpen())
+    {
+      QSqlQuery query = QSqlQuery(database_connection);
+      QString sql;
+
+      std::vector<Vinyl> vinyl_list = readCartItems(client_id);
+
+      for (unsigned int i = 0; i < vinyl_list.size(); i++)
+       {
+           sql = "UPDATE INTO `vinyl_shop`.`vinyl` (`status`) VALUES ('0')"
+                 "WHERE id = '" + QString::number(vinyl_list[i].getId()) + "';";
+
+           query.prepare(sql);
+
+           if(query.exec())
+           {
+               qDebug("Deleted from vinyl_shop.vinyl!");
+               return 1;
+           }
+           else
+           {
+               qDebug("'query.exec()' failed! - INSERT vinyl_shop.vinyl");
+               qDebug() << query.lastError();
+               return 0;
+           }
+       }
+
+      return 1;
+    }
+    else
+    {
+      qDebug("Connection failed! - UPDATE vinyl_shop.vinyl");
+      return 0;
+    }
+}
+
 
 bool DAOVinyl::deleteVinyl(int id)
 {

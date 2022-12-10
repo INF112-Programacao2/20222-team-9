@@ -21,6 +21,7 @@ public:
     std::vector<Vinyl> readVinylCollection(int client_id);
     std::vector<Vinyl> readCartItems(int client_id);
     bool updateVinyl(Vinyl vinyl);
+    bool updateVinylStatus(int client_id);
     bool deleteVinyl(int id);
 };
 
