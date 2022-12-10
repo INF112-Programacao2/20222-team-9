@@ -92,13 +92,13 @@ Client DAOClient::readClient(int id)
         }
         else
         {
-            qDebug("'query.exec()' failed! - SELECT vinyl_shop.client");
+            //qDebug("'query.exec()' failed! - SELECT vinyl_shop.client");
             qDebug() << query.lastError();
         }
     }
     else
     {
-        qDebug("Connection failed! - SELECT vinyl_shop.client");
+        //qDebug("Connection failed! - SELECT vinyl_shop.client");
     }
 
     return client;
@@ -154,13 +154,13 @@ Client DAOClient::loginClient(QString cpf, QString senha)
         }
         else
         {
-            qDebug("'query.exec()' failed! - SELECT vinyl_shop.client");
+            //qDebug("'query.exec()' failed! - SELECT vinyl_shop.client");
             qDebug() << query.lastError();
         }
     }
     else
     {
-        qDebug("Connection failed! - SELECT vinyl_shop.client");
+        //qDebug("Connection failed! - SELECT vinyl_shop.client");
     }
 
     return client;

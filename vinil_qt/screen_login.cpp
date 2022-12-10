@@ -5,6 +5,8 @@
 #include "screen_home.h"
 #include "ui_screen_login.h"
 #include "QMessageBox"
+#include "connection_exception.h"
+#include <iostream>
 screen_login::screen_login(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::screen_login)
@@ -33,7 +35,11 @@ void screen_login::on_pb_login_clicked()
 
         //TesteUserDAO daoUser;
         DataSource ds;
-        ds.createConnection();
+        try{
+            ds.createConnection();
+        }catch(ConnectionException e){
+            std::cerr<<e.what()<<std::endl;
+        }
         DAOClient daoClient(ds.getConnection());
 
         Client client = daoClient.loginClient(cpf,senha);

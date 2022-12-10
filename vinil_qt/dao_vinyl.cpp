@@ -1,5 +1,6 @@
 #include "dao_vinyl.h"
-
+#include "connection_exception.h"
+#include <iostream>
 DAOVinyl::DAOVinyl(QSqlDatabase database_connection)
 {
     this->database_connection = database_connection;
@@ -14,7 +15,12 @@ DAOVinyl::~DAOVinyl() {}
 bool DAOVinyl::createVinyl(Vinyl vinyl)
 {
     DataSource dao;
+    try{
+
     QSqlDatabase conn = dao.createConnection();
+    }catch(ConnectionException e){
+        std::cerr<<e.what()<<std::endl;
+    }
     if (database_connection.open())
     {
         QSqlQuery query = QSqlQuery(database_connection);

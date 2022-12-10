@@ -1,5 +1,5 @@
 #include "data_source.h"
-
+#include "connection_exception.h"
 DataSource::DataSource()
 {
     this->database = QSqlDatabase::database("planning");
@@ -18,7 +18,13 @@ QSqlDatabase DataSource::createConnection()
     database.setHostName("127.0.0.1");
     database.setUserName("root");
     database.setPassword("root");
-    database.setDatabaseName("vinyl_shop");
+    database.setDatabaseName("1vinyl_shop");
     this->database = database;
+
+    bool ok=database.open();
+    if(ok==false){
+        throw ConnectionException();
+    }
+
     return database;
 }

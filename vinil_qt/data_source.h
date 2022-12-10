@@ -17,7 +17,7 @@ public:
     DataSource();
     ~DataSource();
 
-    QSqlDatabase createConnection();
+    QSqlDatabase createConnection() noexcept(false);
     QSqlDatabase getConnection();
 };
 
