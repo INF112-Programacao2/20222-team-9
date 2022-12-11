@@ -1,6 +1,6 @@
 #include "screen_new_account.h"
 #include "ui_screen_new_account.h"
-#include "TesteUserDAO.h"
+#include "dao_newuser.h"
 
 #include <QMessageBox>
 #include <QSqlDatabase>
@@ -24,7 +24,7 @@ void screen_new_account::on_pb_inserir_clicked()
     QString senha = ui->ln_senha->text();
     QString confirmarsenha = ui->ln_confirmar_senha->text();
 
-    TesteUserDAO daoUser;
+    newUserDAO daoUser;
 
     if(senha != confirmarsenha)
     {

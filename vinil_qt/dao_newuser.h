@@ -1,9 +1,9 @@
-#ifndef TESTEUSERDAO_H
-#define TESTEUSERDAO_H
+#ifndef DAO_NEWUSER_H
+#define DAO_NEWUSER_H
 
 #include "qsqldatabase.h"
 
-class TesteUserDAO
+class newUserDAO
 {
 public:
 
@@ -13,12 +13,12 @@ private:
     char menssagem[255];
 
 public:
-    TesteUserDAO();
-    ~TesteUserDAO();
+    newUserDAO();
+    ~newUserDAO();
 
     bool loginUsuario(QString cpf, QString senha);
     bool inserirUsuario(QString cpf, QString nome, QString senha);
     QString getErro();
 };
 
-#endif // TESTEUSERDAO_H
+#endif // DAO_NEWUSER_H

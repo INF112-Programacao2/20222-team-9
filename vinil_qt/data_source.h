@@ -4,8 +4,8 @@
 #include <QtSql/QSqlDatabase>
 
 #include "QSqlQuery"
-#include "qsqlrecord.h"
-#include "qsqlerror.h"
+#include <QSqlRecord>
+#include <QSqlError>
 
 class DataSource
 {

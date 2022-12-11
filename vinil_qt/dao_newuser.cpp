@@ -1,12 +1,12 @@
 #include "data_source.h"
-#include "TesteUserDAO.h"
+#include "dao_newuser.h"
 
 #include <QSqlQuery>
 #include <QDebug>
 #include "qsqlrecord.h"
 #include "qsqlerror.h"
 
-TesteUserDAO::TesteUserDAO()
+newUserDAO::newUserDAO()
 {
     DataSource dao;
     //QSqlDatabase conn;
@@ -14,14 +14,14 @@ TesteUserDAO::TesteUserDAO()
     //if(conn.open());
 }
 
-TesteUserDAO::~TesteUserDAO() {}
+newUserDAO::~newUserDAO() {}
 
-bool TesteUserDAO::loginUsuario(QString cpf, QString senha)
+bool newUserDAO::loginUsuario(QString cpf, QString senha)
 {
     if(conn.open())
     {
       QSqlQuery query = QSqlQuery(conn);
-      QString sql = "SELECT * FROM vinyl_shop.user_teste WHERE cpf = '" + cpf + "' and senha = '" + senha + "';";
+      QString sql = "SELECT * FROM vinyl_shop.client WHERE cpf = '" + cpf + "' and senha = '" + senha + "';";
 
       query.prepare(sql);
 
@@ -66,12 +66,12 @@ bool TesteUserDAO::loginUsuario(QString cpf, QString senha)
       return 0;
     }
 }
-bool TesteUserDAO::inserirUsuario(QString nome, QString cpf, QString senha)
+bool newUserDAO::inserirUsuario(QString nome, QString cpf, QString senha)
 {
     if(conn.open())
     {
       QSqlQuery query = QSqlQuery(conn);
-      QString sql = "INSERT INTO vinyl_shop.user_teste (nome, cpf, senha) values ('"
+      QString sql = "INSERT INTO vinyl_shop.client (nome, cpf, senha) values ('"
               + nome + "', '" + cpf + "', '" + senha + "');";
 
       query.prepare(sql);

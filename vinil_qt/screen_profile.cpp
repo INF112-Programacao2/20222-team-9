@@ -50,7 +50,10 @@ screen_profile::screen_profile(QWidget *parent, int idClient) :
     }else{
         //VIPClient(int id, QString cpf, QString name, QString email, QString password, int vip, int rank);
         VIPClient vc(c.getId(),c.getCpf(), c.getName(), c.getEmail(), c.getPassword(), c.getVip(),c.getRank());
-        if(vc.getRank() == 1){
+        if(vc.getRank() == 0){
+            ui->lb_rank->setText("NOOB");
+        }
+        else if(vc.getRank() == 1){
             ui->lb_rank->setText("PRATA");
         }else if(vc.getRank() == 2){
             ui->lb_rank->setText("OURO");

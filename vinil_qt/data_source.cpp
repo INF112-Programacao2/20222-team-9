@@ -18,7 +18,7 @@ QSqlDatabase DataSource::createConnection()
     database.setHostName("127.0.0.1");
     database.setUserName("root");
     database.setPassword("root");
-    database.setDatabaseName("1vinyl_shop");
+    database.setDatabaseName("vinyl_shop");
     this->database = database;
 
     bool ok=database.open();
