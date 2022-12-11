@@ -10,6 +10,11 @@
 #include "ui_screen_cart.h"
 #include <QMessageBox>
 #include "vip_purchase.h"
+
+#include <QTableWidget>
+#include <QTableWidgetItem>
+#include <QMessageBox>
+
 screen_cart::screen_cart(QWidget *parent, int idClient) :
     QDialog(parent),
     ui(new Ui::screen_cart)
@@ -89,8 +94,16 @@ void screen_cart::on_tableWidget_itemSelectionChanged()
 {
     ui->frame->setHidden(false);
     int idSel = ui->tableWidget->item(ui->tableWidget->currentRow(),0)->text().toInt();
-
     Vinyl v = getVinyl(idSel);
+
+    QNetworkAccessManager *nam = new QNetworkAccessManager(this);
+    connect(nam, &QNetworkAccessManager::finished, this, &screen_home::downloadFinished);
+    QString s = "http://localhost/img/"+v.getImageUrl();
+    const QUrl url = QUrl(s);
+    QNetworkRequest request(url);
+    nam->get(request);
+
+
     ui->lb_nome_album_cart->setText(v.getName());
     ui->lb_nome_cantor_cart->setText(v.getComposer());
     ui->lb_ano_lancamento_cart->setText(QString::number(v.getReleaseYear()));
