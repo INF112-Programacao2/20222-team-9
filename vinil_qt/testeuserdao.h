@@ -18,7 +18,7 @@ public:
 
     bool loginUsuario(QString cpf, QString senha);
     //bool inserirUsuario(QString cpf, QString nome, QString senha);
-    bool inserirUsuario(QString cpf, QString nome, QString senha, QString email );
+    bool inserirUsuario(QString cpf, QString nome, QString senha, QString email, QString vip, QString rank );
     QString getErro();
 };
 

@@ -65,13 +65,15 @@ bool TesteUserDAO::loginUsuario(QString cpf, QString senha)
       return 0;
     }
 }
-bool TesteUserDAO::inserirUsuario(QString nome, QString cpf, QString senha, QString email)
+bool TesteUserDAO::inserirUsuario(QString nome, QString cpf, QString senha, QString email, QString vip, QString rank)
 {
     if(conn.open())
     {
       QSqlQuery query = QSqlQuery(conn);
-      QString sql = "INSERT INTO vinyl_shop.user_teste (nome, cpf, senha) values ('"
-              + nome + "', '" + cpf + "', '" + senha + "');";
+      //QString sql = "INSERT INTO vinyl_shop.user_teste (nome, cpf, senha) values ('"
+              //+ nome + "', '" + cpf + "', '" + senha + "');";
+
+     QString sql = "INSERT INTO `testegui1112`.`client` (`cpf`,`name`,`password`,`email`,`vip`,`rank`) values ('"+ cpf + "' , '" + nome +"', '" + senha + "', '" + email + "','" + vip + "','" +rank + "'  );";
 
       query.prepare(sql);
 
