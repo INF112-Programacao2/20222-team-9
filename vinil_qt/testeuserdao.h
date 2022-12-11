@@ -17,8 +17,7 @@ public:
     ~TesteUserDAO();
 
     bool loginUsuario(QString cpf, QString senha);
-    //bool inserirUsuario(QString cpf, QString nome, QString senha);
-    bool inserirUsuario(QString cpf, QString nome, QString senha, QString email, QString vip, QString rank );
+    bool inserirUsuario(QString cpf, QString nome, QString senha, QString email, int vip, int rank );
     QString getErro();
 };
 
