@@ -65,7 +65,7 @@ bool TesteUserDAO::loginUsuario(QString cpf, QString senha)
       return 0;
     }
 }
-bool TesteUserDAO::inserirUsuario(QString nome, QString cpf, QString senha)
+bool TesteUserDAO::inserirUsuario(QString nome, QString cpf, QString senha, QString email)
 {
     if(conn.open())
     {

@@ -1,7 +1,7 @@
 #include "screen_new_account.h"
 #include "ui_screen_new_account.h"
 #include "TesteUserDAO.h"
-
+#include <iostream>
 #include "QMessageBox"
 #include "QSqlDatabase"
 
@@ -23,6 +23,8 @@ void screen_new_account::on_pb_inserir_clicked()
     QString cpf = ui->ln_cpf->text();
     QString senha = ui->ln_senha->text();
     QString confirmarsenha = ui->ln_confirmar_senha->text();
+    QString email= ui->ln_email->text();
+
 
     TesteUserDAO daoUser;
 
@@ -33,7 +35,7 @@ void screen_new_account::on_pb_inserir_clicked()
     else
     {
 
-        if(daoUser.inserirUsuario(nome, cpf,senha))
+        if(daoUser.inserirUsuario(nome, cpf,senha,email))
         {
             QMessageBox::information(this, "Conexão com o Banco", "INSERIDO NE PATRAO");
         }
