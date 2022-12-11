@@ -71,8 +71,7 @@ bool newUserDAO::inserirUsuario(QString nome, QString cpf, QString senha, QStrin
     if(conn.open())
     {
       QSqlQuery query = QSqlQuery(conn);
-      QString sql = "INSERT INTO vinyl_shop.client (nome, cpf, senha, email, vip, rank) values ('"
-              + nome + "', '" + cpf + "', '" + senha + "', '"+ email +"', '"+ QString::number(vip) +"', '"+ QString::number(rank) +"');";
+      QString sql = "INSERT INTO `vinyl_shop`.`client` (`nome`, `cpf`, `senha`, `email`, `vip`, `rank`) values ('"+ nome + "', '" + cpf + "', '" + senha + "', '"+ email +"', '"+ QString::number(vip) +"', '"+ QString::number(rank) +"');";
 
       query.prepare(sql);
 
