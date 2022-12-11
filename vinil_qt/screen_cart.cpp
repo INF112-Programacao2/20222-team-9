@@ -13,7 +13,6 @@
 
 #include <QTableWidget>
 #include <QTableWidgetItem>
-#include <QMessageBox>
 
 screen_cart::screen_cart(QWidget *parent, int idClient) :
     QDialog(parent),
@@ -23,6 +22,8 @@ screen_cart::screen_cart(QWidget *parent, int idClient) :
     this->idClient = idClient;
 
     DataSource dataSource;
+
+    QSqlDatabase database_connection = dataSource.getConnection();
 
     DAOVinyl daoVinyl(dataSource.getConnection());
     vinys = daoVinyl.readCartItems(idClient);
@@ -97,7 +98,7 @@ void screen_cart::on_tableWidget_itemSelectionChanged()
     Vinyl v = getVinyl(idSel);
 
     QNetworkAccessManager *nam = new QNetworkAccessManager(this);
-    connect(nam, &QNetworkAccessManager::finished, this, &screen_home::downloadFinished);
+    connect(nam, &QNetworkAccessManager::finished, this, &screen_cart::downloadFinished);
     QString s = "http://localhost/img/"+v.getImageUrl();
     const QUrl url = QUrl(s);
     QNetworkRequest request(url);
@@ -121,6 +122,13 @@ Vinyl screen_cart::getVinyl(int id){
     Vinyl v = Vinyl();
     return (v);
 }
+
+void screen_cart::downloadFinished(QNetworkReply *reply){
+    QPixmap pm;
+    pm.loadFromData(reply->readAll());
+    ui->lb_imagem->setPixmap(pm);
+}
+
 double screen_cart::getValorTotal(){
     double price=0;
     for (Vinyl v : vinys) {

@@ -4,6 +4,7 @@
 #include "cart.h"
 #include "vinyl.h"
 #include "vip_purchase.h"
+#include "qnetworkreply.h"
 #include <QDialog>
 
 namespace Ui {
@@ -21,6 +22,7 @@ public:
     Cart cart;
     int idClient;
     VIPPurchase *vipP;
+    void downloadFinished(QNetworkReply *reply);
 
 private slots:
     void on_pb_home_cart_clicked();
