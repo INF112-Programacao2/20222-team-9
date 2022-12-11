@@ -53,7 +53,7 @@ color:rgb(255, 255, 255)</string>
   <widget class="QFrame" name="frame">
    <property name="geometry">
     <rect>
-     <x>710</x>
+     <x>680</x>
      <y>140</y>
      <width>271</width>
      <height>321</height>
@@ -71,10 +71,10 @@ color:rgb(255, 255, 255)</string>
    <widget class="QLabel" name="lb_nome">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>50</y>
+      <x>90</x>
+      <y>30</y>
       <width>131</width>
-      <height>21</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="font">
@@ -96,7 +96,7 @@ color:rgb(255, 255, 255)</string>
      <rect>
       <x>20</x>
       <y>100</y>
-      <width>151</width>
+      <width>211</width>
       <height>21</height>
      </rect>
     </property>
@@ -143,9 +143,9 @@ color:rgb(255, 255, 255)</string>
    <widget class="QLabel" name="lb_cpf">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>70</x>
       <y>130</y>
-      <width>121</width>
+      <width>161</width>
       <height>31</height>
      </rect>
     </property>

@@ -5,6 +5,9 @@
 #include "QMessageBox"
 #include "QSqlDatabase"
 #include <iostream>
+
+#include "screen_login.h"
+#include "ui_screen_profile.h"
 //#include "teste_login.h"
 
 screen_new_account::screen_new_account(QWidget *parent) : QDialog(parent), ui(new Ui::screen_new_account)
@@ -65,7 +68,8 @@ void screen_new_account::on_pb_inserir_clicked()
 
 void screen_new_account::on_pb_inserir_2_clicked()
 {
+    screen_login *s = new screen_login(this);
+    s->show();
     hide();
-
 }
 
