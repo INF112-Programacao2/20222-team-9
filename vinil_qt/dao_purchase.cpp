@@ -3,10 +3,9 @@
 DAOPurchase::DAOPurchase(QSqlDatabase database_connection)
 {
     this->database_connection = database_connection;
+
     if (!database_connection.isOpen())
-    {
         database_connection.open();
-    }
 }
 
 DAOPurchase::~DAOPurchase() {}
@@ -16,7 +15,7 @@ bool DAOPurchase::createPurchase(Purchase purchase)
     if (database_connection.isOpen())
     {
         QSqlQuery query = QSqlQuery(database_connection);
-        QString sql = "INSERT INTO `vinyl_shop`.`purchase` (`id`, `cart_id`, `total`) VALUES ('" + QString::number(purchase.getId()) + "', '" + QString::number(purchase.getCart().getId()) + "', '" + QString::number(purchase.getCart().getTotal()) + "');";
+        QString sql = "INSERT INTO `vinyl_shop`.`purchase` (`cart_id`) VALUES ('" + QString::number(purchase.getCart().getId()) + "');";
 
         query.prepare(sql);
 
@@ -34,7 +33,7 @@ bool DAOPurchase::createPurchase(Purchase purchase)
 
         DAOVinyl dao_vinyl(database_connection);
 
-        dao_vinyl.updateVinylStatus(purchase.getCart().getClient().getId());
+        dao_vinyl.updateVinylStatus(purchase.getCart().getId());
 
         return 1;
     }
@@ -87,9 +86,8 @@ Purchase DAOPurchase::readPurchase(int id)
 
                 int id = res[0].toInt();
                 cart = dao_cart.readCart(res[1].toInt());
-                double discount = res[2].toDouble();
 
-                purchase = Purchase(id, cart, discount);
+                purchase = Purchase(id, cart, 0);
             }
         }
         else

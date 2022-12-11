@@ -1,12 +1,12 @@
 #include "dao_music.h"
+#include <iostream>
 
 DAOMusic::DAOMusic(QSqlDatabase database_connection)
 {
     this->database_connection = database_connection;
+
     if (!database_connection.isOpen())
-    {
         database_connection.open();
-    }
 }
 
 DAOMusic::~DAOMusic() {}
@@ -110,7 +110,7 @@ std::vector<Music> DAOMusic::readPlaylist(int vinyl_id)
                       "LEFT JOIN `vinyl_shop`.`playlist` p ON `music`.`id` = p.`music_id` "
                       "LEFT JOIN `vinyl_shop`.`vinyl` v ON v.`id` =  p.`vinyl_id` "
                       "WHERE v.`id` = '" +
-                      QString::number(vinyl_id) + "';";
+                      QString::number(vinyl_id) + "' ORDER BY id;";
 
         query.prepare(sql);
 
@@ -141,6 +141,9 @@ std::vector<Music> DAOMusic::readPlaylist(int vinyl_id)
 
                 music = Music(id, name, duration);
                 playlist.push_back(music);
+                result = music.getName();
+                qDebug() << result;
+
                 res.clear();
             }
         }

@@ -138,7 +138,7 @@ void screen_disc::on_pb_adicionarCarrinho_clicked()
     QString s = "ID CART "+ QString::number(idCart)+"\n ID VINYL "+QString::number(idVinyl);
     QMessageBox::information(this, "Conexão com o Banco",s);
 
-    if (daoCart.insertCartItens(idVinyl, idCart)) {
+    if (daoCart.createCartItems(idVinyl, idCart)) {
      screen_cart *s = new screen_cart(this, idClient);
      s->show();
      hide();

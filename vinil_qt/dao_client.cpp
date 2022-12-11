@@ -3,10 +3,9 @@
 DAOClient::DAOClient(QSqlDatabase database_connection)
 {
     this->database_connection = database_connection;
+
     if (!database_connection.isOpen())
-    {
         database_connection.open();
-    }
 }
 
 DAOClient::~DAOClient() {}
@@ -171,7 +170,11 @@ bool DAOClient::updateClient(Client client)
     if (database_connection.isOpen())
     {
         QSqlQuery query = QSqlQuery(database_connection);
-        QString sql = "UPDATE `vinyl_shop`.`client` SET cpf = '" + client.getCpf() + "', `name` = '" + client.getName() + "', `email` = '" + client.getEmail() + "', `password` = '" + client.getPassword() + "', `vip` = '" + QString::number(client.getVip()) + "', `rank` = '" + QString::number(client.getRank()) + "' WHERE `id` = '" + QString::number(client.getId()) + "';";
+        QString sql = "UPDATE `vinyl_shop`.`client` SET `cpf` = '" +
+                client.getCpf() + "', `name` = '" + client.getName() + "', `email` = '" +
+                client.getEmail() + "', `password` = '" + client.getPassword() + "', `vip` = '" +
+                QString::number(client.getVip()) + "', `rank` = '" + QString::number(client.getRank()) +
+                "' WHERE `id` = '" + QString::number(client.getId()) + "';";
 
         query.prepare(sql);
 

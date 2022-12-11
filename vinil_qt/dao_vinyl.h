@@ -19,9 +19,9 @@ public:
     Vinyl readVinyl(int id);
     std::vector<Vinyl> readVinylsForSale();
     std::vector<Vinyl> readVinylCollection(int client_id);
-    std::vector<Vinyl> readCartItems(int client_id);
+    std::vector<Vinyl> readCartItems(int cart_id);
     bool updateVinyl(Vinyl vinyl);
-    bool updateVinylStatus(int client_id);
+    bool updateVinylStatus(int cart_id);
     bool deleteVinyl(int id);
 };
 

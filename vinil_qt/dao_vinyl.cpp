@@ -4,10 +4,9 @@
 DAOVinyl::DAOVinyl(QSqlDatabase database_connection)
 {
     this->database_connection = database_connection;
+
     if (!database_connection.isOpen())
-    {
         database_connection.open();
-    }
 }
 
 DAOVinyl::~DAOVinyl() {}
@@ -129,7 +128,7 @@ std::vector<Vinyl> DAOVinyl::readVinylsForSale()
     if (database_connection.isOpen())
     {
         QSqlQuery query = QSqlQuery(database_connection);
-        QString sql = "SELECT * FROM `vinyl_shop`.`vinyl` WHERE `status` = '1';";
+        QString sql = "SELECT * FROM `vinyl_shop`.`vinyl` WHERE `status` = '1' ORDER BY id;";
 
         query.prepare(sql);
 
@@ -201,7 +200,7 @@ std::vector<Vinyl> DAOVinyl::readVinylCollection(int client_id)
                       "FROM `vinyl_shop`.`vinyl` "
                       "LEFT JOIN `vinyl_shop`.`vinyl_collection` vc ON `vinyl`.`id` = vc.`vinyl_id` "
                       "WHERE vc.`client_id` = '" +
-                      QString::number(client_id) + "';";
+                      QString::number(client_id) + "' ORDER BY id;";
 
         query.prepare(sql);
 
@@ -241,6 +240,7 @@ std::vector<Vinyl> DAOVinyl::readVinylCollection(int client_id)
 
                 vinyl = Vinyl(id, name, playlist, genre, composer, featuring, releaseYear, rarity, price, image_url, status);
                 vinyl_list.push_back(vinyl);
+
                 res.clear();
             }
         }
@@ -258,7 +258,7 @@ std::vector<Vinyl> DAOVinyl::readVinylCollection(int client_id)
     return vinyl_list;
 }
 
-std::vector<Vinyl> DAOVinyl::readCartItems(int client_id)
+std::vector<Vinyl> DAOVinyl::readCartItems(int cart_id)
 {
     DAOMusic dao_music(database_connection);
     std::vector<Music> playlist;
@@ -275,8 +275,8 @@ std::vector<Vinyl> DAOVinyl::readCartItems(int client_id)
                       " LEFT JOIN `vinyl_shop`.`cart_items` ci ON "
                       "`vinyl`.`id` = ci.`vinyl_id` LEFT JOIN "
                       "`vinyl_shop`.`cart` c ON c.`id` = ci.cart_id"
-                      " WHERE c.`client_id` = '" +
-                      QString::number(client_id) + "';";
+                      " WHERE c.`id` = '" +
+                      QString::number(cart_id) + "' ORDER BY id;";
 
         query.prepare(sql);
 
@@ -316,6 +316,7 @@ std::vector<Vinyl> DAOVinyl::readCartItems(int client_id)
 
                 vinyl = Vinyl(id, name, playlist, genre, composer, featuring, releaseYear, rarity, price, image_url, status);
                 vinyl_list.push_back(vinyl);
+
                 res.clear();
             }
         }
@@ -338,8 +339,11 @@ bool DAOVinyl::updateVinyl(Vinyl vinyl)
     if (database_connection.isOpen())
     {
         QSqlQuery query = QSqlQuery(database_connection);
-        QString sql = "UPDATE `vinyl_shop`.`vinyl` SET name = '" + vinyl.getName() + "', `genre` = '" + vinyl.getGenre() + "', `composer` = '" + vinyl.getComposer() + "', `featuring` = '" + vinyl.getFeaturing() + "', `release_year` = '" + QString::number(vinyl.getReleaseYear()) + "', `rarity` = '" + QString::number(vinyl.getRarity()) + "', `price` = '" + QString::number(vinyl.getPrice()) + "', `image_url` = '" + vinyl.getImageUrl() + "', `status` = '" +
-                      +(vinyl.getStatus() ? "1" : "0") + "' WHERE `id` = '" + QString::number(vinyl.getId()) + "';";
+        QString sql = "UPDATE `vinyl_shop`.`vinyl` SET name = '" + vinyl.getName() + "', `genre` = '" + vinyl.getGenre() +
+                "', `composer` = '" + vinyl.getComposer() + "', `featuring` = '" + vinyl.getFeaturing() +
+                "', `release_year` = '" + QString::number(vinyl.getReleaseYear()) + "', `rarity` = '" + QString::number(vinyl.getRarity()) +
+                "', `price` = '" + QString::number(vinyl.getPrice()) + "', `image_url` = '" + vinyl.getImageUrl() +
+                "', `status` = '" + (vinyl.getStatus() ? "1" : "0") + "' WHERE `id` = '" + QString::number(vinyl.getId()) + "';";
 
         query.prepare(sql);
 
@@ -362,19 +366,19 @@ bool DAOVinyl::updateVinyl(Vinyl vinyl)
     }
 }
 
-bool DAOVinyl::updateVinylStatus(int client_id)
+bool DAOVinyl::updateVinylStatus(int cart_id)
 {
     if (database_connection.isOpen())
     {
         QSqlQuery query = QSqlQuery(database_connection);
         QString sql;
 
-        std::vector<Vinyl> vinyl_list = readCartItems(client_id);
+        std::vector<Vinyl> vinyl_list = readCartItems(cart_id);
 
         for (unsigned int i = 0; i < vinyl_list.size(); i++)
         {
             sql = "UPDATE INTO `vinyl_shop`.`vinyl` (`status`) VALUES ('0')"
-                  "WHERE id = '" +
+                  "WHERE `id` = '" +
                   QString::number(vinyl_list[i].getId()) + "';";
 
             query.prepare(sql);
