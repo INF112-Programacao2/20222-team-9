@@ -117,9 +117,8 @@ Cart DAOCart::readCart(int client_id)
                 int id = res[0].toInt();
                 client = dao_client.readClient(res[1].toInt());
                 vinylList = dao_vinyl.readCartItems(id);
-                double total = res[2].toDouble();
 
-                cart = Cart(id, client, vinylList, total);
+                cart = Cart(id, client, vinylList, 0);
             }
         }
         else

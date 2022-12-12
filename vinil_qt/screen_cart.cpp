@@ -20,16 +20,15 @@ screen_cart::screen_cart(QWidget *parent, int idClient) :
 
     DataSource dataSource;
 
-    DAOVinyl daoVinyl(dataSource.getConnection());
-    vinys = daoVinyl.readCartItems(idClient);
-
-
     DAOClient daoClient(dataSource.getConnection());
     Client client = daoClient.readClient(idClient);
 
     DAOCart daoCart(dataSource.getConnection());
     this->cart = daoCart.readCart(idClient);
     cart.setTotal(getValorTotal());
+
+    DAOVinyl daoVinyl(dataSource.getConnection());
+    vinys = daoVinyl.readCartItems(cart.getId());
 
     QString s = QString::number(cart.getTotal());
     QMessageBox::information(nullptr, "Conexão com o Banco",
