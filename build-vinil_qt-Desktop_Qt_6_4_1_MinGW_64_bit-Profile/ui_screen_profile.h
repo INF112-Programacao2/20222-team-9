@@ -57,13 +57,13 @@ public:
         pushButton->setIconSize(QSize(32, 32));
         frame = new QFrame(screen_profile);
         frame->setObjectName("frame");
-        frame->setGeometry(QRect(710, 140, 271, 321));
+        frame->setGeometry(QRect(680, 140, 271, 321));
         frame->setStyleSheet(QString::fromUtf8("background:rgb(175, 131, 115)"));
         frame->setFrameShape(QFrame::StyledPanel);
         frame->setFrameShadow(QFrame::Raised);
         lb_nome = new QLabel(frame);
         lb_nome->setObjectName("lb_nome");
-        lb_nome->setGeometry(QRect(80, 50, 131, 21));
+        lb_nome->setGeometry(QRect(90, 30, 131, 41));
         QFont font;
         font.setFamilies({QString::fromUtf8("Segoe UI Black")});
         font.setPointSize(16);
@@ -72,7 +72,7 @@ public:
         lb_nome->setStyleSheet(QString::fromUtf8("color:rgb(255, 255, 255)"));
         lb_email = new QLabel(frame);
         lb_email->setObjectName("lb_email");
-        lb_email->setGeometry(QRect(20, 100, 151, 21));
+        lb_email->setGeometry(QRect(20, 100, 211, 21));
         QFont font1;
         font1.setFamilies({QString::fromUtf8("Segoe UI Black")});
         font1.setPointSize(12);
@@ -87,7 +87,7 @@ public:
         lb_ano_lancamento->setStyleSheet(QString::fromUtf8("color:rgb(255, 255, 255)"));
         lb_cpf = new QLabel(frame);
         lb_cpf->setObjectName("lb_cpf");
-        lb_cpf->setGeometry(QRect(60, 130, 121, 31));
+        lb_cpf->setGeometry(QRect(70, 130, 161, 31));
         lb_cpf->setFont(font1);
         lb_cpf->setStyleSheet(QString::fromUtf8("color:rgb(255, 255, 255)"));
         lb_rank = new QLabel(frame);

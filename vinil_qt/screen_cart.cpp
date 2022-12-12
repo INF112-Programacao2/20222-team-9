@@ -29,10 +29,6 @@ screen_cart::screen_cart(QWidget *parent, int idClient) :
 
     DAOVinyl daoVinyl(dataSource.getConnection());
     vinys = daoVinyl.readCartItems(cart.getId());
-
-    QString s = QString::number(cart.getTotal());
-    QMessageBox::information(nullptr, "Conexão com o Banco",
-                            s );
     if(client.getVip()){
         (vipP) = new VIPPurchase(cart);
         (*vipP).calculateDiscount();

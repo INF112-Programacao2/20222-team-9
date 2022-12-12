@@ -25,6 +25,7 @@ public:
     QLabel *icon_Perfil;
     QLabel *ion_Cart;
     QLabel *label_8;
+    QPushButton *pb_voltar;
 
     void setupUi(QDialog *screen_completed_purchase)
     {
@@ -70,6 +71,18 @@ public:
         font.setBold(true);
         label_8->setFont(font);
         label_8->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
+        pb_voltar = new QPushButton(screen_completed_purchase);
+        pb_voltar->setObjectName("pb_voltar");
+        pb_voltar->setGeometry(QRect(440, 520, 171, 41));
+        QFont font1;
+        font1.setFamilies({QString::fromUtf8("Microsoft YaHei UI")});
+        font1.setPointSize(12);
+        font1.setBold(true);
+        pb_voltar->setFont(font1);
+        pb_voltar->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_voltar->setStyleSheet(QString::fromUtf8("background-color: rgb(254, 104, 50);\n"
+"border-style: outset;\n"
+"color:rgb(255, 255, 255)"));
 
         retranslateUi(screen_completed_purchase);
 
@@ -82,6 +95,7 @@ public:
         pushButton->setText(QString());
         icon_Perfil->setText(QString());
         label_8->setText(QCoreApplication::translate("screen_completed_purchase", "<html><head/><body><p align=\"center\">COMPRA <br/>FINALIZADA<br/> COM SUCESSO</p></body></html>", nullptr));
+        pb_voltar->setText(QCoreApplication::translate("screen_completed_purchase", "VOLTAR", nullptr));
     } // retranslateUi
 
 };
