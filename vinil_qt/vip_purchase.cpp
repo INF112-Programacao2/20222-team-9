@@ -6,9 +6,7 @@ VIPPurchase::VIPPurchase(Cart cart) :
 void VIPPurchase::calculateDiscount()
 {
     double d = Purchase::getCart().getTotal();
-    QString s = QString::number(d);
-    QMessageBox::information(nullptr, "Conexão com o Banco",
-                            s );
+
     switch (Purchase::getCart().getClient().getRank())
     {
         case 0:
