@@ -35,6 +35,9 @@ public:
     QLineEdit *ln_confirmar_senha;
     QLabel *label_11;
     QLineEdit *ln_senha;
+    QLineEdit *ln_email;
+    QLabel *label_12;
+    QLabel *label_13;
 
     void setupUi(QDialog *screen_new_account)
     {
@@ -44,7 +47,7 @@ public:
         screen_new_account->setAutoFillBackground(false);
         pb_inserir = new QPushButton(screen_new_account);
         pb_inserir->setObjectName(QString::fromUtf8("pb_inserir"));
-        pb_inserir->setGeometry(QRect(500, 490, 100, 30));
+        pb_inserir->setGeometry(QRect(350, 600, 100, 30));
         QFont font;
         font.setFamily(QString::fromUtf8("Microsoft YaHei UI"));
         font.setPointSize(12);
@@ -72,12 +75,12 @@ public:
         label_8->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
         label_9 = new QLabel(screen_new_account);
         label_9->setObjectName(QString::fromUtf8("label_9"));
-        label_9->setGeometry(QRect(340, 400, 251, 30));
+        label_9->setGeometry(QRect(340, 500, 251, 30));
         label_9->setFont(font1);
         label_9->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
         pb_inserir_2 = new QPushButton(screen_new_account);
         pb_inserir_2->setObjectName(QString::fromUtf8("pb_inserir_2"));
-        pb_inserir_2->setGeometry(QRect(620, 490, 100, 30));
+        pb_inserir_2->setGeometry(QRect(470, 600, 100, 30));
         pb_inserir_2->setFont(font);
         pb_inserir_2->setCursor(QCursor(Qt::PointingHandCursor));
         pb_inserir_2->setStyleSheet(QString::fromUtf8("font: 700 12pt \"Microsoft YaHei UI\";\n"
@@ -123,7 +126,7 @@ public:
 "border-style: outset;"));
         ln_confirmar_senha = new QLineEdit(screen_new_account);
         ln_confirmar_senha->setObjectName(QString::fromUtf8("ln_confirmar_senha"));
-        ln_confirmar_senha->setGeometry(QRect(340, 360, 250, 40));
+        ln_confirmar_senha->setGeometry(QRect(340, 450, 250, 40));
         ln_confirmar_senha->setFont(font4);
         ln_confirmar_senha->setCursor(QCursor(Qt::IBeamCursor));
         ln_confirmar_senha->setStyleSheet(QString::fromUtf8("background-color: rgb(200, 200, 200);\n"
@@ -132,18 +135,37 @@ public:
         ln_confirmar_senha->setEchoMode(QLineEdit::Password);
         label_11 = new QLabel(screen_new_account);
         label_11->setObjectName(QString::fromUtf8("label_11"));
-        label_11->setGeometry(QRect(340, 330, 251, 30));
+        label_11->setGeometry(QRect(340, 420, 251, 30));
         label_11->setFont(font1);
         label_11->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
         ln_senha = new QLineEdit(screen_new_account);
         ln_senha->setObjectName(QString::fromUtf8("ln_senha"));
-        ln_senha->setGeometry(QRect(340, 430, 250, 40));
+        ln_senha->setGeometry(QRect(340, 540, 250, 40));
         ln_senha->setFont(font4);
         ln_senha->setCursor(QCursor(Qt::IBeamCursor));
         ln_senha->setStyleSheet(QString::fromUtf8("background-color: rgb(200, 200, 200);\n"
 "border-color: rgb(200, 200, 200);\n"
 "border-style: outset;"));
         ln_senha->setEchoMode(QLineEdit::Password);
+        ln_email = new QLineEdit(screen_new_account);
+        ln_email->setObjectName(QString::fromUtf8("ln_email"));
+        ln_email->setGeometry(QRect(340, 370, 250, 40));
+        ln_email->setFont(font4);
+        ln_email->setCursor(QCursor(Qt::IBeamCursor));
+        ln_email->setStyleSheet(QString::fromUtf8("background-color: rgb(200, 200, 200);\n"
+"border-color: rgb(200, 200, 200);\n"
+"border-style: outset;"));
+        ln_email->setEchoMode(QLineEdit::Normal);
+        label_12 = new QLabel(screen_new_account);
+        label_12->setObjectName(QString::fromUtf8("label_12"));
+        label_12->setGeometry(QRect(340, 340, 251, 30));
+        label_12->setFont(font1);
+        label_12->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
+        label_13 = new QLabel(screen_new_account);
+        label_13->setObjectName(QString::fromUtf8("label_13"));
+        label_13->setGeometry(QRect(340, 340, 251, 30));
+        label_13->setFont(font1);
+        label_13->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
 
         retranslateUi(screen_new_account);
 
@@ -162,6 +184,8 @@ public:
         radioButton->setText(QCoreApplication::translate("screen_new_account", "SIM", nullptr));
         radioButton_2->setText(QCoreApplication::translate("screen_new_account", "N\303\203O", nullptr));
         label_11->setText(QCoreApplication::translate("screen_new_account", "SENHA", nullptr));
+        label_12->setText(QString());
+        label_13->setText(QCoreApplication::translate("screen_new_account", "EMAIL", nullptr));
     } // retranslateUi
 
 };

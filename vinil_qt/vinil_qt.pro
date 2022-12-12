@@ -60,7 +60,8 @@ HEADERS += \
     vinyl.h \
     common_client.h\
     vip_client.h\
-    vip_purchase.h
+    vip_purchase.h\
+    connection_exception.h
 
 
 FORMS += \

@@ -293,7 +293,8 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		../vinil_qt/vinyl.h \
 		../vinil_qt/common_client.h \
 		../vinil_qt/vip_client.h \
-		../vinil_qt/vip_purchase.h ../vinil_qt/cart.cpp \
+		../vinil_qt/vip_purchase.h \
+		../vinil_qt/connection_exception.h ../vinil_qt/cart.cpp \
 		../vinil_qt/client.cpp \
 		../vinil_qt/dao_cart.cpp \
 		../vinil_qt/dao_client.cpp \
@@ -652,7 +653,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../vinil_qt/res.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/qt/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../vinil_qt/cart.h ../vinil_qt/client.h ../vinil_qt/dao_cart.h ../vinil_qt/dao_client.h ../vinil_qt/dao_music.h ../vinil_qt/dao_newuser.h ../vinil_qt/dao_purchase.h ../vinil_qt/dao_vinyl.h ../vinil_qt/data_source.h ../vinil_qt/mainwindow.h ../vinil_qt/music.h ../vinil_qt/purchase.h ../vinil_qt/screen_cart.h ../vinil_qt/screen_completed_purchase.h ../vinil_qt/screen_disc.h ../vinil_qt/screen_home.h ../vinil_qt/screen_login.h ../vinil_qt/screen_new_account.h ../vinil_qt/screen_profile.h ../vinil_qt/userteste.h ../vinil_qt/vinyl.h ../vinil_qt/common_client.h ../vinil_qt/vip_client.h ../vinil_qt/vip_purchase.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../vinil_qt/cart.h ../vinil_qt/client.h ../vinil_qt/dao_cart.h ../vinil_qt/dao_client.h ../vinil_qt/dao_music.h ../vinil_qt/dao_newuser.h ../vinil_qt/dao_purchase.h ../vinil_qt/dao_vinyl.h ../vinil_qt/data_source.h ../vinil_qt/mainwindow.h ../vinil_qt/music.h ../vinil_qt/purchase.h ../vinil_qt/screen_cart.h ../vinil_qt/screen_completed_purchase.h ../vinil_qt/screen_disc.h ../vinil_qt/screen_home.h ../vinil_qt/screen_login.h ../vinil_qt/screen_new_account.h ../vinil_qt/screen_profile.h ../vinil_qt/userteste.h ../vinil_qt/vinyl.h ../vinil_qt/common_client.h ../vinil_qt/vip_client.h ../vinil_qt/vip_purchase.h ../vinil_qt/connection_exception.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../vinil_qt/cart.cpp ../vinil_qt/client.cpp ../vinil_qt/dao_cart.cpp ../vinil_qt/dao_client.cpp ../vinil_qt/dao_music.cpp ../vinil_qt/dao_newuser.cpp ../vinil_qt/dao_purchase.cpp ../vinil_qt/dao_vinyl.cpp ../vinil_qt/data_source.cpp ../vinil_qt/main.cpp ../vinil_qt/mainwindow.cpp ../vinil_qt/music.cpp ../vinil_qt/purchase.cpp ../vinil_qt/screen_cart.cpp ../vinil_qt/screen_completed_purchase.cpp ../vinil_qt/screen_disc.cpp ../vinil_qt/screen_home.cpp ../vinil_qt/screen_login.cpp ../vinil_qt/screen_new_account.cpp ../vinil_qt/screen_profile.cpp ../vinil_qt/userteste.cpp ../vinil_qt/vinyl.cpp ../vinil_qt/common_client.cpp ../vinil_qt/vip_client.cpp ../vinil_qt/vip_purchase.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../vinil_qt/mainwindow.ui ../vinil_qt/screen_cart.ui ../vinil_qt/screen_completed_purchase.ui ../vinil_qt/screen_disc.ui ../vinil_qt/screen_home.ui ../vinil_qt/screen_login.ui ../vinil_qt/screen_new_account.ui ../vinil_qt/screen_profile.ui $(DISTDIR)/
 
@@ -832,8 +833,8 @@ dao_music.o: ../vinil_qt/dao_music.cpp ../vinil_qt/dao_music.h \
 		../vinil_qt/music.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dao_music.o ../vinil_qt/dao_music.cpp
 
-dao_newuser.o: ../vinil_qt/dao_newuser.cpp ../vinil_qt/dao_newuser.h \
-		../vinil_qt/data_source.h
+dao_newuser.o: ../vinil_qt/dao_newuser.cpp ../vinil_qt/data_source.h \
+		../vinil_qt/dao_newuser.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dao_newuser.o ../vinil_qt/dao_newuser.cpp
 
 dao_purchase.o: ../vinil_qt/dao_purchase.cpp ../vinil_qt/dao_purchase.h \
@@ -900,11 +901,15 @@ screen_cart.o: ../vinil_qt/screen_cart.cpp ../vinil_qt/screen_cart.h \
 		../vinil_qt/dao_purchase.h \
 		../vinil_qt/screen_home.h \
 		../vinil_qt/screen_profile.h \
-		ui_screen_cart.h
+		ui_screen_cart.h \
+		../vinil_qt/screen_completed_purchase.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o screen_cart.o ../vinil_qt/screen_cart.cpp
 
 screen_completed_purchase.o: ../vinil_qt/screen_completed_purchase.cpp ../vinil_qt/screen_completed_purchase.h \
-		ui_screen_completed_purchase.h
+		ui_screen_completed_purchase.h \
+		../vinil_qt/screen_home.h \
+		../vinil_qt/vinyl.h \
+		../vinil_qt/music.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o screen_completed_purchase.o ../vinil_qt/screen_completed_purchase.cpp
 
 screen_disc.o: ../vinil_qt/screen_disc.cpp ../vinil_qt/screen_disc.h \
@@ -958,7 +963,9 @@ screen_login.o: ../vinil_qt/screen_login.cpp ../vinil_qt/screen_login.h \
 
 screen_new_account.o: ../vinil_qt/screen_new_account.cpp ../vinil_qt/screen_new_account.h \
 		ui_screen_new_account.h \
-		../vinil_qt/dao_newuser.h
+		../vinil_qt/dao_newuser.h \
+		../vinil_qt/screen_login.h \
+		ui_screen_login.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o screen_new_account.o ../vinil_qt/screen_new_account.cpp
 
 screen_profile.o: ../vinil_qt/screen_profile.cpp ../vinil_qt/screen_profile.h \

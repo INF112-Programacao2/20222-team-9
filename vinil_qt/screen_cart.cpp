@@ -10,6 +10,7 @@
 #include "ui_screen_cart.h"
 #include <QMessageBox>
 #include "vip_purchase.h"
+#include "screen_completed_purchase.h"
 
 #include <QTableWidget>
 #include <QTableWidgetItem>
@@ -26,7 +27,7 @@ screen_cart::screen_cart(QWidget *parent, int idClient) :
     QSqlDatabase database_connection = dataSource.getConnection();
 
     DAOVinyl daoVinyl(dataSource.getConnection());
-    vinys = daoVinyl.readCartItems(idClient);
+    vinys = daoVinyl.readCartItems(cart.getId());
 
 
     DAOClient daoClient(dataSource.getConnection());
@@ -146,6 +147,9 @@ void screen_cart::on_pb_finalizar_clicked()
     Purchase p(cart);
     daoPurchase.createPurchase(p);
 
+    screen_completed_purchase *s = new screen_completed_purchase(this, idClient);
+    s->show();
+    hide();
 
 }
 

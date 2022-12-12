@@ -37,7 +37,7 @@ void screen_login::on_pb_login_clicked()
         DataSource ds;
         try{
             ds.createConnection();
-        }catch(ConnectionException e){
+        }catch(ConnectionException &e){
             std::cerr<<e.what()<<std::endl;
         }
         DAOClient daoClient(ds.getConnection());

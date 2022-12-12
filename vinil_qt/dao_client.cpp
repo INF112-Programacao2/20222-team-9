@@ -172,7 +172,7 @@ bool DAOClient::updateClient(Client client)
     if (database_connection.isOpen())
     {
         QSqlQuery query = QSqlQuery(database_connection);
-        QString sql = "UPDATE `vinyl_shop`.`client` SET cpf = '" + client.getCpf() + "', `name` = '" + client.getName() + "', `email` = '" + client.getEmail() + "', `password` = '" + client.getPassword() + "', `vip` = '" + QString::number(client.getVip()) + "', `rank` = '" + QString::number(client.getRank()) + "' WHERE `id` = '" + QString::number(client.getId()) + "';";
+        QString sql = "UPDATE `vinyl_shop`.`client` SET `cpf` = '" + client.getCpf() + "', `name` = '" + client.getName() + "', `email` = '" + client.getEmail() + "', `password` = '" + client.getPassword() + "', `vip` = '" + QString::number(client.getVip()) + "', `rank` = '" + QString::number(client.getRank()) + "' WHERE `id` = '" + QString::number(client.getId()) + "';";
 
         query.prepare(sql);
 

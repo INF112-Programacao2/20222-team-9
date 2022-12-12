@@ -132,7 +132,7 @@ std::vector<Vinyl> DAOVinyl::readVinylsForSale()
     if (database_connection.isOpen())
     {
         QSqlQuery query = QSqlQuery(database_connection);
-        QString sql = "SELECT * FROM `vinyl_shop`.`vinyl` WHERE `status` = '1';";
+        QString sql = "SELECT * FROM `vinyl_shop`.`vinyl` WHERE `status` = '1' ORDER BY id DESC;";
 
         query.prepare(sql);
 
@@ -204,7 +204,7 @@ std::vector<Vinyl> DAOVinyl::readVinylCollection(int client_id)
                       "FROM `vinyl_shop`.`vinyl` "
                       "LEFT JOIN `vinyl_shop`.`vinyl_collection` vc ON `vinyl`.`id` = vc.`vinyl_id` "
                       "WHERE vc.`client_id` = '" +
-                      QString::number(client_id) + "';";
+                      QString::number(client_id) + "' ORDER BY id DESC;";
 
         query.prepare(sql);
 
@@ -261,7 +261,7 @@ std::vector<Vinyl> DAOVinyl::readVinylCollection(int client_id)
     return vinyl_list;
 }
 
-std::vector<Vinyl> DAOVinyl::readCartItems(int client_id)
+std::vector<Vinyl> DAOVinyl::readCartItems(int cart_id)
 {
     DAOMusic dao_music(database_connection);
     std::vector<Music> playlist;
@@ -278,8 +278,8 @@ std::vector<Vinyl> DAOVinyl::readCartItems(int client_id)
                       " LEFT JOIN `vinyl_shop`.`cart_items` ci ON "
                       "`vinyl`.`id` = ci.`vinyl_id` LEFT JOIN "
                       "`vinyl_shop`.`cart` c ON c.`id` = ci.cart_id"
-                      " WHERE c.`client_id` = '" +
-                      QString::number(client_id) + "';";
+                      " WHERE c.`id` = '" +
+                      QString::number(cart_id) + "'ORDER BY id;";
 
         query.prepare(sql);
 
@@ -365,19 +365,19 @@ bool DAOVinyl::updateVinyl(Vinyl vinyl)
     }
 }
 
-bool DAOVinyl::updateVinylStatus(int client_id)
+bool DAOVinyl::updateVinylStatus(int cart_id)
 {
     if (database_connection.isOpen())
     {
         QSqlQuery query = QSqlQuery(database_connection);
         QString sql;
 
-        std::vector<Vinyl> vinyl_list = readCartItems(client_id);
+        std::vector<Vinyl> vinyl_list = readCartItems(cart_id);
 
         for (unsigned int i = 0; i < vinyl_list.size(); i++)
         {
             sql = "UPDATE INTO `vinyl_shop`.`vinyl` (`status`) VALUES ('0')"
-                  "WHERE id = '" +
+                  "WHERE `id` = '" +
                   QString::number(vinyl_list[i].getId()) + "';";
 
             query.prepare(sql);
