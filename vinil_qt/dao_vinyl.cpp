@@ -128,7 +128,7 @@ std::vector<Vinyl> DAOVinyl::readVinylsForSale()
     if (database_connection.isOpen())
     {
         QSqlQuery query = QSqlQuery(database_connection);
-        QString sql = "SELECT * FROM `vinyl_shop`.`vinyl` WHERE `status` = '1' ORDER BY id;";
+        QString sql = "SELECT * FROM `vinyl_shop`.`vinyl` WHERE `status` = '1' ORDER BY id DESC;";
 
         query.prepare(sql);
 
@@ -200,7 +200,7 @@ std::vector<Vinyl> DAOVinyl::readVinylCollection(int client_id)
                       "FROM `vinyl_shop`.`vinyl` "
                       "LEFT JOIN `vinyl_shop`.`vinyl_collection` vc ON `vinyl`.`id` = vc.`vinyl_id` "
                       "WHERE vc.`client_id` = '" +
-                      QString::number(client_id) + "' ORDER BY id;";
+                      QString::number(client_id) + "' ORDER BY id DESC;";
 
         query.prepare(sql);
 
@@ -276,7 +276,7 @@ std::vector<Vinyl> DAOVinyl::readCartItems(int cart_id)
                       "`vinyl`.`id` = ci.`vinyl_id` LEFT JOIN "
                       "`vinyl_shop`.`cart` c ON c.`id` = ci.cart_id"
                       " WHERE c.`id` = '" +
-                      QString::number(cart_id) + "' ORDER BY id;";
+                      QString::number(cart_id) + "' ORDER BY id DESC;";
 
         query.prepare(sql);
 

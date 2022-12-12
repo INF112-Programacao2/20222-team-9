@@ -110,7 +110,7 @@ std::vector<Music> DAOMusic::readPlaylist(int vinyl_id)
                       "LEFT JOIN `vinyl_shop`.`playlist` p ON `music`.`id` = p.`music_id` "
                       "LEFT JOIN `vinyl_shop`.`vinyl` v ON v.`id` =  p.`vinyl_id` "
                       "WHERE v.`id` = '" +
-                      QString::number(vinyl_id) + "' ORDER BY id;";
+                      QString::number(vinyl_id) + "' ORDER BY id DESC;";
 
         query.prepare(sql);
 
