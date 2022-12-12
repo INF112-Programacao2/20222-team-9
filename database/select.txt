@@ -1,0 +1,19 @@
+SELECT `vinyl`.`id`, `vinyl`.`name`, `vinyl`.`genre`, `vinyl`.`composer`, `vinyl`.`featuring`,
+`vinyl`.`release_year`, `vinyl`.`rarity`, `vinyl`.`price`, `vinyl`.`image_url`, `vinyl`.`status`
+FROM `vinyl_shop`.`vinyl`
+LEFT JOIN `vinyl_shop`.`cart_items` ci ON `vinyl`.`id` = ci.`vinyl_id`
+LEFT JOIN `vinyl_shop`.`cart` c ON c.`id` = ci.cart_id
+WHERE c.`id` = 1 ORDER BY id;
+
+SELECT `music`.`id`, `music`.`name`, `music`.`duration` FROM `vinyl_shop`.`music`
+LEFT JOIN `vinyl_shop`.`playlist` p ON `music`.`id` = p.`music_id`
+LEFT JOIN `vinyl_shop`.`vinyl` v ON v.`id` =  p.`vinyl_id`
+WHERE v.`id` = '5' ORDER BY id;
+
+SELECT * FROM `vinyl_shop`.`vinyl` WHERE `status` = '1' ORDER BY id;
+
+SELECT `vinyl`.`id`, `vinyl`.`name`, `vinyl`.`genre`, `vinyl`.`composer`, `vinyl`.`featuring`,
+`vinyl`.`release_year`, `vinyl`.`rarity`, `vinyl`.`price`, `vinyl`.`image_url`, `vinyl`.`status`
+FROM `vinyl_shop`.`vinyl`
+LEFT JOIN `vinyl_shop`.`vinyl_collection` vc ON `vinyl`.`id` = vc.`vinyl_id`
+WHERE vc.`client_id` = 2 ORDER BY id;
