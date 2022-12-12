@@ -1,22 +1,22 @@
 #include "vip_purchase.h"
-
+#include <iostream>
 VIPPurchase::VIPPurchase(Cart cart) :
     Purchase(cart){};
 
-void VIPPurchase::calculateDiscount()
+void VIPPurchase::calculateDiscount(double d)
 {
-    double d = Purchase::getCart().getTotal();
+    std::cout << "ddd" << d << std::endl;
 
     switch (Purchase::getCart().getClient().getRank())
     {
         case 0:
-            d -= (Purchase::getCart().getTotal() * 5 / 100.0);
+            d -= (d * 5 / 100.0);
             break;
         case 1:
-            d -= (Purchase::getCart().getTotal() * 10 / 100.0);
+            d -= (d * 10 / 100.0);
             break;
         case 2:
-            d -= (Purchase::getCart().getTotal() * 15 / 100.0);
+            d -= (d * 15 / 100.0);
             break;
         default:
             break;

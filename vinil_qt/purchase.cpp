@@ -38,9 +38,4 @@ void Purchase::setDiscount(double discount)
     this->discount = discount;
 }
 
-void Purchase::calculateDiscount() {}
-
-void Purchase::apllyDiscount()
-{
-    Purchase::getCart().setTotal(Purchase::getCart().getTotal() - Purchase::getDiscount());
-}
+void Purchase::calculateDiscount(double valor) {}

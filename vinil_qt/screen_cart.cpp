@@ -30,9 +30,9 @@ screen_cart::screen_cart(QWidget *parent, int idClient) :
     vinys = daoCart.readCartItems(cart.getId());
     if(client.getVip()){
         (vipP) = new VIPPurchase(cart);
-        (*vipP).calculateDiscount();
+        (*vipP).calculateDiscount(getValorTotal());
         ui->lb_desconto->setText(QString::number((*vipP).getDiscount()));
-        cart.setTotal(cart.getTotal()-(*vipP).getDiscount());
+        cart.setTotal(getValorTotal() - (*vipP).getDiscount());
     }else{
         ui->lb_desconto->setText("");
         ui->lb_txt_desconto->setText("");
