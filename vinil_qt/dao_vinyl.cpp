@@ -50,6 +50,35 @@ bool DAOVinyl::createVinyl(Vinyl vinyl)
     }
 }
 
+bool DAOVinyl::createVinylCollection(int client_id, int vinyl_id)
+{
+    if (database_connection.isOpen())
+    {
+        QSqlQuery query = QSqlQuery(database_connection);
+        QString sql = "INSERT INTO `vinyl_shop`.`vinyl_collection`(`client_id`, `vinyl_id`) VALUES ('"
+                    + QString::number(client_id) + "', '" + QString::number(vinyl_id) + "');";
+
+        query.prepare(sql);
+
+        if (query.exec())
+        {
+            qDebug("Inserted in vinyl_shop.vinyl_collection!");
+            return 1;
+        }
+        else
+        {
+            qDebug("'query.exec()' failed! - INSERT vinyl_shop.vinyl_collection");
+            qDebug() << query.lastError();
+            return 0;
+        }
+    }
+    else
+    {
+        qDebug("Connection failed! - INSERT vinyl_shop.vinyl_collection");
+        return 0;
+    }
+}
+
 Vinyl DAOVinyl::readVinyl(int id)
 {
     DAOMusic dao_music(database_connection);
@@ -168,6 +197,7 @@ std::vector<Vinyl> DAOVinyl::readVinylsForSale()
 
                 vinyl = Vinyl(id, name, playlist, genre, composer, featuring, releaseYear, rarity, price, image_url, status);
                 vinyl_list.push_back(vinyl);
+
                 res.clear();
             }
         }
@@ -195,19 +225,17 @@ std::vector<Vinyl> DAOVinyl::readVinylCollection(int client_id)
     if (database_connection.isOpen())
     {
         QSqlQuery query = QSqlQuery(database_connection);
-        QString sql = "SELECT vinyl.id, vinyl.name, vinyl.genre, vinyl.composer, vinyl.featuring,"
-                      " vinyl.release_year, vinyl.rarity, vinyl.price,"
-                      " vinyl.image_url, vinyl.status FROM vinyl_shop.vinyl"
-                      " LEFT JOIN vinyl_shop.cart_items ci"
-                      " ON vinyl.id = ci.vinyl_id LEFT JOIN"
-                      " cart c on ci.cart_id = c.id WHERE c.client_id = '" +
-                      QString::number(client_id) + "' ORDER BY id DESC;";
+        QString sql = "SELECT `vinyl`.`id`, `vinyl`.`name`, `vinyl`.`genre`, `vinyl`.`composer`, `vinyl`.`featuring`, "
+                "`vinyl`.`release_year`, `vinyl`.`rarity`, `vinyl`.`price`, `vinyl`.`image_url`, `vinyl`.`status` "
+                "FROM `vinyl_shop`.`vinyl` "
+                "LEFT JOIN `vinyl_shop`.`vinyl_collection` vc ON `vinyl`.`id` = vc.`vinyl_id` "
+                "WHERE vc.`client_id` = '" + QString::number(client_id) + "' ORDER BY id DESC;";
 
         query.prepare(sql);
 
         if (query.exec())
         {
-            qDebug("Selected from vinyl_shop.vinyl!");
+            qDebug("Selected from vinyl_shop.vinyl_collection!");
 
             QSqlRecord record = query.record();
             int columns = record.count();
@@ -247,89 +275,13 @@ std::vector<Vinyl> DAOVinyl::readVinylCollection(int client_id)
         }
         else
         {
-            qDebug("'query.exec()' failed! - SELECT vinyl_shop.vinyl");
+            qDebug("'query.exec()' failed! - SELECT vinyl_shop.vinyl_collection");
             qDebug() << query.lastError();
         }
     }
     else
     {
-        qDebug("Connection failed! - SELECT vinyl_shop.vinyl");
-    }
-
-    return vinyl_list;
-}
-
-std::vector<Vinyl> DAOVinyl::readCartItems(int cart_id)
-{
-    DAOMusic dao_music(database_connection);
-    std::vector<Music> playlist;
-    Vinyl vinyl;
-    std::vector<Vinyl> vinyl_list;
-
-    if (database_connection.isOpen())
-    {
-        QSqlQuery query = QSqlQuery(database_connection);
-        QString sql = "SELECT `vinyl`.`id`, `vinyl`.`name`, `vinyl`.`genre`, `vinyl`.`composer`, "
-                      "`vinyl`.`featuring`, `vinyl`.`release_year`, `vinyl`.`rarity`,"
-                      " `vinyl`.`price`, `vinyl`.`image_url`,"
-                      "`vinyl`.`status` FROM `vinyl_shop`.`vinyl`"
-                      " LEFT JOIN `vinyl_shop`.`cart_items` ci ON "
-                      "`vinyl`.`id` = ci.`vinyl_id` LEFT JOIN "
-                      "`vinyl_shop`.`cart` c ON c.`id` = ci.cart_id"
-                      " WHERE c.`id` = '" +
-                      QString::number(cart_id) + "' ORDER BY id DESC;";
-
-        query.prepare(sql);
-
-        if (query.exec())
-        {
-            qDebug("Selected from vinyl_shop.vinyl!");
-
-            QSqlRecord record = query.record();
-            int columns = record.count();
-
-            QString result;
-
-            for (int i = 0; i < columns; i++)
-                result += record.fieldName(i) + ((i < columns - 1) ? "\\" : "");
-
-            qDebug() << result;
-
-            std::vector<QString> res;
-
-            while (query.next())
-            {
-                for (int i = 0; i < columns; i++)
-                    res.push_back(query.value(i).toString());
-
-                int id = res[0].toInt();
-                QString name = res[1];
-                QString genre = res[2];
-                QString composer = res[3];
-                QString featuring = res[4];
-                int releaseYear = res[5].toInt();
-                int rarity = res[6].toInt();
-                double price = res[7].toDouble();
-                QString image_url = res[8];
-                bool status = res[9].toInt();
-
-                playlist = dao_music.readPlaylist(id);
-
-                vinyl = Vinyl(id, name, playlist, genre, composer, featuring, releaseYear, rarity, price, image_url, status);
-                vinyl_list.push_back(vinyl);
-
-                res.clear();
-            }
-        }
-        else
-        {
-            qDebug("'query.exec()' failed! - SELECT vinyl_shop.vinyl");
-            qDebug() << query.lastError();
-        }
-    }
-    else
-    {
-        qDebug("Connection failed! - SELECT vinyl_shop.vinyl");
+        qDebug("Connection failed! - SELECT vinyl_shop.vinyl_collection");
     }
 
     return vinyl_list;
@@ -369,12 +321,15 @@ bool DAOVinyl::updateVinyl(Vinyl vinyl)
 
 bool DAOVinyl::updateVinylStatus(int cart_id)
 {
+    DataSource ds;
+    DAOCart dao_cart(ds.getConnection());
+
     if (database_connection.isOpen())
     {
         QSqlQuery query = QSqlQuery(database_connection);
         QString sql;
 
-        std::vector<Vinyl> vinyl_list = readCartItems(cart_id);
+        std::vector<Vinyl> vinyl_list = dao_cart.readCartItems(cart_id);
 
         for (unsigned int i = 0; i < vinyl_list.size(); i++)
         {

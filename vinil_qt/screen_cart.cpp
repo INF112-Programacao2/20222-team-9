@@ -27,8 +27,7 @@ screen_cart::screen_cart(QWidget *parent, int idClient) :
     this->cart = daoCart.readCart(idClient);
     cart.setTotal(getValorTotal());
 
-    DAOVinyl daoVinyl(dataSource.getConnection());
-    vinys = daoVinyl.readCartItems(cart.getId());
+    vinys = daoCart.readCartItems(cart.getId());
     if(client.getVip()){
         (vipP) = new VIPPurchase(cart);
         (*vipP).calculateDiscount();
@@ -120,6 +119,15 @@ void screen_cart::on_pb_finalizar_clicked()
 
     Purchase p(cart);
     daoPurchase.createPurchase(p);
+
+    DAOVinyl dao_vinyl(ds.getConnection());
+    DAOCart dao_cart(ds.getConnection());
+    std::vector<Vinyl> list_vinyl = dao_cart.readCartItems(cart.getId());
+
+    for (unsigned int i = 0; i < list_vinyl.size(); i++)
+        dao_vinyl.createVinylCollection(cart.getClient().getId(), list_vinyl[i].getId());
+
+    dao_cart.deleteCartItems(cart.getId());
 
     screen_completed_purchase *s = new screen_completed_purchase(this, idClient);
     s->show();

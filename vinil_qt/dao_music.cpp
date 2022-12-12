@@ -141,8 +141,6 @@ std::vector<Music> DAOMusic::readPlaylist(int vinyl_id)
 
                 music = Music(id, name, duration);
                 playlist.push_back(music);
-                result = music.getName();
-                qDebug() << result;
 
                 res.clear();
             }

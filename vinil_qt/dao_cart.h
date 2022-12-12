@@ -20,7 +20,9 @@ public:
     bool createCartItems(int vinyl_id, int cart_id);
     Cart readCart(int client_id);
     Cart readByCartId(int cart_id);
+    std::vector<Vinyl> readCartItems(int cart_id);
     bool deleteCart(int client_id);
+    bool deleteCartItems(int cart_id);
 };
 
 #endif // DAOCLIENT_H

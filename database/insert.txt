@@ -6,24 +6,24 @@ SET FOREIGN_KEY_CHECKS = 0;
 
 DELETE FROM `vinyl_shop`.`client`;
 ALTER TABLE `vinyl_shop`.`client` AUTO_INCREMENT = 1;
-INSERT INTO `vinyl_shop`.`client` (`cpf`, `name`, `email`, `password`, `vip`, `rank`) VALUES ('14785236998', 'José', 'jose@gmail.com', 'jose', '1', '2');
-INSERT INTO `vinyl_shop`.`client` (`cpf`, `name`, `email`, `password`, `vip`, `rank`) VALUES ('87456952369', 'Thiago', 'thiago@gmail.com', 'thiago', '1', '2');
-INSERT INTO `vinyl_shop`.`client` (`cpf`, `name`, `email`, `password`, `vip`, `rank`) VALUES ('85741523698', 'Gilberto', 'gil@gmail.com', 'gil', '1', '1');
-INSERT INTO `vinyl_shop`.`client` (`cpf`, `name`, `email`, `password`, `vip`, `rank`) VALUES ('41254845854', 'Júlio', 'julio@gmail.com', 'julio', '1', '2');
-INSERT INTO `vinyl_shop`.`client` (`cpf`, `name`, `email`, `password`, `vip`, `rank`) VALUES ('74859658952', 'Jully', 'jully@gmail.com', 'jully', '1', '0');
-INSERT INTO `vinyl_shop`.`client` (`cpf`, `name`, `email`, `password`, `vip`, `rank`) VALUES ('52102302520', 'Judith', 'jud@gmail.com', 'jud', '0', '-1');
-INSERT INTO `vinyl_shop`.`client` (`cpf`, `name`, `email`, `password`, `vip`, `rank`) VALUES ('98745652145', 'Carlos', 'carl@gmail.com', 'carl', '0', '-1');
-INSERT INTO `vinyl_shop`.`client` (`cpf`, `name`, `email`, `password`, `vip`, `rank`) VALUES ('87458965236', 'Marina', 'menina@gmail.com', 'menina', '0', '-1');
-INSERT INTO `vinyl_shop`.`client` (`cpf`, `name`, `email`, `password`, `vip`, `rank`) VALUES ('01254589451', 'Cícero', 'cicero@gmail.com', 'cicero', '0', '-1');
-INSERT INTO `vinyl_shop`.`client` (`cpf`, `name`, `email`, `password`, `vip`, `rank`) VALUES ('41526895202', 'Guilhermes Bolsonaro', 'gb@gmail.com', 'gb', '0', '-1');
+INSERT INTO `vinyl_shop`.`client` (`cpf`, `name`, `email`, `password`, `vip`, `rank`) VALUES ('14785236998', 'José', 'jose@gmail.com', '123', '1', '2');
+INSERT INTO `vinyl_shop`.`client` (`cpf`, `name`, `email`, `password`, `vip`, `rank`) VALUES ('87456952369', 'Thiago', 'thiago@gmail.com', '123', '1', '2');
+INSERT INTO `vinyl_shop`.`client` (`cpf`, `name`, `email`, `password`, `vip`, `rank`) VALUES ('85741523698', 'Gilberto', 'gil@gmail.com', '123', '1', '1');
+INSERT INTO `vinyl_shop`.`client` (`cpf`, `name`, `email`, `password`, `vip`, `rank`) VALUES ('41254845854', 'Júlio', 'julio@gmail.com', '123', '1', '2');
+INSERT INTO `vinyl_shop`.`client` (`cpf`, `name`, `email`, `password`, `vip`, `rank`) VALUES ('74859658952', 'Jully', 'jully@gmail.com', '123', '1', '0');
+INSERT INTO `vinyl_shop`.`client` (`cpf`, `name`, `email`, `password`, `vip`, `rank`) VALUES ('52102302520', 'Judith', 'jud@gmail.com', '123', '0', '-1');
+INSERT INTO `vinyl_shop`.`client` (`cpf`, `name`, `email`, `password`, `vip`, `rank`) VALUES ('98745652145', 'Carlos', 'carl@gmail.com', '123', '0', '-1');
+INSERT INTO `vinyl_shop`.`client` (`cpf`, `name`, `email`, `password`, `vip`, `rank`) VALUES ('87458965236', 'Marina', 'menina@gmail.com', '123', '0', '-1');
+INSERT INTO `vinyl_shop`.`client` (`cpf`, `name`, `email`, `password`, `vip`, `rank`) VALUES ('01254589451', 'Cícero', 'cicero@gmail.com', '123', '0', '-1');
+INSERT INTO `vinyl_shop`.`client` (`cpf`, `name`, `email`, `password`, `vip`, `rank`) VALUES ('41526895202', 'Guilhermes Bolsonaro', 'gb@gmail.com', '123', '0', '-1');
 
 DELETE FROM `vinyl_shop`.`vinyl`;
 ALTER TABLE `vinyl_shop`.`vinyl` AUTO_INCREMENT = 1;
-INSERT INTO `vinyl_shop`.`vinyl` (`name`, `genre`, `composer`, `featuring`, `release_year`, `rarity`, `price`, `image_url`, `status`) VALUES ('Dança das Cabeças', 'Instrumental Jazz', 'Egberto Gismonti', 'Naná Vasconcelos', '1977', '1', '250', 'empty', '1');
-INSERT INTO `vinyl_shop`.`vinyl` (`name`, `genre`, `composer`, `featuring`, `release_year`, `rarity`, `price`, `image_url`, `status`) VALUES ('Africadeus', 'Free Form', 'Naná Vasconcelos', 'None', '1973', '2', '275', 'empty', '1');
-INSERT INTO `vinyl_shop`.`vinyl` (`name`, `genre`, `composer`, `featuring`, `release_year`, `rarity`, `price`, `image_url`, `status`) VALUES ('A Love Supreme', 'Jazz Modal, Free Jazz', 'John Coltrane', 'None', '1965', '2', '275', 'empty', '1');
-INSERT INTO `vinyl_shop`.`vinyl` (`name`, `genre`, `composer`, `featuring`, `release_year`, `rarity`, `price`, `image_url`, `status`) VALUES ('Dois Mundos', 'Experimental Music, Psychedelic Rock, Percussive Approach', 'Ruídos de Céu Profundo', 'None', '2022', '2', '1000', 'empty', '1');
-INSERT INTO `vinyl_shop`.`vinyl` (`name`, `genre`, `composer`, `featuring`, `release_year`, `rarity`, `price`, `image_url`, `status`) VALUES ('Post', 'Eletronic Music', 'Bjork', 'None', '1995', '2', '162.95', 'empty', '1');
+INSERT INTO `vinyl_shop`.`vinyl` (`name`, `genre`, `composer`, `featuring`, `release_year`, `rarity`, `price`, `image_url`, `status`) VALUES ('Dança das Cabeças', 'Instrumental Jazz', 'Egberto Gismonti', 'Naná Vasconcelos', '1977', '1', '250', 'danca-das-cabecas-egberto-gismonti.jpg', '1');
+INSERT INTO `vinyl_shop`.`vinyl` (`name`, `genre`, `composer`, `featuring`, `release_year`, `rarity`, `price`, `image_url`, `status`) VALUES ('Africadeus', 'Free Form', 'Naná Vasconcelos', 'None', '1973', '2', '275', 'africadeus-nana-vasconcelos.jpg', '1');
+INSERT INTO `vinyl_shop`.`vinyl` (`name`, `genre`, `composer`, `featuring`, `release_year`, `rarity`, `price`, `image_url`, `status`) VALUES ('A Love Supreme', 'Jazz Modal, Free Jazz', 'John Coltrane', 'None', '1965', '2', '275', 'a-love-supreme-coltrane.jpg', '1');
+INSERT INTO `vinyl_shop`.`vinyl` (`name`, `genre`, `composer`, `featuring`, `release_year`, `rarity`, `price`, `image_url`, `status`) VALUES ('Dois Mundos', 'Experimental Music, Psychedelic Rock, Percussive Approach', 'Ruídos de Céu Profundo', 'None', '2022', '2', '1000', 'dois-mundos-rcp.jpeg', '1');
+INSERT INTO `vinyl_shop`.`vinyl` (`name`, `genre`, `composer`, `featuring`, `release_year`, `rarity`, `price`, `image_url`, `status`) VALUES ('Post', 'Eletronic Music', 'Bjork', 'None', '1995', '2', '162.95', 'post-bjork.jpg', '1');
 
 DELETE FROM `vinyl_shop`.`music`;
 ALTER TABLE `vinyl_shop`.`music` AUTO_INCREMENT = 1;
@@ -85,17 +85,17 @@ INSERT INTO `vinyl_shop`.`playlist` (`music_id`, `vinyl_id`) VALUES ('26', '5');
 
 DELETE FROM `vinyl_shop`.`vinyl_collection`;
 ALTER TABLE `vinyl_shop`.`vinyl_collection` AUTO_INCREMENT = 1;
-INSERT INTO `vinyl_shop`.`vinyl_collection` (`client_id`, `vinyl_id`) VALUES ('1', '1');
-INSERT INTO `vinyl_shop`.`vinyl_collection` (`client_id`, `vinyl_id`) VALUES ('2', '5');
+/*INSERT INTO `vinyl_shop`.`vinyl_collection` (`client_id`, `vinyl_id`) VALUES ('1', '1');
+INSERT INTO `vinyl_shop`.`vinyl_collection` (`client_id`, `vinyl_id`) VALUES ('2', '5');*/
 
 DELETE FROM `vinyl_shop`.`cart`;
 ALTER TABLE `vinyl_shop`.`cart` AUTO_INCREMENT = 1;
-INSERT INTO `vinyl_shop`.`cart` (`client_id`) VALUES ('3');
+/*INSERT INTO `vinyl_shop`.`cart` (`client_id`) VALUES ('3');*/
 
 DELETE FROM `vinyl_shop`.`cart_items`;
 ALTER TABLE `vinyl_shop`.`cart_items` AUTO_INCREMENT = 1;
-INSERT INTO `vinyl_shop`.`cart_items` (`vinyl_id`, `cart_id`) VALUES ('3', '1');
+/*INSERT INTO `vinyl_shop`.`cart_items` (`vinyl_id`, `cart_id`) VALUES ('3', '1');*/
 
 DELETE FROM `vinyl_shop`.`purchase`;
 ALTER TABLE `vinyl_shop`.`purchase` AUTO_INCREMENT = 1;
-INSERT INTO `vinyl_shop`.`purchase` (`cart_id`) VALUES ('3');
+/*INSERT INTO `vinyl_shop`.`purchase` (`cart_id`) VALUES ('3');*/
