@@ -46,7 +46,7 @@ screen_profile::screen_profile(QWidget *parent, int idClient) :
     if(c.getVip()==0){
         CommonClient cm(c.getId(),c.getCpf(), c.getName(), c.getEmail(), c.getPassword(), c.getVip(),c.getRank());
         ui->lb_rank->setText("");
-        ui->lb_txt_rank->setText("");
+        ui->lb_txt_rank->setText("PLEBEU");
     }else{
         //VIPClient(int id, QString cpf, QString name, QString email, QString password, int vip, int rank);
         VIPClient vc(c.getId(),c.getCpf(), c.getName(), c.getEmail(), c.getPassword(), c.getVip(),c.getRank());

@@ -26,10 +26,6 @@ screen_cart::screen_cart(QWidget *parent, int idClient) :
 
     QSqlDatabase database_connection = dataSource.getConnection();
 
-    DAOVinyl daoVinyl(dataSource.getConnection());
-    vinys = daoVinyl.readCartItems(cart.getId());
-
-
     DAOClient daoClient(dataSource.getConnection());
     Client client = daoClient.readClient(idClient);
 
@@ -37,9 +33,8 @@ screen_cart::screen_cart(QWidget *parent, int idClient) :
     this->cart = daoCart.readCart(idClient);
     cart.setTotal(getValorTotal());
 
-    QString s = QString::number(cart.getTotal());
-    QMessageBox::information(nullptr, "Conexão com o Banco",
-                            s );
+    DAOVinyl daoVinyl(dataSource.getConnection());
+    vinys = daoVinyl.readCartItems(cart.getId());
     if(client.getVip()){
         (vipP) = new VIPPurchase(cart);
         (*vipP).calculateDiscount();
@@ -100,11 +95,12 @@ void screen_cart::on_tableWidget_itemSelectionChanged()
 
     QNetworkAccessManager *nam = new QNetworkAccessManager(this);
     connect(nam, &QNetworkAccessManager::finished, this, &screen_cart::downloadFinished);
+
+
     QString s = "http://localhost/img/"+v.getImageUrl();
     const QUrl url = QUrl(s);
     QNetworkRequest request(url);
     nam->get(request);
-
 
     ui->lb_nome_album_cart->setText(v.getName());
     ui->lb_nome_cantor_cart->setText(v.getComposer());
@@ -123,13 +119,11 @@ Vinyl screen_cart::getVinyl(int id){
     Vinyl v = Vinyl();
     return (v);
 }
-
 void screen_cart::downloadFinished(QNetworkReply *reply){
     QPixmap pm;
     pm.loadFromData(reply->readAll());
     ui->lb_imagem->setPixmap(pm);
 }
-
 double screen_cart::getValorTotal(){
     double price=0;
     for (Vinyl v : vinys) {

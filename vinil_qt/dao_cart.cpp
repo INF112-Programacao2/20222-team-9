@@ -1,13 +1,13 @@
 #include "dao_cart.h"
+#include <QVariant>
 #include <QDebug>
 
 DAOCart::DAOCart(QSqlDatabase database_connection)
 {
     this->database_connection = database_connection;
+
     if (!database_connection.isOpen())
-    {
         database_connection.open();
-    }
 }
 
 DAOCart::~DAOCart() {}
@@ -45,13 +45,13 @@ Cart DAOCart::createCart(Client client)
     }
 }
 
-bool DAOCart::insertCartItens(int idVinyl, int cart_id)
+bool DAOCart::createCartItems(int idVinyl, int cart_id)
 {
     if (database_connection.isOpen())
     {
         QSqlQuery query = QSqlQuery(database_connection);
-        QString sql = "INSERT INTO `vinyl_shop`.`cart_items`(`vinyl_id`, `cart_id`) VALUES ('" +
-                      QString::number(idVinyl) + "','" + QString::number(cart_id) + "');";
+        QString sql = "INSERT INTO `vinyl_shop`.`cart_items`(`vinyl_id`, `cart_id`) VALUES ('"
+                    + QString::number(idVinyl) + "', '" + QString::number(cart_id) + "');";
 
         query.prepare(sql);
 
@@ -119,7 +119,6 @@ Cart DAOCart::readCart(int client_id)
                 int id = res[0].toInt();
                 client = dao_client.readClient(res[1].toInt());
                 vinylList = dao_vinyl.readCartItems(id);
-                double total = res[2].toDouble();
 
                 cart = Cart(id, client, vinylList, 0);
             }
@@ -183,7 +182,6 @@ Cart DAOCart::readByCartId(int cart_id)
                 int id = res[0].toInt();
                 client = dao_client.readClient(res[1].toInt());
                 vinylList = dao_vinyl.readCartItems(id);
-                double total = res[2].toDouble();
 
                 cart = Cart(id, client, vinylList, 0);
             }

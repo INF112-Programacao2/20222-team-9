@@ -56,6 +56,8 @@ void screen_home::on_tableWidget_itemSelectionChanged()
 
     QNetworkAccessManager *nam = new QNetworkAccessManager(this);
     connect(nam, &QNetworkAccessManager::finished, this, &screen_home::downloadFinished);
+
+
     QString s = "http://localhost/img/"+v.getImageUrl();
     const QUrl url = QUrl(s);
     QNetworkRequest request(url);
