@@ -22,6 +22,11 @@ bool DAOPurchase::createPurchase(Purchase purchase)
         if (query.exec())
         {
             qDebug("Inserted in vinyl_shop.purchase!");
+            DataSource ds;
+
+            DAOVinyl dao_vinyl(ds.getConnection());
+
+            dao_vinyl.updateVinylStatus(purchase.getCart().getId());
             return 1;
         }
         else
@@ -31,9 +36,6 @@ bool DAOPurchase::createPurchase(Purchase purchase)
             return 0;
         }
 
-        DAOVinyl dao_vinyl(database_connection);
-
-        dao_vinyl.updateVinylStatus(purchase.getCart().getId());
 
         return 1;
     }

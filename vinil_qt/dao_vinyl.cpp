@@ -378,20 +378,19 @@ bool DAOVinyl::updateVinylStatus(int cart_id)
 
         for (unsigned int i = 0; i < vinyl_list.size(); i++)
         {
-            sql = "UPDATE INTO `vinyl_shop`.`vinyl` (`status`) VALUES ('0')"
-                  "WHERE `id` = '" +
+            sql = "UPDATE vinyl_shop.vinyl SET status = 0 WHERE id = '" +
                   QString::number(vinyl_list[i].getId()) + "';";
 
             query.prepare(sql);
 
             if (query.exec())
             {
-                qDebug("Deleted from vinyl_shop.vinyl!");
+                qDebug("Update from vinyl_shop.vinyl!");
                 return 1;
             }
             else
             {
-                qDebug("'query.exec()' failed! - INSERT vinyl_shop.vinyl");
+                qDebug("'query.exec()' failed! - UPDATE vinyl_shop.vinyl");
                 qDebug() << query.lastError();
                 return 0;
             }

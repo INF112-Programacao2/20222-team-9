@@ -8,6 +8,8 @@ Cart::Cart()
 Cart::Cart(int id, Client client, std::vector<Vinyl> vinylList, double total) :
     id(id), client(client), vinylList(vinylList), total(total) {};
 
+Cart::Cart(int id, Client client, std::vector<Vinyl> vinylList, double total, bool ative) :
+    id(id), client(client), vinylList(vinylList), total(total), ative(ative) {};
 int Cart::getId()
 {
     return this->id;
@@ -46,4 +48,15 @@ double Cart::getTotal()
 void Cart::setTotal(double total)
 {
     this->total = total;
+}
+
+
+bool Cart::getAtive()
+{
+    return this->total;
+}
+
+void Cart::setAtive(bool ative)
+{
+    this->ative = ative;
 }
