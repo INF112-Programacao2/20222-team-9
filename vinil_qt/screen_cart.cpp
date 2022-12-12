@@ -125,7 +125,7 @@ void screen_cart::on_pb_finalizar_clicked()
     Purchase p(cart);
     daoPurchase.createPurchase(p);
 
-    screen_completed_purchase *s = new screen_completed_purchase(this);
+    screen_completed_purchase *s = new screen_completed_purchase(this, idClient);
     s->show();
     hide();
 
