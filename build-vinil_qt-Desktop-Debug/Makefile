@@ -963,9 +963,8 @@ screen_login.o: ../vinil_qt/screen_login.cpp ../vinil_qt/screen_login.h \
 
 screen_new_account.o: ../vinil_qt/screen_new_account.cpp ../vinil_qt/screen_new_account.h \
 		ui_screen_new_account.h \
-		../vinil_qt/dao_newuser.h \
 		../vinil_qt/screen_login.h \
-		ui_screen_login.h
+		ui_screen_profile.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o screen_new_account.o ../vinil_qt/screen_new_account.cpp
 
 screen_profile.o: ../vinil_qt/screen_profile.cpp ../vinil_qt/screen_profile.h \

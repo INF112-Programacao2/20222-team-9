@@ -136,7 +136,7 @@ void screen_disc::on_pb_adicionarCarrinho_clicked()
     DAOCart daoCart(ds.getConnection());
     int idCart = daoCart.readCart(idClient).getId();
 
-    if (daoCart.createCartItems(idVinyl, idCart)) {
+    if (daoCart.insertCartItens(idVinyl, idCart)) {
      screen_cart *s = new screen_cart(this, idClient);
      s->show();
      hide();

@@ -45,7 +45,7 @@ Cart DAOCart::createCart(Client client)
     }
 }
 
-bool DAOCart::createCartItems(int idVinyl, int cart_id)
+bool DAOCart::insertCartItens(int idVinyl, int cart_id)
 {
     if (database_connection.isOpen())
     {
