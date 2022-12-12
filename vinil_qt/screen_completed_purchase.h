@@ -15,6 +15,9 @@ public:
     explicit screen_completed_purchase(QWidget *parent = nullptr);
     ~screen_completed_purchase();
 
+private slots:
+    void on_pb_voltar_clicked();
+
 private:
     Ui::screen_completed_purchase *ui;
 };

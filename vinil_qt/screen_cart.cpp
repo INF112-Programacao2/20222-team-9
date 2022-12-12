@@ -10,6 +10,7 @@
 #include "ui_screen_cart.h"
 #include "QMessageBox.h"
 #include "vip_purchase.h"
+#include "screen_completed_purchase.h"
 screen_cart::screen_cart(QWidget *parent, int idClient) :
     QDialog(parent),
     ui(new Ui::screen_cart)
@@ -125,6 +126,9 @@ void screen_cart::on_pb_finalizar_clicked()
     Purchase p(cart);
     daoPurchase.createPurchase(p);
 
+    screen_completed_purchase *s = new screen_completed_purchase(this);
+    s->show();
+    hide();
 
 }
 
