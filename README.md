@@ -77,3 +77,9 @@ https://www.youtube.com/watch?v=DEuiURx3tYY)
 
 ### MATERIAL DE APOIO
 [EXEMPLO (BEM FRAQUINHO) DE  CRUD C++](https://github.com/heltonricardo/crud-cpp)
+
+### INSTRUÇÕES PARA A COMPILAÇÃO NO LINUX
+
+1 - VERIFICAR SE O BANCO DE DADOS ESTÁ ATIVO E SE TODAS INSERÇÕES FORAM FEITAS.
+
+2 - EXECUTAR O MAKEFILE.
