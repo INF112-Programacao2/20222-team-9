@@ -2,7 +2,9 @@
 
 # Documentação
 
-## PARA LINUX USAR A BRANCH -LINUX
+## PARA LINUX USAR A BRANCH -> LINUX
+## Makefile disponível!!!
+
 ## POO
 Padrão e referência de uso de POO no projeto:
 
