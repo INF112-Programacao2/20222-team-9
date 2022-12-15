@@ -1,6 +1,8 @@
 # Discípulos de Mércio! Time 9, tô certo!
 
 # Documentação
+
+## PARA LINUX USAR A BRANCH -LINUX
 ## POO
 Padrão e referência de uso de POO no projeto:
 
